@@ -1,1 +1,0 @@
-The profile image is stored at assets/profile.jpg.
