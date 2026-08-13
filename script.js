@@ -1,4 +1,9 @@
 (function(){'use strict';
+const responsiveLink=document.createElement('link');
+responsiveLink.rel='stylesheet';
+responsiveLink.href='responsive.css';
+document.head.appendChild(responsiveLink);
+
 const menuButton=document.getElementById('menuButton');
 const navLinks=document.getElementById('navLinks');
 if(menuButton&&navLinks){
