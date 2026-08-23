@@ -1,39 +1,779 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Mahatab Azmaine Refat — Health Science student, Botany student, emerging researcher and community-focused professional. Explore academic work, research, projects, skills, certifications and experience.">
-<meta name="theme-color" content="#f7f3ea">
-<meta property="og:title" content="Mahatab Azmaine Refat | Portfolio">
-<meta property="og:description" content="Academic portfolio, research, professional experience, projects, skills and credentials.">
-<meta property="og:type" content="website">
-<title>Mahatab Azmaine Refat | Portfolio</title>
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahatab Azmaine Refat — Portfolio</title>
+<meta name="description" content="Health Science & Botany student, researcher-in-training, and digital marketing specialist.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Roboto:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBFBF9;
+    --card:#FFFFFF;
+    --ink:#12181A;
+    --ink-soft:#5B6568;
+    --blue:#204E6B;
+    --blue-deep:#16394E;
+    --lime:#7CA646;
+    --line:#E4E7E5;
+    --radius:14px;
+    --maxw:1000px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Roboto',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:var(--blue);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;color:var(--ink);}
+  section{padding:64px 0;}
+  section:not(:last-child){border-bottom:1px solid var(--line);}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,251,249,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw);margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .nav-logo{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--ink);
+  }
+  .nav-links{display:flex;list-style:none;}
+  .nav-links li + li{margin-left:28px;}
+  .nav-links a{
+    color:var(--ink-soft);font-size:14px;font-weight:500;
+    text-decoration:none;
+  }
+  .nav-links a:hover{color:var(--blue);text-decoration:none;}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px;}
+
+  @media (max-width:820px){
+    .nav-links{
+      position:fixed;top:57px;left:0;right:0;
+      background:var(--card);
+      flex-direction:column;gap:0;
+      max-height:0;overflow:hidden;
+      transition:max-height .25s ease;
+      border-bottom:1px solid var(--line);
+    }
+    .nav-links.open{max-height:480px;}
+    .nav-links li + li{margin-left:0;}
+    .nav-links a{
+      padding:14px 24px;border-top:1px solid var(--line);
+      display:block;
+    }
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:64px 0 56px;
+  }
+  .hero > div:first-child{margin-right:40px;}
+  .hero-photo{
+    width:190px;height:190px;border-radius:18px;object-fit:cover;
+    border:4px solid var(--card);box-shadow:0 0 0 1px var(--line), 0 12px 30px -10px rgba(18,24,26,.18);
+    flex-shrink:0;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--lime);margin-bottom:12px;font-weight:500;
+  }
+  .hero h1{font-size:44px;font-weight:700;line-height:1.08;}
+  .hero .tagline{
+    font-size:17px;color:var(--ink-soft);margin-top:14px;max-width:480px;
+  }
+  .hero-cta{margin-top:26px;display:flex;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;
+    padding:11px 20px;border-radius:9px;font-size:14px;font-weight:500;
+    font-family:'Roboto',sans-serif;
+    border:1px solid transparent;cursor:pointer;margin:0 12px 10px 0;
+  }
+  .btn-primary{background:var(--blue);color:#fff;}
+  .btn-primary:hover{background:var(--blue-deep);text-decoration:none;}
+  .btn-ghost{background:var(--card);color:var(--ink);border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--blue);text-decoration:none;}
+
+  @media (max-width:700px){
+    .hero{flex-direction:column;align-items:flex-start;padding-top:40px;}
+    .hero > div:first-child{margin-right:0;}
+    .hero h1{font-size:32px;}
+    .hero-photo{width:150px;height:150px;order:-1;align-self:flex-start;margin-bottom:20px;}
+  }
+
+  /* ---------- STATS ---------- */
+  .stat-row{display:flex;flex-wrap:wrap;gap:14px;}
+  .stat-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 18px;position:relative;overflow:hidden;
+    flex:1 1 calc(25% - 11px);min-width:150px;
+  }
+  .stat-card .num{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;}
+  .stat-card .label{font-size:12.5px;color:var(--ink-soft);margin-top:4px;}
+  .stat-card svg{position:absolute;bottom:0;right:0;opacity:.9;}
+  @media (max-width:700px){.stat-card{flex-basis:calc(50% - 7px);}}
+
+  /* ---------- SECTION HEAD ---------- */
+  .section-head{margin-bottom:30px;}
+  .section-kicker{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:8px;
+  }
+  .section-head h2{font-size:28px;font-weight:600;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:flex;flex-wrap:wrap;gap:28px 40px;}
+  .about-block{flex:1 1 calc(50% - 20px);min-width:260px;}
+  .about-block h3{font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--blue);margin-bottom:8px;font-weight:600;}
+  .about-block p{color:var(--ink-soft);font-size:15px;}
+  @media (max-width:700px){.about-block{flex-basis:100%;}}
+
+  /* ---------- TIMELINE / ENTRY ---------- */
+  .entry{padding:18px 0;border-top:1px solid var(--line);}
+  .entry:first-of-type{border-top:none;}
+  .entry-top{
+    display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;
+  }
+  .entry-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16.5px;}
+  .entry-org{color:var(--ink-soft);font-size:14.5px;}
+  .entry-date{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .entry-desc{color:var(--ink-soft);font-size:14.5px;margin-top:8px;max-width:720px;}
+  .entry ul{margin:8px 0 0 18px;color:var(--ink-soft);font-size:14.5px;}
+  .entry ul li{margin-bottom:4px;}
+  .tag{
+    display:inline-block;font-size:11px;font-weight:500;padding:3px 9px;border-radius:999px;
+    background:#EEF3EE;color:var(--lime);margin-top:8px;font-family:'IBM Plex Mono',monospace;
+  }
+
+  /* ---------- COURSEWORK ---------- */
+  .course-grid{display:flex;flex-wrap:wrap;gap:24px;}
+  .course-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;flex:1 1 calc(50% - 12px);min-width:260px;}
+  .course-card h4{font-family:'Space Grotesk',sans-serif;font-size:14.5px;margin-bottom:10px;color:var(--blue);}
+  .course-card ul{list-style:none;font-size:14px;color:var(--ink-soft);}
+  .course-card ul li{padding:3px 0;}
+  .badge-status{
+    font-size:10.5px;font-family:'IBM Plex Mono',monospace;padding:1px 7px;border-radius:5px;
+    margin-left:6px;
+  }
+  .badge-enrolled{background:#FFF4E0;color:#9A6A00;}
+  @media (max-width:700px){.course-card{flex-basis:100%;}}
+
+  /* ---------- SKILLS CHIPS ---------- */
+  .skill-group{margin-bottom:22px;}
+  .skill-group h4{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);margin-bottom:10px;font-weight:600;}
+  .chip-row{display:flex;flex-wrap:wrap;}
+  .chip{
+    background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:7px 14px;font-size:13px;font-weight:500;display:flex;align-items:center;
+    margin:0 8px 8px 0;
+  }
+  .chip .dot{width:6px;height:6px;border-radius:50%;background:var(--lime);margin-right:7px;}
+
+  /* ---------- CERTIFICATIONS ---------- */
+  .cert-featured{display:flex;flex-wrap:wrap;gap:18px;margin-bottom:28px;}
+  .cert-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;flex:1 1 calc(33.333% - 12px);min-width:220px;}
+  .cert-card img{width:100%;height:150px;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);}
+  .cert-card-body{padding:14px 16px;}
+  .cert-card-body .name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;}
+  .cert-card-body .issuer{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+  @media (max-width:700px){.cert-card{flex-basis:100%;}}
+
+  details{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;}
+  summary{
+    cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px;
+    list-style:none;display:flex;align-items:center;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::before{content:"+";color:var(--blue);font-size:16px;margin-right:8px;}
+  details[open] summary::before{content:"–";}
+  .cert-table-wrap{margin-top:16px;overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th{text-align:left;font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--ink-soft);
+     text-transform:uppercase;letter-spacing:.03em;padding:8px 10px;border-bottom:1px solid var(--line);}
+  td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink-soft);}
+  .cert-subhead{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13.5px;margin:18px 0 4px;color:var(--blue);}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{padding:56px 0 64px;text-align:center;}
+  footer h2{font-size:26px;margin-bottom:10px;}
+  footer p{color:var(--ink-soft);margin-bottom:24px;}
+  .contact-row{display:flex;justify-content:center;flex-wrap:wrap;margin-bottom:20px;}
+  .contact-pill{
+    display:flex;align-items:center;background:var(--card);border:1px solid var(--line);
+    border-radius:999px;padding:9px 16px;font-size:13.5px;font-weight:500;color:var(--ink);
+    margin:0 7px 10px;
+  }
+  .contact-pill:hover{border-color:var(--blue);text-decoration:none;}
+  .foot-note{font-size:12px;color:var(--ink-soft);margin-top:30px;}
+
+  /* utility */
+  .mt8{margin-top:8px;}
+  .mb0{margin-bottom:0;}
+</style>
 </head>
 <body>
-<header class="site-header"><nav class="container nav" aria-label="Primary navigation"><a class="logo" href="#home" aria-label="Mahatab Azmaine Refat home"><span>MA</span><i>.</i></a><div class="nav-links" id="navLinks"><a href="#about">About</a><a href="#academic">Academic</a><a href="#professional">Professional</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#certifications">Certifications</a><a href="#publications">Publications</a><a href="#contact">Contact</a></div><div class="nav-actions"><a class="nav-cta" href="cv.html">CV <b>↗</b></a><button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">◐</button><button class="menu" id="menuButton" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">☰</button></div></nav></header>
-<main id="home">
-<section class="hero"><div class="hero-orb orb-a"></div><div class="hero-orb orb-b"></div><div class="container hero-grid"><div class="hero-copy reveal"><div class="eyebrow"><span class="status-dot"></span><span>Health Science · Botany · Research · Impact</span></div><h1>A portfolio built around <em>learning, evidence & impact.</em></h1><p class="lead">I'm <strong>Mahatab Azmaine Refat</strong> — a Health Science and Botany student, emerging researcher and community-focused professional. This portfolio brings together my academic journey, research interests, projects, skills, credentials and professional experience.</p><div class="hero-actions"><a class="btn btn-primary" href="#academic">Explore academic work <span>↗</span></a><a class="btn btn-quiet" href="cv.html">View CV <span>↗</span></a></div></div><div class="hero-visual reveal"><div class="portrait-wrap"><div class="portrait-accent"></div><div class="portrait-frame"><img src="https://avatars.githubusercontent.com/u/262155113?v=4" alt="Mahatab Azmaine Refat" width="520" height="650" fetchpriority="high"><div class="portrait-caption"><div><span>MAHATAB AZMAINE REFAT</span><small>Student · Researcher · Volunteer</small></div><div class="caption-mark">MA<span>.</span></div></div></div></div></div></div></section>
-<section class="marquee-strip"><div class="marquee-track"><span>ACADEMIC</span><i>·</i><span>RESEARCH</span><i>·</i><span>PUBLIC HEALTH</span><i>·</i><span>ENVIRONMENT</span><i>·</i><span>DATA</span><i>·</i><span>TECHNOLOGY</span><i>·</i><span>SOCIAL IMPACT</span></div></section>
-<section id="about" class="section"><div class="container split"><div class="section-kicker"><span>01</span><b>ABOUT ME</b></div><div class="section-content reveal"><p class="display-copy">Learning across disciplines, <em>working toward meaningful impact.</em></p><div class="about-grid"><article><h3>Introduction</h3><p>I am Mahatab Azmaine Refat, pursuing an interdisciplinary academic path across Health Science and Botany while developing experience in research, mentoring, volunteering and community engagement.</p></article><article><h3>Academic Background</h3><p>My current studies span Health Science at University of the People and Botany at Gurudayal College under National University of Bangladesh.</p></article><article><h3>Professional Interests</h3><p>Interested in public health, environmental work, data-informed practice, technology and social-impact initiatives.</p></article><article><h3>Research Interests</h3><p>Interested in health, plant science, biodiversity, environmental systems, research methods and evidence-based community impact.</p></article><article><h3>Career Goals</h3><p>Build a strong interdisciplinary career connecting health, research, environmental knowledge, data and practical community benefit.</p></article></div></div></div></section>
-<section id="academic" class="section section-dark"><div class="container"><div class="section-head"><div class="section-kicker light"><span>02</span><b>ACADEMIC PORTFOLIO</b></div><div><p class="display-copy">A structured record of <em>education & academic development.</em></p><p class="muted-copy">Education, coursework, academic projects, research and academic recognition will live here as a single source of academic evidence.</p></div></div>
-<div id="education" class="subsection"><div class="subsection-head"><span>02.01</span><h2>Education</h2></div><div class="table-wrap"><table class="education-table"><thead><tr><th>Degree</th><th>Institution</th><th>Duration</th><th>Status</th></tr></thead><tbody><tr><td><strong>Bachelor's Degree in Health Science</strong></td><td>University of the People (UoPeople)</td><td>2025 – Present</td><td>In Progress <span class="credit">41/122 credits</span></td></tr><tr><td><strong>Associate Degree in Health Science</strong></td><td>University of the People (UoPeople)</td><td>2025 – Present</td><td>In Progress <span class="credit">41/62 credits</span></td></tr><tr><td><strong>Bachelor's Degree in Botany</strong></td><td>Gurudayal College, Kishoreganj (National University of Bangladesh)</td><td>2021 – Present</td><td>In Progress</td></tr></tbody></table></div></div>
-<div id="coursework" class="subsection"><div class="subsection-head"><span>02.02</span><h2>Relevant Coursework</h2></div><div class="card-grid six"><article class="info-card"><span>Health Science</span><h3>Health-focused coursework</h3><p>Course records and academic learning will be added here.</p></article><article class="info-card"><span>Public Health</span><h3>Public health coursework</h3><p>Course records and academic learning will be added here.</p></article><article class="info-card"><span>Environmental Science</span><h3>Environmental coursework</h3><p>Course records and academic learning will be added here.</p></article><article class="info-card"><span>Biology</span><h3>Biology coursework</h3><p>Course records and academic learning will be added here.</p></article><article class="info-card"><span>Statistics & Data</span><h3>Statistics and data</h3><p>Course records and academic learning will be added here.</p></article><article class="info-card"><span>Research Methods</span><h3>Research methods</h3><p>Course records and academic learning will be added here.</p></article></div></div>
-<div id="academic-projects" class="subsection"><div class="subsection-head"><span>02.03</span><h2>Academic Projects</h2></div><div class="card-grid"><article class="info-card placeholder"><span>Health</span><h3>Academic project archive</h3><p>Health-related class projects will be added here.</p></article><article class="info-card placeholder"><span>Environmental</span><h3>Academic project archive</h3><p>Environmental class projects will be added here.</p></article><article class="info-card placeholder"><span>Data & Statistics</span><h3>Academic project archive</h3><p>Data and statistics projects will be added here.</p></article><article class="info-card placeholder"><span>Other</span><h3>Academic project archive</h3><p>Other academic projects will be added here.</p></article></div></div>
-<div id="research" class="subsection"><div class="subsection-head"><span>02.04</span><h2>Research</h2></div><div class="card-grid"><article class="info-card placeholder"><span>Research Projects</span><h3>Research work</h3><p>Research projects will be listed here with descriptions and links.</p></article><article class="info-card placeholder"><span>Literature Reviews</span><h3>Literature reviews</h3><p>Completed literature reviews will be listed here.</p></article><article class="info-card placeholder"><span>Research Proposals</span><h3>Research proposals</h3><p>Submitted research proposals will be listed here.</p></article><article class="info-card placeholder"><span>Research Reports</span><h3>Research reports</h3><p>Completed reports will be listed here.</p></article></div></div>
-<div id="academic-achievements" class="subsection"><div class="subsection-head"><span>02.05</span><h2>Academic Achievements</h2></div><div class="card-grid"><article class="info-card"><span>Honors</span><h3>High Honors</h3><p>Associate Degree academic distinction at University of the People.</p></article><article class="info-card placeholder"><span>Scholarships</span><h3>Scholarship record</h3><p>Scholarships will be listed here.</p></article><article class="info-card placeholder"><span>Awards</span><h3>Awards</h3><p>Academic awards will be listed here.</p></article><article class="info-card placeholder"><span>Academic Recognition</span><h3>Recognition</h3><p>Additional academic recognition will be listed here.</p></article></div></div>
-</div></section>
-<section id="professional" class="section"><div class="container"><div class="section-head"><div class="section-kicker"><span>03</span><b>PROFESSIONAL PORTFOLIO</b></div><div><p class="display-copy">Experience, leadership & <em>community engagement.</em></p><p class="muted-copy">Professional and community experience will be organized by role and context rather than mixed into the academic record.</p></div></div><div class="timeline"><article class="timeline-item"><div class="time">2026</div><div><h3>UN Volunteer</h3><p>Supported youth-focused initiatives connected with the Ministry of Youth, Sport and Arts in Zambia, contributing volunteer service and SDG-oriented engagement.</p></div></article><article class="timeline-item"><div class="time">2025–Present</div><div><h3>Mentor · FutureNation</h3><p>Supporting participants through mentoring, learning and youth development activities.</p></div></article><article class="timeline-item"><div class="time">2025–2026</div><div><h3>Mentor · UNDP</h3><p>Guided participants around digital skills, freelancing and professional development.</p></div></article><article class="timeline-item"><div class="time">2023</div><div><h3>Millennium Fellow · Millennium Campus Network</h3><p>Participated in an international student leadership community focused on advancing the Sustainable Development Goals.</p></div></article><article class="timeline-item"><div class="time">2023</div><div><h3>Aspire Alumni · Aspire Leaders Program</h3><p>Participated in leadership and professional development and joined the alumni community.</p></div></article><article class="timeline-item"><div class="time">2023–2024</div><div><h3>Campus Ambassador · Scholarship School BD</h3><p>Supported student outreach around scholarship, research and leadership opportunities.</p></div></article><article class="timeline-item"><div class="time">2022</div><div><h3>HR & Operations Intern · BYOSD</h3><p>Gained practical exposure to organizational operations, coordination and HR-related activities.</p></div></article><article class="timeline-item"><div class="time">2022</div><div><h3>District Admin Manager · ICT Olympiad Bangladesh</h3><p>Supported district-level administration, coordination and student-focused ICT activities.</p></div></article></div><div class="subsection"><div class="subsection-head"><span>03.01</span><h2>Professional Projects</h2></div><div class="card-grid"><article class="info-card placeholder"><span>Health</span><h3>Professional project archive</h3><p>Professional health projects will be added here.</p></article><article class="info-card placeholder"><span>Environmental</span><h3>Professional project archive</h3><p>Environmental professional projects will be added here.</p></article><article class="info-card placeholder"><span>Data</span><h3>Professional project archive</h3><p>Professional data projects will be added here.</p></article><article class="info-card placeholder"><span>Technology</span><h3>Professional project archive</h3><p>Technology and AI projects will be added here.</p></article><article class="info-card placeholder"><span>Social Impact</span><h3>Professional project archive</h3><p>Social-impact projects will be added here.</p></article></div></div></div></section>
-<section id="projects" class="section section-soft"><div class="container"><div class="section-head"><div class="section-kicker"><span>04</span><b>PROJECTS</b></div><div><p class="display-copy">One place to explore <em>the work itself.</em></p><p class="muted-copy">This is a consolidated project index. Projects will be referenced from their academic or professional source sections rather than duplicated as new content.</p></div></div><div class="card-grid five"><article class="feature-card"><span>01 · Health</span><h3>Health & Public Health</h3><p>Links to health-related academic and professional projects.</p></article><article class="feature-card"><span>02 · Environment</span><h3>Environmental</h3><p>Links to environmental projects and research work.</p></article><article class="feature-card"><span>03 · Data</span><h3>Data & Statistics</h3><p>Links to data, statistics and analytics projects.</p></article><article class="feature-card"><span>04 · Technology</span><h3>AI & Technology</h3><p>Links to technology, web and future UI/UX work.</p></article><article class="feature-card"><span>05 · Social Impact</span><h3>Social Impact</h3><p>Links to community and social-impact projects.</p></article></div></div></section>
-<section id="skills" class="section"><div class="container split"><div class="section-kicker"><span>05</span><b>SKILLS</b></div><div class="section-content"><p class="display-copy">An interdisciplinary <em>professional toolkit.</em></p><div class="skill-list"><article class="skill-row"><h3>Research</h3><p>Survey design · Literature review · Research-oriented learning · Evidence-based thinking · Scientific communication</p></article><article class="skill-row"><h3>Health & Public Health</h3><p>Health science foundations · Biology · Environmental health concepts · Health-focused academic learning</p></article><article class="skill-row"><h3>Data & Analytics</h3><p>Statistics coursework · Data interpretation · Spreadsheet-based analysis · Data visualization fundamentals</p></article><article class="skill-row"><h3>Technology</h3><p>HTML/CSS · Git/GitHub · Figma · Digital productivity · Web portfolio development</p></article><article class="skill-row"><h3>Professional Skills</h3><p>Communication · Mentoring · Teamwork · Coordination · Documentation · Presentation · Community engagement</p></article></div></div></div></section>
-<section id="certifications" class="section section-dark"><div class="container"><div class="section-head"><div class="section-kicker light"><span>06</span><b>CERTIFICATIONS</b></div><div><p class="display-copy">Credentials that support <em>continuous learning.</em></p><p class="muted-copy">Certificates and training will be grouped by credential type as they are added.</p></div></div><div class="card-grid"><article class="info-card dark-card placeholder"><span>Professional Certifications</span><h3>Credential archive</h3><p>Professional certifications will be listed here.</p></article><article class="info-card dark-card placeholder"><span>Online Courses</span><h3>Course archive</h3><p>Online courses and certificates will be listed here.</p></article><article class="info-card dark-card placeholder"><span>Training & Workshops</span><h3>Training archive</h3><p>Training and workshop records will be listed here.</p></article></div></div></section>
-<section id="publications" class="section"><div class="container"><div class="section-head"><div class="section-kicker"><span>07</span><b>PUBLICATIONS & PRESENTATIONS</b></div><div><p class="display-copy">Academic outputs, <em>when ready to publish.</em></p><p class="muted-copy">Formal outputs will be separated from working research materials.</p></div></div><div class="card-grid"><article class="info-card placeholder"><span>Publications</span><h3>Publication archive</h3><p>Published journal articles and papers will be listed here.</p></article><article class="info-card placeholder"><span>Research Reports</span><h3>Formal reports</h3><p>Officially submitted or published research reports will be listed here.</p></article><article class="info-card placeholder"><span>Presentations</span><h3>Presentation archive</h3><p>Conference and seminar presentations will be listed here.</p></article><article class="info-card placeholder"><span>Posters</span><h3>Poster archive</h3><p>Poster presentations will be listed here.</p></article></div></div></section>
-<section id="cv" class="section section-soft"><div class="container cv-panel"><div><div class="section-kicker"><span>08</span><b>CV / RESUME</b></div><p class="display-copy">A complete profile, <em>ready when you need it.</em></p><p class="muted-copy">Access the current CV from the portfolio. Previous versions can be archived separately when needed.</p></div><div class="cv-actions"><a class="btn btn-primary" href="cv.html">View Current CV ↗</a></div></div></section>
-<section id="contact" class="section contact-section"><div class="container contact-panel"><div class="contact-top"><div class="section-kicker"><span>09</span><b>CONTACT</b></div><span class="availability"><i></i> Open to meaningful opportunities</span></div><div class="contact-main"><div><p class="display-copy">Let's <em>connect.</em></p><p>For academic, research, volunteering, collaboration or professional opportunities.</p></div><div class="contact-links"><a href="mailto:rifatmahtab107@gmail.com"><span>Email</span><b>↗</b></a><a href="https://www.linkedin.com/in/mahatabazmaine" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><b>↗</b></a><a href="https://github.com/azmainemahatab" target="_blank" rel="noopener noreferrer"><span>GitHub</span><b>↗</b></a></div></div></div></section>
-</main><footer><div class="container footer-inner"><span>© 2026 Mahatab Azmaine Refat</span><span>Academic · Research · Professional · Impact</span></div></footer><script src="script.js"></script>
-</body></html>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">M. Azmaine Refat</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#leadership">Leadership</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-bottom:1px solid var(--line);padding-top:56px;">
+    <div>
+      <div class="eyebrow">Health Science × Botany × Digital Growth</div>
+      <h1>Mahatab Azmaine Refat</h1>
+      <div class="tagline">Health Science &amp; Botany student building measurable growth — in research, in learning, and in the audiences I teach online.</div>
+      <div class="hero-cta">
+        <a href="./Mahatab_Azmaine_Refat_CV.docx" class="btn btn-primary" download>Download CV</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <img class="hero-photo" src="./assets/profile-square.jpg" alt="Mahatab Azmaine Refat">
+  </section>
+
+  <!-- STATS -->
+  <section style="padding-top:40px;padding-bottom:56px;">
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="num">1,360+</div>
+        <div class="label">YouTube Subscribers</div>
+        <svg width="80" height="34" viewBox="0 0 90 40"><polyline points="0,35 15,30 30,32 45,20 60,22 75,8 90,5" fill="none" stroke="#7CA646" stroke-width="2.5"/></svg>
+      </div>
+      <div class="stat-card">
+        <div class="num">4</div>
+        <div class="label">President's List Terms</div>
+        <svg width="80" height="34" viewBox="0 0 90 40"><polyline points="0,30 22,25 45,22 67,14 90,10" fill="none" stroke="#204E6B" stroke-width="2.5"/></svg>
+      </div>
+      <div class="stat-card">
+        <div class="num">22</div>
+        <div class="label">Certifications Earned</div>
+        <svg width="80" height="34" viewBox="0 0 90 40"><polyline points="0,32 15,28 30,20 45,18 60,12 75,10 90,4" fill="none" stroke="#7CA646" stroke-width="2.5"/></svg>
+      </div>
+      <div class="stat-card">
+        <div class="num">6</div>
+        <div class="label">Global Research Societies</div>
+        <svg width="80" height="34" viewBox="0 0 90 40"><polyline points="0,30 20,26 40,24 60,16 80,12 90,9" fill="none" stroke="#204E6B" stroke-width="2.5"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head">
+      <div class="section-kicker">Who I Am</div>
+      <h2>About Me</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-block">
+        <h3>Introduction</h3>
+        <p>Hi, I'm Mahatab Azmaine Refat 👋 — an aspiring public health researcher with a unique academic background that bridges plant science and human health. I believe that meaningful health solutions start with understanding the environment we live in, and this portfolio reflects my journey across academics, research, and hands-on learning.</p>
+      </div>
+      <div class="about-block">
+        <h3>Academic Background</h3>
+        <p>I am currently pursuing a dual academic path: an Associate &amp; Bachelor's degree in Health Science from University of the People, and a Bachelor's degree in Botany from Gurudayal College, Kishoreganj, under the National University of Bangladesh. This combination has given me a strong foundation in both biological sciences and public health, allowing me to see health challenges through an environmental lens.</p>
+      </div>
+      <div class="about-block">
+        <h3>Professional Interests</h3>
+        <p>I'm drawn to the intersection of Environmental Health and Public Health — understanding how ecosystems, plant life, and environmental factors shape community health outcomes. I'm particularly interested in work that connects scientific research with real-world public health practice.</p>
+      </div>
+      <div class="about-block">
+        <h3>Research Interests</h3>
+        <p>My research interests lie in environmental health, plant-based/ecological factors affecting human health, and public health research methods. I'm especially curious about how environmental science can inform preventive health strategies in underserved communities.</p>
+      </div>
+      <div class="about-block" style="flex-basis:100%;">
+        <h3>Career Goals</h3>
+        <p>In the short term, my focus is on completing my academic degrees successfully while actively seeking internship and research assistant opportunities to build hands-on experience. In the long run, I aim to pursue a Master's degree (MPH/MS) and build a career in Public Health / Environmental Health, working at the intersection of research and community impact.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-head">
+      <div class="section-kicker">Academic Portfolio</div>
+      <h2>Education</h2>
+    </div>
+
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Bachelor's Degree in Health Science</span><br><span class="entry-org">University of the People</span></div>
+        <span class="entry-date">2025 – Present</span>
+      </div>
+      <div class="entry-desc">In Progress · 41/122 credits completed · President's List (4 terms)</div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Associate Degree in Health Science</span><br><span class="entry-org">University of the People</span></div>
+        <span class="entry-date">2025 – Present</span>
+      </div>
+      <div class="entry-desc">In Progress · 41/62 credits completed</div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">B.Sc. (Honours) in Botany</span><br><span class="entry-org">Gurudayal Government College, National University</span></div>
+        <span class="entry-date">2021 – Present</span>
+      </div>
+      <div class="entry-desc">Final Year (4th Year)</div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Higher Secondary Certificate (HSC), Science</span><br><span class="entry-org">Hossainpur Government College, Dhaka Board</span></div>
+        <span class="entry-date">2019 – 2020</span>
+      </div>
+      <div class="entry-desc">GPA 5.00/5.00</div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Secondary School Certificate (SSC), Science</span><br><span class="entry-org">Jangaldi High School, Dhaka Board</span></div>
+        <span class="entry-date">2014 – 2017</span>
+      </div>
+      <div class="entry-desc">GPA 5.00/5.00</div>
+    </div>
+
+    <div class="section-head" style="margin-top:44px;">
+      <h2 style="font-size:20px;">Relevant Coursework</h2>
+    </div>
+    <div class="course-grid">
+      <div class="course-card">
+        <h4>Health Science — Completed</h4>
+        <ul>
+          <li>Introduction to Health Science</li>
+          <li>Biology 1 &amp; 2 for Health Studies Majors</li>
+          <li>Introduction to Health Psychology</li>
+          <li>Emotional Intelligence</li>
+        </ul>
+      </div>
+      <div class="course-card">
+        <h4>Health Science — In Progress</h4>
+        <ul>
+          <li>Medical Terminology <span class="badge-status badge-enrolled">Enrolled</span></li>
+          <li>Human Anatomy &amp; Physiology <span class="badge-status badge-enrolled">Enrolled</span></li>
+          <li>Community &amp; Public Health 1 <span class="badge-status badge-enrolled">Enrolled</span></li>
+          <li>Nutrition <span class="badge-status badge-enrolled">Enrolled</span></li>
+        </ul>
+      </div>
+      <div class="course-card">
+        <h4>Statistics &amp; Social Science</h4>
+        <ul>
+          <li>Introduction to Statistics</li>
+          <li>College Algebra</li>
+          <li>Introduction to Sociology</li>
+          <li>Introduction to Global Ethics</li>
+        </ul>
+      </div>
+      <div class="course-card">
+        <h4>Botany — By Year</h4>
+        <ul>
+          <li><strong>Y1:</strong> Microbiology, Mycology, Phycology</li>
+          <li><strong>Y2:</strong> Plant Anatomy, Taxonomy of Angiosperms</li>
+          <li><strong>Y3:</strong> Plant Physiology, Ecology, Genetics</li>
+          <li><strong>Y4:</strong> Biotechnology, Molecular Biology, Biostatistics</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:44px;">
+      <h2 style="font-size:20px;">Academic Projects</h2>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Virtual Lab: Natural Selection &amp; Protist Diversity</span><br><span class="entry-org">Biology 2 for Health Studies Majors (BIOL 1121)</span></div>
+      </div>
+      <div class="entry-desc">Studied predator-prey camouflage across three habitats through simulation, then classified protist diversity across major eukaryotic lineages.</div>
+      <span class="tag">Data &amp; Statistics</span>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Labor Rights Violations in the Global Garment Industry — A Kantian Analysis</span><br><span class="entry-org">Introduction to Global Ethics (PHIL 1404)</span></div>
+      </div>
+      <div class="entry-desc">Applied Kant's Categorical Imperative to analyze the ethics of sweatshop labor practices in global supply chains.</div>
+      <span class="tag">Social Impact</span>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="section-head">
+      <div class="section-kicker">Research</div>
+      <h2>Research &amp; Scientific Affiliations</h2>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">International Astronomical Search Collaboration (IASC)</span><br><span class="entry-org">NASA / Institute for Astronomy, University of Hawaii</span></div>
+        <span class="entry-date">Aug – Sep 2023</span>
+      </div>
+      <div class="entry-desc">Analyzed astronomical images from Pan-STARRS, contributing to the identification and tracking of Near-Earth Objects (NEOs) and Main Belt asteroids under Dr. Patrick Miller and Dr. Richard Wainscoat.</div>
+      <img src="./assets/iasc-certificate.jpg" alt="IASC Certificate" style="margin-top:14px;border-radius:10px;border:1px solid var(--line);max-width:420px;">
+    </div>
+
+    <div class="section-head" style="margin-top:36px;">
+      <h2 style="font-size:20px;">Research Affiliations</h2>
+    </div>
+    <div class="chip-row">
+      <div class="chip"><span class="dot"></span>Society for Ethnobotany</div>
+      <div class="chip"><span class="dot"></span>Botanical Society of America</div>
+      <div class="chip"><span class="dot"></span>Society for Conservation Biology</div>
+      <div class="chip"><span class="dot"></span>Society for the Study of Evolution</div>
+      <div class="chip"><span class="dot"></span>European Federation of Biotechnology</div>
+      <div class="chip"><span class="dot"></span>International Association for Plant Taxonomy</div>
+    </div>
+
+    <div class="section-head" style="margin-top:44px;">
+      <h2 style="font-size:20px;">Academic Achievements</h2>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">President's List</span><br><span class="entry-org">University of the People</span></div>
+        <span class="entry-date">4 Terms</span>
+      </div>
+      <div class="entry-desc">The university's highest academic honor, achieved for four consecutive terms.</div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Government of Kazakhstan Scholarship</span><br><span class="entry-org">Al-Farabi Kazakh National University</span></div>
+        <span class="entry-date">Mar 2023</span>
+      </div>
+      <div class="entry-desc">Merit-based government scholarship for undergraduate studies in Space Engineering and Technologies.</div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">University of the People Institutional Scholarship</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-head">
+      <div class="section-kicker">Professional Portfolio</div>
+      <h2>Experience</h2>
+    </div>
+
+    <div class="section-head" style="margin-bottom:14px;">
+      <h2 style="font-size:20px;">Work Experience</h2>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Freelance Digital Marketer &amp; SEO Specialist</span><br><span class="entry-org">Self-Employed</span></div>
+        <span class="entry-date">2022 – Present</span>
+      </div>
+      <ul>
+        <li>Provide end-to-end SEO and digital marketing services with a strong foundation in WordPress-based website optimization.</li>
+        <li>Execute On-Page SEO, Off-Page SEO, and YouTube SEO strategies for clients.</li>
+        <li>Achieved up to 60% organic traffic growth for clients through data-driven campaigns.</li>
+      </ul>
+    </div>
+
+    <div class="section-head" style="margin-top:40px;margin-bottom:14px;">
+      <h2 style="font-size:20px;">Internships</h2>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Apprentice — WordPress Development</span><br><span class="entry-org">Grameenphone Ltd.</span></div>
+        <span class="entry-date">Jul 2025 – Jun 2026</span>
+      </div>
+      <div class="entry-desc">Gaining structured, hands-on training in website development, customization, and management at a leading telecom company.</div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Human Resources Operations Manager (Intern)</span><br><span class="entry-org">Bangladesh Youth Organization for Skill Development (BYOSD)</span></div>
+        <span class="entry-date">Jul 2022 – Dec 2022</span>
+      </div>
+      <div class="entry-desc">Completed a 6-month internship under the HR &amp; Operations department; developed skills in project management, training and team coordination. (Unpaid)</div>
+    </div>
+
+    <div class="section-head" style="margin-top:40px;margin-bottom:14px;">
+      <h2 style="font-size:20px;">Professional Projects</h2>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Founder &amp; Host — "Study Abroad with Mahatab Azmaine"</span><br><span class="entry-org">YouTube (@mahatabazmaine)</span></div>
+        <span class="entry-date">2024 – Present</span>
+      </div>
+      <ul>
+        <li>Built a 1,360+ subscriber education channel (48+ videos) from zero, guiding Bangladeshi students through scholarship and study-abroad pathways without agents.</li>
+        <li>Applied SEO strategies to grow reach; top-performing content exceeds 18,000 views.</li>
+      </ul>
+      <span class="tag">Technology / Social Impact</span>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section id="leadership">
+    <div class="section-head">
+      <div class="section-kicker">Leadership &amp; Community</div>
+      <h2>Leadership &amp; Volunteering</h2>
+    </div>
+
+    <div class="section-head" style="margin-bottom:14px;">
+      <h2 style="font-size:20px;">Leadership</h2>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Campus Leader</span><br><span class="entry-org">Aspire Leaders Program, Aspire Institute</span></div>
+        <span class="entry-date">2026 – Present</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Official Student Ambassador</span><br><span class="entry-org">University of the People</span></div>
+        <span class="entry-date">Aug 2025 – Present</span>
+      </div>
+      <div class="entry-desc">Represent and support the UoPeople student community, providing guidance to prospective and current students.</div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Digital Skills Mentor</span><br><span class="entry-org">UNDP Bangladesh (UN Volunteers Programme)</span></div>
+        <span class="entry-date">Sep – Nov 2025</span>
+      </div>
+      <div class="entry-desc">Mentored participants in digital skills, freelancing platforms, and remote work opportunities supporting SDG 8.</div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Ambassador</span><br><span class="entry-org">International Youth Math Challenge</span></div>
+        <span class="entry-date">2024 – Present</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Ambassador</span><br><span class="entry-org">International Astronomy and Astrophysics Competition</span></div>
+        <span class="entry-date">2023 – Present</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">IYS Deputy Country Coordinator</span><br><span class="entry-org">WSDA New Zealand</span></div>
+        <span class="entry-date">2021 – 2022</span>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:40px;margin-bottom:14px;">
+      <h2 style="font-size:20px;">Volunteering</h2>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Campus Volunteer, FutureNation Programme</span><br><span class="entry-org">United Nations Development Programme (UNDP)</span></div>
+        <span class="entry-date">2025 – Present</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Online Volunteer</span><br><span class="entry-org">Ministry of Youth, Sport and Arts, Zambia (UN Volunteers)</span></div>
+        <span class="entry-date">Oct 2025 – Mar 2026</span>
+      </div>
+      <div class="entry-desc">Contributed 20 hours/week to youth-focused development initiatives aligned with the SDGs.</div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Volunteer</span><br><span class="entry-org">Creative IT Institute</span></div>
+        <span class="entry-date">Jul 2021 – Sep 2022</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head">
+      <div class="section-kicker">Capabilities</div>
+      <h2>Skills</h2>
+    </div>
+
+    <div class="skill-group">
+      <h4>Languages</h4>
+      <div class="chip-row">
+        <div class="chip"><span class="dot"></span>Bangla (Native)</div>
+        <div class="chip"><span class="dot"></span>English (Proficient)</div>
+        <div class="chip"><span class="dot"></span>Russian (A1)</div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Research &amp; Data</h4>
+      <div class="chip-row">
+        <div class="chip"><span class="dot"></span>Scientific Data Analysis</div>
+        <div class="chip"><span class="dot"></span>Statistics</div>
+        <div class="chip"><span class="dot"></span>Biostatistics</div>
+        <div class="chip"><span class="dot"></span>International Research Collaboration</div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Digital Marketing &amp; Technology</h4>
+      <div class="chip-row">
+        <div class="chip"><span class="dot"></span>WordPress Development</div>
+        <div class="chip"><span class="dot"></span>On-Page SEO</div>
+        <div class="chip"><span class="dot"></span>Off-Page SEO</div>
+        <div class="chip"><span class="dot"></span>YouTube SEO</div>
+        <div class="chip"><span class="dot"></span>Google Analytics</div>
+        <div class="chip"><span class="dot"></span>Google Search Console</div>
+        <div class="chip"><span class="dot"></span>UI/UX Design</div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Design &amp; Content</h4>
+      <div class="chip-row">
+        <div class="chip"><span class="dot"></span>Canva</div>
+        <div class="chip"><span class="dot"></span>Video Scripting</div>
+        <div class="chip"><span class="dot"></span>Content Writing</div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Professional</h4>
+      <div class="chip-row">
+        <div class="chip"><span class="dot"></span>Leadership &amp; Mentoring</div>
+        <div class="chip"><span class="dot"></span>Cross-Cultural Communication</div>
+        <div class="chip"><span class="dot"></span>Project Management</div>
+        <div class="chip"><span class="dot"></span>Team Coordination</div>
+        <div class="chip"><span class="dot"></span>Public Speaking</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-head">
+      <div class="section-kicker">Credentials</div>
+      <h2>Certifications</h2>
+    </div>
+
+    <div class="cert-featured">
+      <div class="cert-card">
+        <img src="./assets/gemini-certificate.jpg" alt="Gemini Certified Educator">
+        <div class="cert-card-body">
+          <div class="name">Gemini Certified Educator</div>
+          <div class="issuer">Google for Education · Oct 2025</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <img src="./assets/unilever-certificate.jpg" alt="Unilever Certificate">
+        <div class="cert-card-body">
+          <div class="name">Customer Understanding &amp; Digital Marketing Channels</div>
+          <div class="issuer">Unilever · Aug 2025</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <img src="./assets/google-ai-certificate.jpg" alt="Google Introduction to AI">
+        <div class="cert-card-body">
+          <div class="name">Introduction to AI</div>
+          <div class="issuer">Google · Jul 2025</div>
+        </div>
+      </div>
+    </div>
+
+    <details>
+      <summary>View All Certifications (22)</summary>
+      <div class="cert-table-wrap">
+        <div class="cert-subhead">Professional Certifications</div>
+        <table>
+          <tr><th>Certificate</th><th>Issuer</th><th>Issued</th></tr>
+          <tr><td>Customer Understanding &amp; Digital Marketing Channels</td><td>Unilever</td><td>Aug 2025</td></tr>
+          <tr><td>Introduction to AI</td><td>Google</td><td>Jul 2025</td></tr>
+          <tr><td>Microsoft Excel Professional Certificate</td><td>Microsoft</td><td>Jul 2025</td></tr>
+          <tr><td>ASCM Professional Membership</td><td>ASCM</td><td>Jul 2025</td></tr>
+          <tr><td>Certificate of Competence — Digital Marketing</td><td>LEDP</td><td>Mar 2020</td></tr>
+          <tr><td>Skill Development for Mobile Game &amp; App Project</td><td>ICT Division</td><td>Jan 2022</td></tr>
+        </table>
+        <div class="cert-subhead">Online Courses</div>
+        <table>
+          <tr><th>Course</th><th>Platform</th><th>Issued</th></tr>
+          <tr><td>Introduction to UX/UI Design</td><td>IBM</td><td>Feb 2026</td></tr>
+          <tr><td>Introduction to Climate Risk Informed Decision Analysis</td><td>UNESCO</td><td>Nov 2025</td></tr>
+          <tr><td>Open Educational Resources (OER) Development</td><td>UNESCO</td><td>Oct 2025</td></tr>
+          <tr><td>Gemini Certified Educator</td><td>Google for Education</td><td>Oct 2025</td></tr>
+          <tr><td>High Performance Collaboration: Leadership, Teamwork &amp; Negotiation</td><td>Northwestern University</td><td>—</td></tr>
+          <tr><td>SEO</td><td>HubSpot Academy</td><td>Jul 2025</td></tr>
+          <tr><td>Digital Marketing</td><td>HubSpot Academy</td><td>Jul 2025</td></tr>
+          <tr><td>On-Page SEO Essentials with Semrush</td><td>Semrush</td><td>Aug 2025</td></tr>
+          <tr><td>Semrush SEO Crash Course with Brian Dean</td><td>Semrush</td><td>Jul 2025</td></tr>
+          <tr><td>Keyword Research Essentials with Semrush</td><td>Semrush</td><td>Jul 2025</td></tr>
+          <tr><td>Work Smarter with Microsoft Word</td><td>Microsoft</td><td>Jul 2025</td></tr>
+          <tr><td>Introduction to Social Media Marketing</td><td>Meta</td><td>—</td></tr>
+          <tr><td>Foundations of Digital Marketing and E-commerce</td><td>Google</td><td>Jun 2025</td></tr>
+          <tr><td>Digital Marketing Foundations</td><td>LinkedIn</td><td>Jun 2025</td></tr>
+          <tr><td>Batch-1 (Digital Skills)</td><td>MuktoPaath</td><td>May 2026</td></tr>
+          <tr><td>Changes of Plan — English, Level B2 (24h)</td><td>British Council</td><td>Jun 2024</td></tr>
+        </table>
+        <div class="cert-subhead">Training &amp; Workshops</div>
+        <table>
+          <tr><th>Program</th><th>Organizer</th><th>Issued</th></tr>
+          <tr><td>Aspire Leaders Program (2026 Cohort)</td><td>Aspire Institute</td><td>Apr 2026</td></tr>
+          <tr><td>Webinar: Building Strong Virtual Teams</td><td>United Latino Students Association</td><td>Oct 2025</td></tr>
+          <tr><td>Webinar: Financial Planning — Navigating Personal Finance in a Global Economy</td><td>United Latino Students Association</td><td>Oct 2025</td></tr>
+        </table>
+      </div>
+    </details>
+
+    <div class="section-head" style="margin-top:44px;">
+      <h2 style="font-size:20px;">Media Features</h2>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Student Story Feature</span><br><span class="entry-org">University of the People — Official Student Stories</span></div>
+      </div>
+      <div class="entry-desc"><a href="https://www.uopeople.edu/student-experience/student-life/student-stories/mahatab-azmaine-r-uopeople-student-stories/" target="_blank" rel="noopener">Read the feature →</a></div>
+    </div>
+    <div class="entry">
+      <div class="entry-top">
+        <div><span class="entry-title">Featured Article on Higher Education</span><br><span class="entry-org">Prothom Alo, Bangladesh</span></div>
+      </div>
+      <div class="entry-desc"><a href="https://www.prothomalo.com/education/higher-education/szn3hr4cok" target="_blank" rel="noopener">Read the article →</a></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact">
+    <h2>Let's Connect</h2>
+    <p>Open to research collaborations, internships, and opportunities in public &amp; environmental health.</p>
+    <div class="contact-row">
+      <a class="contact-pill" href="mailto:seoexpertmahatabazmaine@gmail.com">📧 Email</a>
+      <a class="contact-pill" href="https://www.linkedin.com/in/mahatabazmaine" target="_blank" rel="noopener">💼 LinkedIn</a>
+      <a class="contact-pill" href="https://github.com/azmainemahatab" target="_blank" rel="noopener">🐙 GitHub</a>
+      <a class="contact-pill" href="https://youtube.com/@mahatabazmaine" target="_blank" rel="noopener">🎥 YouTube</a>
+    </div>
+    <div class="foot-note">Dhaka, Bangladesh &nbsp;·&nbsp; © 2026 Mahatab Azmaine Refat</div>
+  </footer>
+
+</div>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+</script>
+</body>
+</html>
