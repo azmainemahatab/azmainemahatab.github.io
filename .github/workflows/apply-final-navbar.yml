@@ -23,7 +23,6 @@ jobs:
 
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-          original = s
 
           # Final contact email.
           for old in ('rifatmahtab107@gmail.com', 'seoexpertmahatabazmaine@gmail.com'):
@@ -108,3 +107,5 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -m "Apply final hamburger navigation and email [apply-final-navbar]"
           git push
+
+# Trigger commit to apply the requested final navbar and email changes.
