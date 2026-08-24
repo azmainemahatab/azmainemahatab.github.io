@@ -85,7 +85,7 @@ The website presents:
 A centralized digital portfolio showcasing my academic background, research interests, professional development, skills, certifications, leadership activities, and selected digital work.
 
 **Live Website:**  
-[https://azmainemahatab.github.io/](https://azmainemahatab.github.io/)
+[azmainemahatab.github.io](https://azmainemahatab.github.io/)
 
 ## Repository
 
@@ -115,7 +115,7 @@ Please use the private vulnerability reporting process for sensitive security is
 The website is deployed using **GitHub Pages** from the `main` branch.
 
 **Live deployment:**  
-[https://azmainemahatab.github.io/](https://azmainemahatab.github.io/)
+[azmainemahatab.github.io](https://azmainemahatab.github.io/)
 
 ## Contact
 
