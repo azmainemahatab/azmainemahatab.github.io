@@ -1,0 +1,83 @@
+name: Apply portfolio updates
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update-portfolio:
+    if: contains(github.event.head_commit.message, 'PORTFOLIO_UPDATE_TRIGGER')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update existing portfolio without removing content
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+          original = html
+
+          # Update social-preview metadata while preserving every existing section and embedded asset.
+          preview = 'https://azmainemahatab.github.io/social-preview.png.jpg'
+          html = re.sub(r'<meta property="og:image" content="[^"]+">', f'<meta property="og:image" content="{preview}">', html, count=1)
+          html = re.sub(r'<meta name="twitter:image" content="[^"]+">', f'<meta name="twitter:image" content="{preview}">', html, count=1)
+          if 'property="og:image:type"' not in html:
+              html = html.replace(
+                  f'<meta property="og:image" content="{preview}">',
+                  f'<meta property="og:image" content="{preview}">\n<meta property="og:image:type" content="image/jpeg">',
+                  1
+              )
+
+          # Use the current portfolio email consistently wherever the old address appears.
+          html = html.replace('seoexpertmahatabazmaine@gmail.com', 'rifatmahtab107@gmail.com')
+
+          # Add Research to the existing desktop/mobile navigation exactly once.
+          research_link = '<li><a href="#research">Research</a></li>'
+          if research_link not in html:
+              marker = '<li><a href="#experience">Experience</a></li>'
+              if marker in html:
+                  html = html.replace(marker, research_link + '\n        ' + marker, 1)
+
+          # Add the requested programming/web skills without deleting any existing skills.
+          skills_group = '\n'.join([
+              '    <div class="skill-group" data-added-by="portfolio-update">',
+              '      <h4>Web &amp; Programming</h4>',
+              '      <div class="chip-row">',
+              '        <div class="chip"><span class="dot"></span>HTML</div>',
+              '        <div class="chip"><span class="dot"></span>CSS</div>',
+              '        <div class="chip"><span class="dot"></span>JavaScript</div>',
+              '        <div class="chip"><span class="dot"></span>Python</div>',
+              '        <div class="chip"><span class="dot"></span>Git &amp; GitHub</div>',
+              '      </div>',
+              '    </div>'
+          ])
+          if 'data-added-by="portfolio-update"' not in html:
+              marker = '  <!-- CERTIFICATIONS -->'
+              if marker in html:
+                  html = html.replace(marker, skills_group + '\n\n' + marker, 1)
+
+          # Improve desktop navigation spacing while retaining the existing responsive behavior.
+          html = html.replace('.nav-links li + li{margin-left:30px;}', '.nav-links li + li{margin-left:28px;}')
+          html = html.replace('max-width:1400px;margin:0 auto;padding:14px 32px;', 'max-width:1440px;margin:0 auto;padding:14px 32px;')
+
+          if html == original:
+              raise SystemExit('No changes were applied; aborting to avoid an unnecessary commit.')
+
+          path.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Commit updated portfolio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Update portfolio metadata navigation and skills"
+          git push
