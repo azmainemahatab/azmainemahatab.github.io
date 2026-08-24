@@ -1,0 +1,54 @@
+name: Fix navbar full name
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix-navbar:
+    if: ${{ !contains(github.event.head_commit.message, '[navbar-fix]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate and fix navbar
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          # Only change the visible navbar brand; do not alter page content.
+          pattern = r'(<(?:a|div|span|button)[^>]*class=["\'][^"\']*nav-logo[^"\']*["\'][^>]*>)(.*?)(</(?:a|div|span|button)>)'
+          s, count = re.subn(pattern, r'\1Mahatab Azmaine Refat\3', s, count=1, flags=re.S)
+          if count != 1:
+              raise SystemExit('Navbar logo element not found exactly once; no change made.')
+
+          # Prevent accidental duplicate full-name text in the navbar only.
+          p.write_text(s, encoding='utf-8')
+          PY
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('index.html').read_text(encoding='utf-8')
+          m=re.search(r'<(?:a|div|span|button)[^>]*class=["\'][^"\']*nav-logo[^"\']*["\'][^>]*>(.*?)</(?:a|div|span|button)>',s,re.S)
+          assert m, 'Navbar logo missing'
+          assert re.sub(r'<[^>]+>','',m.group(1)).strip() == 'Mahatab Azmaine Refat', 'Navbar name verification failed'
+          assert 'seoexpertrefat@gmail.com' in s, 'Email verification failed'
+          assert 'class="nav-toggle"' in s or "class='nav-toggle'" in s, 'Hamburger button missing'
+          PY
+
+      - name: Commit verified change and remove temporary workflow
+        shell: bash
+        run: |
+          rm -f .github/workflows/fix-navbar-name.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/fix-navbar-name.yml
+          git commit -m "Fix navbar full name [navbar-fix]"
+          git push
