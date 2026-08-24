@@ -50,7 +50,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Roboto:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Roboto:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>
   :root{
     --bg:#FBFBF9;
@@ -668,7 +668,10 @@ html.dark .contact-icon{background:#202B2F;}
 
   /* Performance-only rendering optimization */
   @media (min-width:701px){section{content-visibility:auto;contain-intrinsic-size:1px 520px;}}
+/* PERFORMANCE: reduced motion support */
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.nav-links{transition:none}}
 </style>
+<noscript><!-- font stylesheet fallback --><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Roboto:wght@400;500;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"></noscript>
 </head>
 <body>
 
