@@ -576,6 +576,11 @@
     border-color:var(--line);
   }
 
+
+  /* ---------- HOME NAVIGATION / SMOOTH SCROLL ---------- */
+  html{ scroll-behavior:smooth; }
+  section[id]{ scroll-margin-top:90px; }
+
 </style>
 </head>
 <body>
@@ -588,6 +593,7 @@
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -602,7 +608,7 @@
 <div class="wrap">
 
   <!-- HERO -->
-  <section class="hero" style="border-bottom:1px solid var(--line);padding-top:56px;">
+  <section class="hero" id="home" style="border-bottom:1px solid var(--line);padding-top:56px;">
     <div>
       <div class="eyebrow">Health Science × Botany × Digital Growth</div>
       <h1>Mahatab Azmaine Refat</h1>
