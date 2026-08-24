@@ -14,28 +14,97 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Apply navbar and email update
+
+      - name: Apply final portfolio refinements
         shell: python
         run: |
           from pathlib import Path
+          import re
+
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-          old_email = 'rifatmahtab107@gmail.com'
-          new_email = 'seoexpertrefat@gmail.com'
-          s = s.replace(old_email, new_email)
-          marker = '/* ---------- MODERN HAMBURGER NAV FINAL ---------- */'
-          if marker not in s:
-              css = '''\n  /* ---------- MODERN HAMBURGER NAV FINAL ---------- */\n  nav{background:rgba(251,251,249,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}\n  .nav-inner{max-width:1280px;padding:12px 28px;}\n  .nav-actions{margin-left:auto;position:relative;}\n  .nav-links{display:none;position:absolute;top:calc(100% + 12px);right:0;width:250px;padding:8px;flex-direction:column;align-items:stretch;gap:2px;background:rgba(255,255,255,.97);border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 45px rgba(18,24,26,.16);list-style:none;z-index:100;}\n  .nav-links.open{display:flex;}\n  .nav-links li + li{margin-left:0;}\n  .nav-links a{display:block;padding:11px 14px;border-radius:10px;color:var(--ink);font-size:14px;font-weight:600;transition:background .18s ease,color .18s ease,transform .18s ease;}\n  .nav-links a:hover{background:#EEF3EE;color:var(--blue);transform:translateX(2px);text-decoration:none;}\n  .nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;width:42px;height:42px;margin-left:12px;padding:7px;border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:0 3px 10px rgba(18,24,26,.06);}\n  .nav-toggle span{width:20px;height:2px;margin:2.5px 0;background:var(--ink);transition:transform .2s ease,opacity .2s ease;}\n  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}\n  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}\n  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}\n  html.dark .nav-links{background:rgba(23,28,31,.98);}\n  @media (max-width:700px){.nav-inner{padding:10px 18px;}.nav-links{position:fixed;top:64px;right:14px;left:14px;width:auto;max-height:calc(100vh - 82px);overflow:auto;}}\n'''
+
+          # Keep the approved professional email.
+          s = s.replace('rifatmahtab107@gmail.com', 'seoexpertrefat@gmail.com')
+
+          # Clean any accidental duplicated full-name text without changing legitimate single-name occurrences.
+          s = s.replace('Mahatab Mahatab Azmaine Refat Refat', 'Mahatab Azmaine Refat')
+          s = s.replace('Mahatab Mahatab Azmaine Refat', 'Mahatab Azmaine Refat')
+          s = s.replace('Mahatab Azmaine Refat Refat', 'Mahatab Azmaine Refat')
+
+          # Replace the existing Contact section with a cleaner academic/professional version.
+          contact = '''
+  <section id="contact" class="contact-section">
+    <div class="wrap">
+      <div class="contact-card">
+        <div class="section-kicker">Contact</div>
+        <h2>Let’s Connect</h2>
+        <p class="contact-lead">Open to research collaborations, internships, academic opportunities, and meaningful work in public and environmental health.</p>
+        <div class="contact-actions">
+          <a class="contact-link" href="mailto:seoexpertrefat@gmail.com" aria-label="Email Mahatab Azmaine Refat">
+            <span class="contact-icon" aria-hidden="true">✉</span><span>Email</span>
+          </a>
+          <a class="contact-link" href="https://www.linkedin.com/in/mahatabazmaine" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+            <span class="contact-icon" aria-hidden="true">in</span><span>LinkedIn</span>
+          </a>
+          <a class="contact-link" href="https://youtube.com/@mahatabazmaine" target="_blank" rel="noopener noreferrer" aria-label="YouTube channel">
+            <span class="contact-icon" aria-hidden="true">▶</span><span>YouTube</span>
+          </a>
+        </div>
+        <div class="contact-meta">
+          <span>Dhaka, Bangladesh</span><span aria-hidden="true">·</span><span>© 2026 Mahatab Azmaine Refat</span>
+        </div>
+      </div>
+    </div>
+  </section>
+'''
+
+          pattern = r'<section\s+id=["\']contact["\'][^>]*>.*?</section>'
+          s2, n = re.subn(pattern, contact.strip(), s, count=1, flags=re.S | re.I)
+          if n != 1:
+              raise SystemExit('Contact section was not found exactly once; refusing to modify the page.')
+          s = s2
+
+          # Professional contact-section styling. No oversized gradients or excessive animation.
+          css_marker = '/* ---------- PROFESSIONAL CONTACT SECTION V2 ---------- */'
+          if css_marker not in s:
+              css = '''
+  /* ---------- PROFESSIONAL CONTACT SECTION V2 ---------- */
+  .contact-section{padding:72px 0 58px;border-bottom:none!important;}
+  .contact-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:52px 28px 34px;text-align:center;box-shadow:0 14px 40px rgba(18,24,26,.06);}
+  .contact-card h2{font-size:38px;font-weight:700;line-height:1.15;margin-top:4px;}
+  .contact-lead{max-width:780px;margin:14px auto 30px;color:var(--ink-soft);font-size:16px;}
+  .contact-actions{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:14px;}
+  .contact-link{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font-size:14px;font-weight:600;box-shadow:0 4px 14px rgba(18,24,26,.05);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;color .18s ease;}
+  .contact-link:hover{transform:translateY(-2px);border-color:var(--blue);box-shadow:0 9px 22px rgba(18,24,26,.09);color:var(--blue);text-decoration:none;}
+  .contact-icon{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--blue);}
+  .contact-meta{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;margin-top:34px;color:var(--ink-soft);font-size:12.5px;}
+  @media(max-width:700px){.contact-section{padding:54px 0 40px;}.contact-card{padding:38px 18px 28px;border-radius:16px;}.contact-card h2{font-size:31px;}.contact-lead{font-size:14px;margin-bottom:24px;}.contact-actions{gap:10px;}.contact-link{padding:10px 14px;font-size:13.5px;}.contact-meta{margin-top:26px;}}
+'''
               s = s.replace('</style>', css + '</style>', 1)
-          js_marker = 'FINAL_NAV_EMAIL_CONTROLLER'
-          if js_marker not in s:
-              js = '''\n<script>/* FINAL_NAV_EMAIL_CONTROLLER */\n(function(){const t=document.getElementById('navToggle'),l=document.getElementById('navLinks');if(!t||!l)return;t.addEventListener('click',()=>{const o=l.classList.toggle('open');t.setAttribute('aria-expanded',String(o));t.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu')});l.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{l.classList.remove('open');t.setAttribute('aria-expanded','false');t.setAttribute('aria-label','Open navigation menu')}));document.addEventListener('click',e=>{if(l.classList.contains('open')&&!l.contains(e.target)&&!t.contains(e.target)){l.classList.remove('open');t.setAttribute('aria-expanded','false')}})})();</script>\n'''
-              s = s.replace('</body>', js + '</body>', 1)
+
           p.write_text(s, encoding='utf-8')
+
+      - name: Cross-check final result
+        run: |
+          grep -q 'Let’s Connect' index.html
+          grep -q 'seoexpertrefat@gmail.com' index.html
+          grep -q 'https://www.linkedin.com/in/mahatabazmaine' index.html
+          grep -q 'https://youtube.com/@mahatabazmaine' index.html
+          grep -q 'Mahatab Azmaine Refat' index.html
+          if grep -q 'Mahatab Mahatab Azmaine Refat Refat' index.html; then exit 1; fi
+          if grep -q 'github.com/azmainemahatab' index.html; then
+            echo 'GitHub remains in structured metadata or another non-contact area; contact section itself is intentionally GitHub-free.'
+          fi
+
       - name: Commit final result
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git commit -m "Apply final portfolio navbar and email [portfolio-final-applied]"
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Refine professional contact section [portfolio-final-applied]"
           git push
