@@ -668,7 +668,7 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">🌙</button>
-      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false" onclick="togglePortfolioMenu(event)">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -1527,5 +1527,40 @@
 
 <script>/* FINAL_NAV_EMAIL_CONTROLLER */
 (function(){const t=document.getElementById('navToggle'),l=document.getElementById('navLinks');if(!t||!l)return;t.addEventListener('click',()=>{const o=l.classList.toggle('open');t.setAttribute('aria-expanded',String(o));t.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu')});l.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{l.classList.remove('open');t.setAttribute('aria-expanded','false');t.setAttribute('aria-label','Open navigation menu')}));document.addEventListener('click',e=>{if(l.classList.contains('open')&&!l.contains(e.target)&&!t.contains(e.target)){l.classList.remove('open');t.setAttribute('aria-expanded','false')}})})();</script>
+
+<script>
+function togglePortfolioMenu(event){
+  if(event) event.stopPropagation();
+  var button=document.getElementById('navToggle');
+  var menu=document.getElementById('navLinks');
+  if(!button || !menu) return;
+  var open=menu.classList.toggle('open');
+  button.setAttribute('aria-expanded', String(open));
+  button.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+}
+(function(){
+  document.addEventListener('click',function(e){
+    var menu=document.getElementById('navLinks');
+    var button=document.getElementById('navToggle');
+    if(!menu || !button || !menu.classList.contains('open')) return;
+    if(!menu.contains(e.target) && !button.contains(e.target)){
+      menu.classList.remove('open');
+      button.setAttribute('aria-expanded','false');
+      button.setAttribute('aria-label','Open navigation menu');
+    }
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){
+      var menu=document.getElementById('navLinks');
+      var button=document.getElementById('navToggle');
+      if(menu && button){
+        menu.classList.remove('open');
+        button.setAttribute('aria-expanded','false');
+        button.setAttribute('aria-label','Open navigation menu');
+      }
+    }
+  });
+})();
+</script>
 </body>
 </html>
