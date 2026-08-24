@@ -1,0 +1,46 @@
+name: Apply professional favicon
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: ${{ !contains(github.event.head_commit.message, '[apply-favicon]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set favicon reference
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          replacement = '<link rel="icon" type="image/svg+xml" href="/favicon.svg">'
+          s, count = re.subn(r'\s*<link\s+rel=["\']icon["\'][^>]*>', '\n' + replacement, s, count=1, flags=re.I)
+          if count == 0:
+              s = s.replace('</head>', '  ' + replacement + '\n</head>', 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Verify favicon configuration
+        run: |
+          test -f favicon.svg
+          grep -q 'href="/favicon.svg"' index.html
+          test "$(grep -io '<link[^>]*rel=["'"']icon["'"'][^>]*>' index.html | wc -l)" -eq 1
+          grep -q 'viewBox="0 0 64 64"' favicon.svg
+
+      - name: Commit final favicon configuration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/apply-favicon.yml
+          git add index.html favicon.svg .github/workflows/apply-favicon.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "Apply M leaf favicon [apply-favicon]"
+          git push
