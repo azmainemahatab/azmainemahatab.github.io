@@ -1,0 +1,38 @@
+name: Fix hamburger navigation
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: ${{ !contains(github.event.head_commit.message, '[hamburger-fixed]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix menu interaction
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          old='<button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">'
+          new='<button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false" onclick="togglePortfolioMenu(event)">'
+          if old in s:
+              s=s.replace(old,new,1)
+          js='''\n<script>\nfunction togglePortfolioMenu(event){\n  if(event) event.stopPropagation();\n  var button=document.getElementById('navToggle');\n  var menu=document.getElementById('navLinks');\n  if(!button || !menu) return;\n  var open=menu.classList.toggle('open');\n  button.setAttribute('aria-expanded', String(open));\n  button.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');\n}\n(function(){\n  document.addEventListener('click',function(e){\n    var menu=document.getElementById('navLinks');\n    var button=document.getElementById('navToggle');\n    if(!menu || !button || !menu.classList.contains('open')) return;\n    if(!menu.contains(e.target) && !button.contains(e.target)){\n      menu.classList.remove('open');\n      button.setAttribute('aria-expanded','false');\n      button.setAttribute('aria-label','Open navigation menu');\n    }\n  });\n  document.addEventListener('keydown',function(e){\n    if(e.key==='Escape'){\n      var menu=document.getElementById('navLinks');\n      var button=document.getElementById('navToggle');\n      if(menu && button){\n        menu.classList.remove('open');\n        button.setAttribute('aria-expanded','false');\n        button.setAttribute('aria-label','Open navigation menu');\n      }\n    }\n  });\n})();\n</script>\n'''
+          if 'function togglePortfolioMenu' not in s:
+              s=s.replace('</body>',js+'</body>',1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit fix and remove workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/fix-hamburger.yml
+          git add index.html .github/workflows/fix-hamburger.yml
+          git commit -m "Fix hamburger navigation interaction [hamburger-fixed]"
+          git push
