@@ -34,6 +34,8 @@ jobs:
           grep -q 'href="/favicon.svg"' index.html
           test "$(grep -io '<link[^>]*rel=["'"']icon["'"'][^>]*>' index.html | wc -l)" -eq 1
           grep -q 'viewBox="0 0 64 64"' favicon.svg
+          grep -q '#1E442F' favicon.svg
+          grep -q '#7FC67F' favicon.svg
 
       - name: Commit final favicon configuration
         run: |
