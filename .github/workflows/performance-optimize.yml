@@ -1,0 +1,99 @@
+name: Performance optimization pass
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    if: ${{ !contains(github.event.head_commit.message, '[performance-optimize]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Apply non-visual performance optimizations
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          original = s
+
+          # Keep the visual design/content unchanged; only improve loading behavior.
+          # Lazy-load below-the-fold images, while keeping the hero image eager.
+          imgs = re.findall(r'<img\b[^>]*>', s, flags=re.I)
+          for tag in imgs:
+              if re.search(r'class=["\'][^"\']*hero-photo', tag, flags=re.I):
+                  continue
+              if 'loading=' not in tag.lower():
+                  new = tag[:-1] + ' loading="lazy" decoding="async">'
+                  s = s.replace(tag, new, 1)
+              elif 'decoding=' not in tag.lower():
+                  new = tag[:-1] + ' decoding="async">'
+                  s = s.replace(tag, new, 1)
+
+          # The CV iframe is not needed during initial paint.
+          s = re.sub(r'<iframe(?![^>]*\bloading=)[^>]*>', lambda m: m.group(0)[:-1] + ' loading="lazy">', s, count=1, flags=re.I)
+
+          # Defer the external font stylesheet so it cannot block the first paint.
+          font = re.search(r'<link\s+href="https://fonts\.googleapis\.com/css2\?[^>]+>', s, flags=re.I)
+          if font and 'media="print"' not in font.group(0):
+              tag = font.group(0)
+              replacement = tag[:-1] + ' media="print" onload="this.media=\'all\'">'
+              s = s.replace(tag, replacement, 1)
+              if 'font stylesheet fallback' not in s:
+                  fallback = '<noscript><!-- font stylesheet fallback --><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Roboto:wght@400;500;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"></noscript>'
+                  s = s.replace('</head>', fallback + '\n</head>', 1)
+
+          # Add a small reduced-motion rule without changing the normal appearance.
+          marker = '/* PERFORMANCE: reduced motion support */'
+          if marker not in s:
+              s = s.replace('</style>', marker + '\n@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.nav-links{transition:none}}\n</style>', 1)
+
+          p.write_text(s, encoding='utf-8')
+          print('Changed:', s != original)
+          PY
+
+      - name: Cross-check that optimization is non-destructive
+        shell: bash
+        run: |
+          grep -q '<title>Mahatab Azmaine Refat' index.html
+          grep -q 'seoexpertrefat@gmail.com' index.html
+          grep -q 'Mahatab Azmaine Refat' index.html
+          grep -q 'loading="lazy"' index.html
+          grep -q 'decoding="async"' index.html
+          grep -q 'media="print" onload=' index.html
+          grep -q 'PERFORMANCE: reduced motion support' index.html
+          test "$(grep -oi '<html\b' index.html | wc -l)" -eq 1
+          test "$(grep -oi '</html>' index.html | wc -l)" -eq 1
+          test "$(grep -oi '<body\b' index.html | wc -l)" -eq 1
+          test "$(grep -oi '</body>' index.html | wc -l)" -eq 1
+          test "$(grep -oi '<head\b' index.html | wc -l)" -eq 1
+          test "$(grep -oi '</head>' index.html | wc -l)" -eq 1
+
+      - name: Commit verified optimization
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo 'No optimization changes required.'
+          else
+            git commit -m "Optimize portfolio loading performance [performance-optimize]"
+            git push
+          fi
+
+      - name: Remove temporary workflow
+        if: ${{ success() }}
+        shell: bash
+        run: |
+          git rm .github/workflows/performance-optimize.yml
+          git commit -m "Remove temporary performance workflow [performance-optimize]"
+          git push
