@@ -1,0 +1,41 @@
+name: Apply favicon
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  favicon:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Replace favicon reference
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          old = '<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23204E6B%22/%3E%3Ctext x=%2232%22 y=%2241%22 text-anchor=%22middle%22 font-family=%22Arial,sans-serif%22 font-size=%2227%22 font-weight=%22700%22 fill=%22white%22%3EMR%3C/text%3E%3C/svg%3E">'
+          new = '<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">\n<link rel="apple-touch-icon" href="/favicon.svg?v=2">'
+          if old in s:
+              p.write_text(s.replace(old, new, 1), encoding='utf-8')
+          else:
+              print('Old favicon reference not found; no change made.')
+          PY
+
+      - name: Commit favicon update
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "Favicon reference already updated."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Use professional M leaf favicon"
+          git push
