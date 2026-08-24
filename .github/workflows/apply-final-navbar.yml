@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update portfolio
+      - name: Update portfolio navbar
         shell: bash
         run: |
           python3 - <<'PY'
@@ -25,10 +25,20 @@ jobs:
           s = p.read_text(encoding='utf-8')
 
           # Final contact email.
-          for old in ('rifatmahtab107@gmail.com', 'seoexpertmahatabazmaine@gmail.com'):
-              s = s.replace(old, 'seoexpertrefat@gmail.com')
+          s = s.replace('rifatmahtab107@gmail.com', 'seoexpertrefat@gmail.com')
+          s = s.replace('seoexpertmahatabazmaine@gmail.com', 'seoexpertrefat@gmail.com')
 
-          # Ensure navigation elements have stable IDs for the controller.
+          # Force the visible navbar brand to the user's complete professional name.
+          logo_pattern = r'(<[^>]*class=["\'][^"\']*nav-logo[^"\']*["\'][^>]*>)(.*?)(</[^>]+>)'
+          s, n = re.subn(logo_pattern, r'\1Mahatab Azmaine Refat\3', s, count=1, flags=re.S)
+          if n == 0:
+              # Fallback: insert a complete brand if the existing markup is different.
+              nav_match = re.search(r'(<nav[^>]*>.*?<div[^>]*class=["\'][^"\']*nav-inner[^"\']*["\'][^>]*>)', s, flags=re.S)
+              if nav_match and 'Mahatab Azmaine Refat' not in s[nav_match.start():nav_match.end()+800]:
+                  insert_at = nav_match.end()
+                  s = s[:insert_at] + '\n<a href="#top" class="nav-logo">Mahatab Azmaine Refat</a>' + s[insert_at:]
+
+          # Stable navigation IDs.
           s = re.sub(r'class="nav-links"(?![^>]*\bid="navLinks"\b)', 'class="nav-links" id="navLinks"', s, count=1)
           if 'id="navToggle"' not in s:
               s = re.sub(
@@ -37,12 +47,13 @@ jobs:
                   s, count=1
               )
 
-          css_marker = '/* ---------- FINAL MODERN HAMBURGER NAV V2 ---------- */'
+          css_marker = '/* ---------- FINAL MODERN HAMBURGER NAV V3 ---------- */'
           if css_marker not in s:
               css = r'''
 
-  /* ---------- FINAL MODERN HAMBURGER NAV V2 ---------- */
+  /* ---------- FINAL MODERN HAMBURGER NAV V3 ---------- */
   .nav-inner{max-width:1280px;padding:12px 28px;}
+  .nav-logo{display:inline-flex;align-items:center;white-space:nowrap;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--ink);}
   .nav-actions{margin-left:auto;position:relative;display:flex;align-items:center;}
   .nav-links{display:none;position:absolute;top:calc(100% + 12px);right:0;width:250px;padding:8px;flex-direction:column;align-items:stretch;gap:2px;background:rgba(255,255,255,.98);border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 45px rgba(18,24,26,.16);z-index:100;}
   .nav-links.open{display:flex;}
@@ -56,16 +67,17 @@ jobs:
   .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
   @media(max-width:700px){
     .nav-inner{padding:10px 18px;}
+    .nav-logo{font-size:15px;max-width:calc(100vw - 95px);overflow:hidden;text-overflow:ellipsis;}
     .nav-links{position:fixed;top:64px;right:14px;left:14px;width:auto;max-height:calc(100vh - 82px);overflow:auto;}
   }
 '''
               s = s.replace('</style>', css + '\n</style>', 1)
 
-          js_marker = 'FINAL_NAV_CONTROLLER_V2'
+          js_marker = 'FINAL_NAV_CONTROLLER_V3'
           if js_marker not in s:
               js = r'''
 <script>
-/* FINAL_NAV_CONTROLLER_V2 */
+/* FINAL_NAV_CONTROLLER_V3 */
 (function(){
   function initNav(){
     const toggle=document.getElementById('navToggle');
@@ -86,6 +98,7 @@ jobs:
       if(links.classList.contains('open')&&!links.contains(e.target)&&!toggle.contains(e.target)){
         links.classList.remove('open');
         toggle.setAttribute('aria-expanded','false');
+        toggle.setAttribute('aria-label','Open navigation menu');
       }
     });
   }
@@ -98,14 +111,15 @@ jobs:
           p.write_text(s, encoding='utf-8')
           PY
 
-      - name: Commit final changes and remove workflow
+      - name: Verify and commit final changes
         run: |
+          grep -q 'Mahatab Azmaine Refat' index.html
+          grep -q 'seoexpertrefat@gmail.com' index.html
+          grep -q 'FINAL_NAV_CONTROLLER_V3' index.html
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           rm -f .github/workflows/apply-final-navbar.yml
           git add index.html .github/workflows/apply-final-navbar.yml
           git diff --cached --quiet && exit 0
-          git commit -m "Apply final hamburger navigation and email [apply-final-navbar]"
+          git commit -m "Apply full-name hamburger navbar [apply-final-navbar]"
           git push
-
-# Trigger commit to apply the requested final navbar and email changes.
