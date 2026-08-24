@@ -125,8 +125,5 @@ The website is deployed using **GitHub Pages** from the `main` branch.
 
 **LinkedIn:** [linkedin.com/in/mahatabazmaine](https://linkedin.com/in/mahatabazmaine)
 
-**Email:** [rifatmahtab107@gmail.com](mailto:rifatmahtab107@gmail.com)
 
 ---
-
-*Academic Portfolio • Research • Learning • Digital Work*
