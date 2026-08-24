@@ -1,4 +1,4 @@
-name: Apply final navbar update
+name: Force visible full-name navbar
 
 on:
   push:
@@ -9,117 +9,45 @@ permissions:
 
 jobs:
   apply:
-    if: ${{ !contains(github.event.head_commit.message, '[apply-final-navbar]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[full-name-applied]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update portfolio navbar
+      - name: Replace visible navbar name
         shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import re
-
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
 
-          # Final contact email.
+          # Replace every known abbreviated navbar branding with the complete name.
+          for old in ['M. Azmaine Refat', 'M. Azmaine', 'Mahatab Azmaine', 'Azmaine Refat']:
+              s = s.replace(old, 'Mahatab Azmaine Refat')
+
+          # Also replace whatever text is currently inside the first nav-logo element.
+          pattern = r'(<(?:a|div|span)[^>]*class=["\'][^"\']*nav-logo[^"\']*["\'][^>]*>).*?(</(?:a|div|span)>)'
+          s, n = re.subn(pattern, r'\1Mahatab Azmaine Refat\2', s, count=1, flags=re.S|re.I)
+
+          # Keep the requested email.
           s = s.replace('rifatmahtab107@gmail.com', 'seoexpertrefat@gmail.com')
           s = s.replace('seoexpertmahatabazmaine@gmail.com', 'seoexpertrefat@gmail.com')
 
-          # Force the visible navbar brand to the user's complete professional name.
-          logo_pattern = r'(<[^>]*class=["\'][^"\']*nav-logo[^"\']*["\'][^>]*>)(.*?)(</[^>]+>)'
-          s, n = re.subn(logo_pattern, r'\1Mahatab Azmaine Refat\3', s, count=1, flags=re.S)
-          if n == 0:
-              # Fallback: insert a complete brand if the existing markup is different.
-              nav_match = re.search(r'(<nav[^>]*>.*?<div[^>]*class=["\'][^"\']*nav-inner[^"\']*["\'][^>]*>)', s, flags=re.S)
-              if nav_match and 'Mahatab Azmaine Refat' not in s[nav_match.start():nav_match.end()+800]:
-                  insert_at = nav_match.end()
-                  s = s[:insert_at] + '\n<a href="#top" class="nav-logo">Mahatab Azmaine Refat</a>' + s[insert_at:]
-
-          # Stable navigation IDs.
-          s = re.sub(r'class="nav-links"(?![^>]*\bid="navLinks"\b)', 'class="nav-links" id="navLinks"', s, count=1)
-          if 'id="navToggle"' not in s:
-              s = re.sub(
-                  r'<button([^>]*class="nav-toggle"[^>]*)>',
-                  lambda m: '<button' + m.group(1) + ' id="navToggle" aria-expanded="false" aria-label="Open navigation menu">',
-                  s, count=1
-              )
-
-          css_marker = '/* ---------- FINAL MODERN HAMBURGER NAV V3 ---------- */'
-          if css_marker not in s:
-              css = r'''
-
-  /* ---------- FINAL MODERN HAMBURGER NAV V3 ---------- */
-  .nav-inner{max-width:1280px;padding:12px 28px;}
-  .nav-logo{display:inline-flex;align-items:center;white-space:nowrap;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--ink);}
-  .nav-actions{margin-left:auto;position:relative;display:flex;align-items:center;}
-  .nav-links{display:none;position:absolute;top:calc(100% + 12px);right:0;width:250px;padding:8px;flex-direction:column;align-items:stretch;gap:2px;background:rgba(255,255,255,.98);border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 45px rgba(18,24,26,.16);z-index:100;}
-  .nav-links.open{display:flex;}
-  .nav-links li+li{margin-left:0;}
-  .nav-links a{display:block;padding:11px 14px;border-radius:10px;color:var(--ink);font-size:14px;font-weight:600;transition:background .18s ease,color .18s ease,transform .18s ease;}
-  .nav-links a:hover{background:#EEF3EE;color:var(--blue);transform:translateX(2px);text-decoration:none;}
-  .nav-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;width:42px;height:42px;margin-left:12px;padding:7px;border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:0 3px 10px rgba(18,24,26,.06);cursor:pointer;}
-  .nav-toggle span{width:20px;height:2px;margin:2.5px 0;background:var(--ink);transition:transform .2s ease,opacity .2s ease;}
-  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
-  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-  @media(max-width:700px){
-    .nav-inner{padding:10px 18px;}
-    .nav-logo{font-size:15px;max-width:calc(100vw - 95px);overflow:hidden;text-overflow:ellipsis;}
-    .nav-links{position:fixed;top:64px;right:14px;left:14px;width:auto;max-height:calc(100vh - 82px);overflow:auto;}
-  }
-'''
-              s = s.replace('</style>', css + '\n</style>', 1)
-
-          js_marker = 'FINAL_NAV_CONTROLLER_V3'
-          if js_marker not in s:
-              js = r'''
-<script>
-/* FINAL_NAV_CONTROLLER_V3 */
-(function(){
-  function initNav(){
-    const toggle=document.getElementById('navToggle');
-    const links=document.getElementById('navLinks');
-    if(!toggle||!links||toggle.dataset.navReady==='1') return;
-    toggle.dataset.navReady='1';
-    toggle.addEventListener('click',function(){
-      const open=links.classList.toggle('open');
-      toggle.setAttribute('aria-expanded',String(open));
-      toggle.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');
-    });
-    links.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){
-      links.classList.remove('open');
-      toggle.setAttribute('aria-expanded','false');
-      toggle.setAttribute('aria-label','Open navigation menu');
-    });});
-    document.addEventListener('click',function(e){
-      if(links.classList.contains('open')&&!links.contains(e.target)&&!toggle.contains(e.target)){
-        links.classList.remove('open');
-        toggle.setAttribute('aria-expanded','false');
-        toggle.setAttribute('aria-label','Open navigation menu');
-      }
-    });
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initNav); else initNav();
-})();
-</script>
-'''
-              s = s.replace('</body>', js + '\n</body>', 1)
-
           p.write_text(s, encoding='utf-8')
+          print('navbar logo replacements:', n)
           PY
 
-      - name: Verify and commit final changes
+      - name: Verify visible name and commit
+        shell: bash
         run: |
+          grep -q 'class="nav-logo"' index.html
           grep -q 'Mahatab Azmaine Refat' index.html
           grep -q 'seoexpertrefat@gmail.com' index.html
-          grep -q 'FINAL_NAV_CONTROLLER_V3' index.html
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           rm -f .github/workflows/apply-final-navbar.yml
           git add index.html .github/workflows/apply-final-navbar.yml
-          git diff --cached --quiet && exit 0
-          git commit -m "Apply full-name hamburger navbar [apply-final-navbar]"
+          git commit -m "Apply visible full-name navbar [full-name-applied]"
           git push
