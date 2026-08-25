@@ -705,10 +705,30 @@ html.dark .contact-icon{background:#202B2F;}
 
 /* ---------- FREELANCE PORTFOLIO ---------- */
 .freelance-intro{color:var(--ink-soft);font-size:15px;max-width:760px;margin:-10px 0 20px;}
-.freelance-services{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
-.freelance-services span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:12.5px;color:var(--ink-soft);}
-.freelance-status{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--lime);margin-bottom:8px;font-weight:600;}
-@media (max-width:700px){.freelance-services{gap:6px;}.freelance-services span{font-size:12px;}}
+.freelance-services{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px;}
+.freelance-services span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:12.5px;color:var(--ink-soft);}
+.soon-card{background:var(--card);border:1px dashed #D9DEDC;border-radius:18px;padding:72px 40px 66px;text-align:center;box-shadow:0 10px 30px -24px rgba(18,24,26,.28);}
+.soon-icon{font-size:30px;line-height:1;margin-bottom:22px;}
+.freelance-status{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--lime);font-weight:700;margin-bottom:10px;}
+.soon-card h3{font-family:'Space Grotesk',sans-serif;font-size:24px;margin-bottom:12px;}
+.soon-card p{color:var(--ink-soft);font-size:15px;line-height:1.7;max-width:620px;margin:0 auto;}
+.soon-dots{display:flex;justify-content:center;gap:8px;margin:24px 0 22px;}
+.soon-dots span{width:9px;height:9px;border-radius:50%;background:#E3E7E5;display:block;}
+.soon-dots span.filled{background:var(--lime);}
+.soon-card .btn{margin:0;}
+.freelance-private-preview{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;}
+.private-preview-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:22px;}
+.private-preview-head h3{font-size:22px;margin-bottom:5px;}
+.private-preview-head p,.private-preview-note{color:var(--ink-soft);font-size:13.5px;}
+.freelance-project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+.freelance-project-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:20px;}
+.freelance-project-card .project-type{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:var(--blue);text-transform:uppercase;margin-bottom:8px;}
+.freelance-project-card h4{font-family:'Space Grotesk',sans-serif;font-size:19px;margin-bottom:8px;}
+.freelance-project-card p{color:var(--ink-soft);font-size:13.5px;margin-bottom:12px;}
+.project-meta{display:flex;flex-wrap:wrap;gap:6px;}
+.project-meta span{font-size:10.5px;border:1px solid var(--line);border-radius:999px;padding:4px 8px;color:var(--ink-soft);}
+.private-preview-note{margin-top:18px;}
+@media (max-width:700px){.soon-card{padding:52px 22px 48px;}.soon-card h3{font-size:21px;}.freelance-project-grid{grid-template-columns:1fr;}.private-preview-head{flex-direction:column;}}
 
 </style>
 <noscript><!-- font stylesheet fallback --><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Roboto:wght@400;500;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"></noscript>
@@ -729,7 +749,7 @@ html.dark .contact-icon{background:#202B2F;}
         <li><a href="#leadership">Leadership</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#freelance">Portfolio</a></li>
+          <li><a href="#freelance">Freelance Portfolio</a></li>
           <li><a href="#contact">Contact</a></li>
       </ul>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">🌙</button>
@@ -1170,9 +1190,7 @@ html.dark .contact-icon{background:#202B2F;}
         <div class="chip"><span class="dot"></span>Python</div>
         <div class="chip"><span class="dot"></span>Git &amp; GitHub</div>
       </div>
-    </div>
-
-  <!-- FREELANCE PORTFOLIO -->
+    </div><!-- FREELANCE PORTFOLIO -->
 <section id="freelance">
   <div class="section-head">
     <div class="section-kicker">Freelance Portfolio</div>
@@ -1190,7 +1208,14 @@ html.dark .contact-icon{background:#202B2F;}
     <div class="soon-dots" aria-hidden="true"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span></div>
     <a href="#contact" class="btn btn-primary">Want to Work Together? Get in Touch</a>
   </div>
-</section><!-- CERTIFICATIONS -->
+  <div class="freelance-private-preview" id="freelance-private-preview" hidden>
+    <div class="private-preview-head"><div><div class="section-kicker">Private Draft Workspace</div><h3>Freelance Portfolio Drafts</h3><p>Draft cards are stored only in this browser. They are not published to the website.</p></div><button type="button" class="btn btn-ghost" id="freelance-preview-close">Close Preview</button></div>
+    <div id="freelance-draft-grid" class="freelance-project-grid"></div>
+    <p class="private-preview-note">Public visitors continue to see only the Coming Soon state. Draft content stays in this browser's local storage and is not included in the public HTML.</p>
+  </div>
+</section>
+
+          <!-- CERTIFICATIONS -->
   <section id="certifications">
     <div class="section-head">
       <div class="section-kicker">Credentials</div>
@@ -1651,5 +1676,17 @@ function togglePortfolioMenu(event){
 <script>/* PERFORMANCE_IDLE_HINT_V1 */
 (function(){var run=function(){document.documentElement.classList.add('perf-ready')};if('requestIdleCallback' in window){requestIdleCallback(run,{timeout:1200})}else{setTimeout(run,1200)}})();
 </script>
+
+// ---------- PRIVATE FREELANCE PREVIEW ----------
+(function(){
+  const key='refat_freelance_drafts_v1',preview=document.getElementById('freelance-private-preview'),pub=document.getElementById('freelance-public-state'),grid=document.getElementById('freelance-draft-grid'),close=document.getElementById('freelance-preview-close');
+  if(!preview||!grid)return;
+  const esc=v=>String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+  function render(){let a=[];try{a=JSON.parse(localStorage.getItem(key)||'[]')}catch(e){}grid.innerHTML=a.length?a.map(x=>`<article class="freelance-project-card"><div class="project-type">${esc(x.type||'PROJECT')}</div><h4>${esc(x.title||'Untitled Project')}</h4><p>${esc(x.description||'')}</p><div class="project-meta">${(x.tags||[]).map(t=>`<span>${esc(t)}</span>`).join('')}</div></article>`).join(''):'<p class="private-preview-note">No private drafts are stored in this browser yet.</p>'}
+  function open(){preview.hidden=false;pub.hidden=true;render();preview.scrollIntoView({behavior:'smooth',block:'start'})}
+  close?.addEventListener('click',()=>{preview.hidden=true;pub.hidden=false});
+  if(location.hash==='#freelance-private')open();
+})();
+
 </body>
 </html>
