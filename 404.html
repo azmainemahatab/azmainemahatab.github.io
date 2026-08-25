@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page Not Found | Mahatab Azmaine Refat</title>
+<meta name="description" content="The page you're looking for could not be found. Return to Mahatab Azmaine Refat's portfolio.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3">
+<link rel="apple-touch-icon" href="/favicon.svg?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Roboto:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#FBFBF9;
+    --card:#FFFFFF;
+    --ink:#12181A;
+    --ink-soft:#465257;
+    --blue:#204E6B;
+    --blue-deep:#16394E;
+    --lime:#7CA646;
+    --line:#E4E7E5;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{min-height:100%;}
+
+  body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Roboto',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .page{width:min(720px,100%);text-align:center;}
+
+  .mark{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:64px;
+    height:64px;
+    margin-bottom:28px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:var(--card);
+    color:var(--blue);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:20px;
+    font-weight:700;
+    box-shadow:
+      0 2px 5px rgba(18,24,26,.04),
+      0 12px 28px rgba(18,24,26,.08);
+  }
+
+  .eyebrow{
+    margin-bottom:12px;
+    color:var(--lime);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+
+  .error-code{
+    color:var(--blue);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(76px,16vw,132px);
+    font-weight:700;
+    line-height:.9;
+    letter-spacing:-.06em;
+  }
+
+  h1{
+    margin-top:22px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(28px,5vw,42px);
+    line-height:1.1;
+  }
+
+  .message{
+    max-width:520px;
+    margin:16px auto 0;
+    color:var(--ink-soft);
+    font-size:16px;
+  }
+
+  .actions{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:30px;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:44px;
+    padding:11px 20px;
+    border-radius:9px;
+    border:1px solid transparent;
+    font-size:14px;
+    font-weight:500;
+    text-decoration:none;
+    transition:
+      transform .18s ease,
+      box-shadow .18s ease,
+      background .18s ease,
+      border-color .18s ease;
+  }
+
+  .btn-primary{
+    background:var(--blue);
+    color:#fff;
+    box-shadow:0 6px 16px rgba(32,78,107,.18);
+  }
+
+  .btn-primary:hover{
+    background:var(--blue-deep);
+    transform:translateY(-2px);
+    text-decoration:none;
+    box-shadow:0 9px 20px rgba(32,78,107,.22);
+  }
+
+  .btn-ghost{
+    background:var(--card);
+    color:var(--ink);
+    border-color:var(--line);
+    box-shadow:0 4px 12px rgba(18,24,26,.04);
+  }
+
+  .btn-ghost:hover{
+    border-color:rgba(32,78,107,.3);
+    transform:translateY(-2px);
+    text-decoration:none;
+  }
+
+  .hint{
+    margin-top:34px;
+    color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    opacity:.82;
+  }
+
+  footer{
+    margin-top:46px;
+    color:var(--ink-soft);
+    font-size:12px;
+  }
+
+  html.dark{
+    --bg:#0D1113;
+    --card:#171C1F;
+    --ink:#F1F4F3;
+    --ink-soft:#B0B9BC;
+    --blue:#6AAED6;
+    --blue-deep:#82BFE1;
+    --lime:#A0D476;
+    --line:#2A3134;
+  }
+
+  html.dark .mark{
+    box-shadow:
+      0 3px 8px rgba(0,0,0,.22),
+      0 14px 32px rgba(0,0,0,.18);
+  }
+
+  html.dark .btn-primary{color:#071015;}
+  html.dark .btn-ghost{color:var(--ink);}
+
+  @media (prefers-reduced-motion:reduce){
+    .btn{transition:none;}
+    .btn:hover{transform:none;}
+  }
+
+  @media (max-width:520px){
+    body{padding:20px;}
+    .mark{
+      width:58px;
+      height:58px;
+      margin-bottom:22px;
+      border-radius:16px;
+    }
+    .message{font-size:15px;}
+    .actions{margin-top:24px;}
+    .btn{width:100%;}
+    .hint{margin-top:28px;}
+  }
+</style>
+</head>
+
+<body>
+<main class="page">
+  <div class="mark" aria-hidden="true">MR</div>
+
+  <div class="eyebrow">Portfolio Navigation</div>
+
+  <div class="error-code" aria-label="Error 404">404</div>
+
+  <h1>Page Not Found</h1>
+
+  <p class="message">
+    The page you're looking for may have been moved, renamed,
+    or doesn't exist. Let's get you back to the portfolio.
+  </p>
+
+  <div class="actions">
+    <a class="btn btn-primary" href="./index.html">← Back to Portfolio</a>
+    <a class="btn btn-ghost" href="./index.html">Go Home</a>
+  </div>
+
+  <div class="hint">HEALTH SCIENCE · BOTANY · RESEARCH</div>
+
+  <footer>
+    Mahatab Azmaine Refat · Academic &amp; Professional Portfolio
+  </footer>
+</main>
+
+<script>
+  // Follow the same dark/light preference used by the main portfolio.
+  try {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' ||
+        (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  } catch (e) {}
+</script>
+</body>
+</html>
