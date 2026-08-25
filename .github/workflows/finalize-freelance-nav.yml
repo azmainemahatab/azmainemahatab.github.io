@@ -1,4 +1,4 @@
-name: Finalize Freelance Portfolio Navigation
+name: Finalize Freelance Portfolio Page
 
 on:
   workflow_dispatch:
@@ -15,108 +15,81 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Add Freelance Portfolio navigation and public section
+      - name: Create dedicated freelance portfolio page and update navigation
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          p = Path('index.html')
-          s = p.read_text(encoding='utf-8')
+          import re
 
-          nav_item = '<li><a href="#freelance">Portfolio</a></li>'
-          contact_item = '<li><a href="#contact">Contact</a></li>'
-          if nav_item not in s and contact_item in s:
-              s = s.replace(contact_item, nav_item + '\n          ' + contact_item, 1)
+          index = Path('index.html')
+          s = index.read_text(encoding='utf-8')
 
-          marker = '<!-- FREELANCE PORTFOLIO -->'
-          sec_start = s.find('<section id="freelance">')
-          if sec_start == -1:
-              cert_start = s.find('<!-- CERTIFICATIONS -->')
-              if cert_start == -1:
-                  raise SystemExit('Could not find insertion point')
-              sec_start = cert_start
-              sec_end = cert_start
-          else:
-              sec_end = s.find('</section>', sec_start)
-              if sec_end == -1:
-                  raise SystemExit('Freelance section is malformed')
-              sec_end += len('</section>')
+          # Replace any existing freelance navigation with one dedicated page link.
+          s = re.sub(r'<li><a href="#freelance">(?:Portfolio|Freelance Portfolio)</a></li>\s*', '', s, count=1)
+          contact = '<li><a href="#contact">Contact</a></li>'
+          nav_item = '<li><a href="freelance.html">Freelance Portfolio</a></li>\n          '
+          if contact in s and nav_item not in s:
+              s = s.replace(contact, nav_item + contact, 1)
 
-          new_section = '''<!-- FREELANCE PORTFOLIO -->
-          <section id="freelance">
-            <div class="section-head">
-              <div class="section-kicker">Freelance Portfolio</div>
-              <h2>Projects &amp; Case Studies</h2>
-            </div>
-            <p class="freelance-intro">A selection of freelance projects, self-directed work, and case studies across SEO, WordPress, digital marketing, and online growth.</p>
-            <div class="freelance-services" aria-label="Freelance services">
-              <span>SEO &amp; Search Optimization</span><span>WordPress</span><span>Digital Marketing</span><span>Website Optimization</span><span>Content Strategy</span>
-            </div>
-            <div class="soon-card" id="freelance-public-state">
-              <div class="soon-icon" aria-hidden="true">🚧</div>
-              <div class="freelance-status">WORK IN PROGRESS</div>
-              <h3>Selected Projects Coming Soon</h3>
-              <p>I’m currently documenting selected freelance projects, practical work, and case studies. Public case studies will be added here as projects are completed and ready to share.</p>
-              <div class="soon-dots" aria-hidden="true"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span></div>
-              <a href="#contact" class="btn btn-primary">Want to Work Together? Get in Touch</a>
-            </div>
-          </section>'''
-          s = s[:sec_start] + new_section + s[sec_end:]
+          # Remove the inline freelance section so the academic portfolio stays clean.
+          start = s.find('<!-- FREELANCE PORTFOLIO -->')
+          if start != -1:
+              end = s.find('</section>', start)
+              if end == -1:
+                  raise SystemExit('Malformed freelance section')
+              end += len('</section>')
+              s = s[:start] + s[end:]
 
-          css = '''
-          /* ---------- FREELANCE PORTFOLIO ---------- */
-          .freelance-intro{color:var(--ink-soft);font-size:15px;max-width:760px;margin:-10px 0 20px;}
-          .freelance-services{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
-          .freelance-services span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:12.5px;color:var(--ink-soft);}
-          .freelance-status{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--lime);margin-bottom:8px;font-weight:600;}
-          @media (max-width:700px){.freelance-services{gap:6px;}.freelance-services span{font-size:12px;}}
-          '''
-          if '/* ---------- FREELANCE PORTFOLIO ---------- */' not in s:
-              s = s.replace('</style>', css + '\n</style>', 1)
+          if s.count('href="freelance.html"') != 1:
+              raise SystemExit('Freelance navigation missing or duplicated')
+          if '<section id="freelance">' in s or '<!-- FREELANCE PORTFOLIO -->' in s:
+              raise SystemExit('Inline freelance section still present')
 
-          polish_marker = '/* ---------- FREELANCE PORTFOLIO POLISH V2 ---------- */'
-          if polish_marker not in s:
-              polish = '''
-          /* ---------- FREELANCE PORTFOLIO POLISH V2 ---------- */
-          #freelance{padding-top:64px;padding-bottom:44px;}
-          #freelance .section-head{margin-bottom:26px;}
-          #freelance .freelance-intro{margin:-6px 0 18px;}
-          #freelance .freelance-services{margin-bottom:24px;}
-          #freelance .soon-card{
-            padding:56px 36px 50px;
-            border-radius:18px;
-            border:1px dashed #D9DEDC;
-            box-shadow:0 8px 26px -22px rgba(18,24,26,.28);
-          }
-          #freelance .soon-icon{font-size:28px;margin-bottom:16px;}
-          #freelance .freelance-status{margin-bottom:8px;}
-          #freelance .soon-card h3{font-size:23px;line-height:1.25;margin-bottom:10px;}
-          #freelance .soon-card p{max-width:650px;line-height:1.62;}
-          #freelance .soon-dots{gap:7px;margin:18px 0 20px;}
-          #freelance .soon-dots span{width:8px;height:8px;}
-          #freelance .soon-card .btn{margin:0;}
-          @media (max-width:700px){
-            #freelance{padding-top:48px;padding-bottom:36px;}
-            #freelance .soon-card{padding:44px 20px 40px;}
-            #freelance .soon-card h3{font-size:21px;}
-            #freelance .soon-card p{font-size:14px;}
-          }
-          '''
-              s = s.replace('</style>', polish + '\n</style>', 1)
+          index.write_text(s, encoding='utf-8')
 
-          if s.count('<section id="freelance">') != 1:
-              raise SystemExit('Freelance section duplicate/missing')
-          if s.count(nav_item) != 1:
-              raise SystemExit('Freelance Portfolio nav item duplicate/missing')
-          if 'Selected Projects Coming Soon' not in s:
-              raise SystemExit('Public Coming Soon state missing')
-
-          p.write_text(s, encoding='utf-8')
+          page = r'''<!doctype html>
+          <html lang="en">
+          <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>Freelance Portfolio — Mahatab Azmaine Refat</title>
+          <meta name="description" content="Mahatab Azmaine Refat's freelance portfolio for SEO, WordPress, digital marketing, projects and case studies.">
+          <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
+          <link rel="apple-touch-icon" href="/favicon.svg?v=2">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Roboto:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+          <style>
+          :root{--bg:#FBFBF9;--card:#FFF;--ink:#12181A;--muted:#5B6568;--blue:#204E6B;--deep:#16394E;--lime:#7CA646;--line:#E4E7E5;--radius:16px;--max:1000px}
+          *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--ink);font-family:Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}.wrap{max-width:var(--max);margin:auto;padding:0 24px}a{color:var(--blue);text-decoration:none}.top{padding:18px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.brand{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--ink)}.back{font-size:13px;color:var(--muted)}.back:hover{color:var(--blue)}header{padding:62px 0 42px;border-bottom:1px solid var(--line)}.kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:9px}h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.15}h1{font-size:44px;letter-spacing:-.035em}h2{font-size:28px;letter-spacing:-.02em}.lead,.sub{color:var(--muted);max-width:760px}.lead{font-size:16px;margin-top:14px}.section{padding:46px 0;border-bottom:1px solid var(--line)}.section-head{margin-bottom:22px}.section-head h2{margin-top:2px}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:12px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:23px;box-shadow:0 5px 18px rgba(18,24,26,.035);transition:.18s ease}.card:hover{transform:translateY(-3px);border-color:#C8D6DC;box-shadow:0 12px 28px rgba(18,24,26,.08)}.badge{display:inline-flex;align-items:center;gap:7px;font:700 10px monospace;letter-spacing:.08em;color:var(--lime);background:#F2F7EE;border:1px solid #E0EAD9;border-radius:999px;padding:7px 9px;margin-bottom:14px}.badge:before{content:"";width:5px;height:5px;border-radius:50%;background:var(--lime)}.card h3{font-size:20px;color:var(--blue);margin-bottom:9px}.card p{color:var(--muted);font-size:14px}.tags{display:flex;flex-wrap:wrap;gap:7px;margin:17px 0}.tag{font-size:11px;padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:#F1F5F3}.outcome{margin-top:17px;padding-top:14px;border-top:1px solid var(--line)}.outcome strong{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:3px}.link{display:inline-flex;margin-top:17px;color:var(--blue);font-size:13px;font-weight:700}.feature{padding:25px}.case-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:19px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--line)}.case-part{background:#FFF;padding:16px}.case-part b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--blue);margin-bottom:5px}.case-part span{font-size:13px;color:var(--muted)}.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.metric{background:#FFF;border:1px solid var(--line);border-radius:14px;padding:20px}.metric .num{font-size:31px;font-weight:800;color:var(--blue)}.metric .label{font-size:12px;color:var(--muted);margin-top:2px}.workflow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:18px}.step{background:#FFF;border:1px solid var(--line);border-radius:12px;padding:14px 9px;text-align:center;font-size:12px;font-weight:700}.cta{margin:46px 0 28px;padding:30px;border-radius:18px;background:var(--blue);color:#FFF}.cta h2{color:#FFF}.cta p{color:#DCE8ED;max-width:650px;margin-top:8px}.btn{display:inline-block;margin-top:15px;background:#FFF;color:var(--blue);padding:10px 16px;border-radius:9px;font-weight:700;font-size:13px}.soon{margin-top:28px;text-align:center;padding:52px 30px;border:1px dashed #D9DEDC;border-radius:18px;background:#FFF;box-shadow:0 8px 26px -22px rgba(18,24,26,.28)}.soon-icon{font-size:28px;margin-bottom:15px}.soon h2{font-size:23px;margin:7px 0 9px}.soon p{max-width:640px;margin:auto;color:var(--muted);font-size:14px}.dots{display:flex;justify-content:center;gap:7px;margin:18px 0 20px}.dots span{width:8px;height:8px;border-radius:50%;background:#D9DEDC}.dots .on{background:var(--lime)}footer{padding:28px 0 45px;color:var(--muted);font-size:12px}
+          @media(max-width:760px){h1{font-size:34px}.grid{grid-template-columns:1fr}.case-grid{grid-template-columns:1fr 1fr}.metric-grid{grid-template-columns:1fr 1fr}.workflow{grid-template-columns:1fr 1fr}.top{padding:14px 0}}
+          @media(max-width:480px){.wrap{padding:0 18px}.case-grid,.metric-grid,.workflow{grid-template-columns:1fr}.soon{padding:42px 18px}}
+          </style>
+          </head>
+          <body><div class="wrap">
+          <div class="top"><div class="brand">Mahatab Azmaine Refat</div><a class="back" href="index.html">← Back to Main Portfolio</a></div>
+          <header><div class="kicker">Freelance Portfolio</div><h1>Projects &amp; Case Studies</h1><p class="lead">A selection of freelance projects, self-directed work, and case studies across SEO, WordPress, digital marketing, and online growth.</p>
+          <div class="soon"><div class="soon-icon" aria-hidden="true">🚧</div><div class="kicker" style="color:var(--lime);margin-bottom:4px">Work in Progress</div><h2>Selected Projects Coming Soon</h2><p>I’m currently documenting selected freelance projects, practical work, and case studies. Public case studies will be added here as projects are completed and ready to share.</p><div class="dots" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span></div><a class="btn" href="index.html#contact">Want to Work Together? Get in Touch</a></div></header>
+          <section class="section"><div class="section-head"><div class="kicker">What I Do</div><h2>Services</h2><p class="sub">Core freelance services that can be expanded as the portfolio grows.</p></div><div class="chips"><span class="chip">SEO &amp; Search Optimization</span><span class="chip">WordPress</span><span class="chip">Technical SEO</span><span class="chip">Keyword Research</span><span class="chip">On-Page SEO</span><span class="chip">Content Strategy</span><span class="chip">Website Optimization</span><span class="chip">Digital Marketing</span></div></section>
+          <section class="section"><div class="section-head"><div class="kicker">Selected Projects</div><h2>Client Work</h2><p class="sub">Private draft structure; individual projects can be published when ready.</p></div><div class="grid"><article class="card"><span class="badge">CLIENT WORK · SEO</span><h3>Project Title</h3><p>Short project overview, services delivered, and a concise outcome summary.</p><div class="tags"><span class="tag">Technical SEO</span><span class="tag">Keyword Research</span><span class="tag">On-Page SEO</span></div><div class="outcome"><strong>Outcome</strong><p>Verified performance results will be documented here.</p></div><a class="link" href="#">View Case Study →</a></article><article class="card"><span class="badge">CLIENT WORK · WORDPRESS</span><h3>Project Title</h3><p>Responsive WordPress implementation with clean content structure, UX and SEO foundations.</p><div class="tags"><span class="tag">WordPress</span><span class="tag">UX</span><span class="tag">SEO</span></div><div class="outcome"><strong>Outcome</strong><p>Project outcomes will be added after verification.</p></div><a class="link" href="#">View Case Study →</a></article></div></section>
+          <section class="section"><div class="section-head"><div class="kicker">Case Studies</div><h2>Detailed Project Analysis</h2><p class="sub">A consistent Challenge → Approach → Execution → Result structure.</p></div><article class="card feature"><span class="badge">CASE STUDY · FEATURED</span><h3>SEO Growth &amp; Website Optimization</h3><p>A full case-study format designed to show how a problem was understood, solved and measured.</p><div class="case-grid"><div class="case-part"><b>Challenge</b><span>Define the starting problem and objective.</span></div><div class="case-part"><b>Approach</b><span>Explain the strategy and reasoning.</span></div><div class="case-part"><b>Execution</b><span>Document the work and deliverables.</span></div><div class="case-part"><b>Result</b><span>Show genuine measurable outcomes.</span></div></div></article></section>
+          <section class="section"><div class="section-head"><div class="kicker">Practice Projects</div><h2>Self-Directed Work</h2><p class="sub">Clearly separated from client work for transparency.</p></div><div class="grid"><article class="card"><span class="badge">SELF-DIRECTED · WORDPRESS</span><h3>Practice Project</h3><p>Skill demonstration, experiment, prototype, or personal project.</p><div class="tags"><span class="tag">WordPress</span><span class="tag">Responsive Design</span></div></article><article class="card"><span class="badge">SELF-DIRECTED · SEO</span><h3>Practice Project</h3><p>A practice audit documenting findings, priorities and recommendations.</p><div class="tags"><span class="tag">Technical SEO</span><span class="tag">Audit</span></div></article></div></section>
+          <section class="section"><div class="section-head"><div class="kicker">Results / Proof of Work</div><h2>Metrics &amp; Outcomes</h2><p class="sub">Only genuine, documented results should be published.</p></div><div class="metric-grid"><div class="metric"><div class="num">+XX%</div><div class="label">Organic Traffic</div></div><div class="metric"><div class="num">+XX%</div><div class="label">Search Impressions</div></div><div class="metric"><div class="num">XX</div><div class="label">Keywords Improved</div></div><div class="metric"><div class="num">XX</div><div class="label">Projects Completed</div></div></div></section>
+          <section class="section"><div class="section-head"><div class="kicker">Tools &amp; Workflow</div><h2>How I Work</h2><p class="sub">A repeatable workflow from brief to measurable outcome.</p></div><div class="chips"><span class="chip">WordPress</span><span class="chip">Google Search Console</span><span class="chip">Google Analytics</span><span class="chip">SEO Tools</span><span class="chip">HTML / CSS</span></div><div class="workflow"><div class="step">01 · Discover</div><div class="step">02 · Audit</div><div class="step">03 · Strategy</div><div class="step">04 · Execute</div><div class="step">05 · Measure</div></div></section>
+          <div class="cta"><div class="kicker" style="color:#B9DC94">Have a Project in Mind?</div><h2>Let's Work Together</h2><p>Ready for a focused SEO, WordPress, or digital project?</p><a class="btn" href="index.html#contact">Get in Touch →</a></div>
+          <footer>Freelance Portfolio · Mahatab Azmaine Refat</footer>
+          </div></body></html>'''
+          Path('freelance.html').write_text(page, encoding='utf-8')
           PY
 
-      - name: Commit final navigation update
+      - name: Validate and commit
         run: |
+          test -f freelance.html
+          test "$(grep -o 'href=\"freelance.html\"' index.html | wc -l)" -eq 1
+          ! grep -q '<section id="freelance">' index.html
+          grep -q 'Selected Projects Coming Soon' freelance.html
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html
-          git diff --cached --quiet || git commit -m "Polish freelance portfolio layout"
+          git add index.html freelance.html
+          git diff --cached --quiet || git commit -m "Create dedicated freelance portfolio page"
           git push
