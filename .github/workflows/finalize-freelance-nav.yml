@@ -15,34 +15,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Add Freelance Portfolio navigation and public section
+      - name: Normalize freelance navigation and section
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
+
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
 
-          # Add exactly one navigation item before Contact.
-          nav_item = '<li><a href="#freelance">Portfolio</a></li>'
-          contact_item = '<li><a href="#contact">Contact</a></li>'
-          if nav_item not in s and contact_item in s:
-              s = s.replace(contact_item, nav_item + '\n          ' + contact_item, 1)
+          # Remove all existing freelance sections, then insert exactly one.
+          s = re.sub(r'\s*<!--\s*FREELANCE PORTFOLIO\s*-->\s*<section\s+id=["\']freelance["\'][\s\S]*?</section>', '', s, flags=re.I)
+          s = re.sub(r'\s*<section\s+id=["\']freelance["\'][\s\S]*?</section>', '', s, flags=re.I)
 
-          # Replace only the existing freelance section; never create a second one.
-          marker = '<!-- FREELANCE PORTFOLIO -->'
-          sec_start = s.find('<section id="freelance">')
-          if sec_start == -1:
-              # Insert immediately before Certifications if the section does not exist.
-              cert_start = s.find('<!-- CERTIFICATIONS -->')
-              if cert_start == -1:
-                  raise SystemExit('Could not find insertion point')
-              sec_start = cert_start
-              sec_end = cert_start
-          else:
-              sec_end = s.find('</section>', sec_start)
-              if sec_end == -1:
-                  raise SystemExit('Freelance section is malformed')
-              sec_end += len('</section>')
+          # Remove every existing #freelance navigation item and add exactly one named Freelance Portfolio.
+          s = re.sub(r'\s*<li>\s*<a\s+href=["\']#freelance["\'][^>]*>.*?</a>\s*</li>', '', s, flags=re.I)
+          nav_item = '<li><a href="#freelance">Freelance Portfolio</a></li>'
+          contact_item = '<li><a href="#contact">Contact</a></li>'
+          if contact_item not in s:
+              raise SystemExit('Contact navigation item not found')
+          s = s.replace(contact_item, nav_item + '\n          ' + contact_item, 1)
 
           new_section = '''<!-- FREELANCE PORTFOLIO -->
           <section id="freelance">
@@ -50,10 +42,17 @@ jobs:
               <div class="section-kicker">Freelance Portfolio</div>
               <h2>Projects &amp; Case Studies</h2>
             </div>
+
             <p class="freelance-intro">A selection of freelance projects, self-directed work, and case studies across SEO, WordPress, digital marketing, and online growth.</p>
+
             <div class="freelance-services" aria-label="Freelance services">
-              <span>SEO &amp; Search Optimization</span><span>WordPress</span><span>Digital Marketing</span><span>Website Optimization</span><span>Content Strategy</span>
+              <span>SEO &amp; Search Optimization</span>
+              <span>WordPress</span>
+              <span>Digital Marketing</span>
+              <span>Website Optimization</span>
+              <span>Content Strategy</span>
             </div>
+
             <div class="soon-card" id="freelance-public-state">
               <div class="soon-icon" aria-hidden="true">🚧</div>
               <div class="freelance-status">WORK IN PROGRESS</div>
@@ -62,35 +61,98 @@ jobs:
               <div class="soon-dots" aria-hidden="true"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span></div>
               <a href="#contact" class="btn btn-primary">Want to Work Together? Get in Touch</a>
             </div>
+
+            <div class="freelance-private-preview" id="freelance-private-preview" hidden>
+              <div class="private-preview-head">
+                <div>
+                  <div class="section-kicker">Private Draft Workspace</div>
+                  <h3>Freelance Portfolio Drafts</h3>
+                  <p>Draft cards are stored only in this browser. They are not published to the website.</p>
+                </div>
+                <button type="button" class="btn btn-ghost" id="freelance-preview-close">Close Preview</button>
+              </div>
+              <div id="freelance-draft-grid" class="freelance-project-grid"></div>
+              <p class="private-preview-note">Public visitors continue to see only the Coming Soon state. Draft content stays in this browser's local storage and is not included in the public HTML.</p>
+            </div>
           </section>'''
-          s = s[:sec_start] + new_section + s[sec_end:]
+
+          cert_marker = '<!-- CERTIFICATIONS -->'
+          pos = s.find(cert_marker)
+          if pos == -1:
+              raise SystemExit('Certifications insertion marker not found')
+          s = s[:pos] + new_section + '\n\n          ' + s[pos:]
 
           css = '''
           /* ---------- FREELANCE PORTFOLIO ---------- */
           .freelance-intro{color:var(--ink-soft);font-size:15px;max-width:760px;margin:-10px 0 20px;}
-          .freelance-services{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
-          .freelance-services span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:12.5px;color:var(--ink-soft);}
-          .freelance-status{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--lime);margin-bottom:8px;font-weight:600;}
-          @media (max-width:700px){.freelance-services{gap:6px;}.freelance-services span{font-size:12px;}}
+          .freelance-services{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px;}
+          .freelance-services span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:12.5px;color:var(--ink-soft);}
+          .soon-card{background:var(--card);border:1px dashed #D9DEDC;border-radius:18px;padding:72px 40px 66px;text-align:center;box-shadow:0 10px 30px -24px rgba(18,24,26,.28);}
+          .soon-icon{font-size:30px;line-height:1;margin-bottom:22px;}
+          .freelance-status{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--lime);font-weight:700;margin-bottom:10px;}
+          .soon-card h3{font-family:'Space Grotesk',sans-serif;font-size:24px;margin-bottom:12px;}
+          .soon-card p{color:var(--ink-soft);font-size:15px;line-height:1.7;max-width:620px;margin:0 auto;}
+          .soon-dots{display:flex;justify-content:center;gap:8px;margin:24px 0 22px;}
+          .soon-dots span{width:9px;height:9px;border-radius:50%;background:#E3E7E5;display:block;}
+          .soon-dots span.filled{background:var(--lime);}
+          .soon-card .btn{margin:0;}
+          .freelance-private-preview{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;}
+          .private-preview-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:22px;}
+          .private-preview-head h3{font-size:22px;margin-bottom:5px;}
+          .private-preview-head p,.private-preview-note{color:var(--ink-soft);font-size:13.5px;}
+          .freelance-project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+          .freelance-project-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:20px;}
+          .freelance-project-card .project-type{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:var(--blue);text-transform:uppercase;margin-bottom:8px;}
+          .freelance-project-card h4{font-family:'Space Grotesk',sans-serif;font-size:19px;margin-bottom:8px;}
+          .freelance-project-card p{color:var(--ink-soft);font-size:13.5px;margin-bottom:12px;}
+          .project-meta{display:flex;flex-wrap:wrap;gap:6px;}
+          .project-meta span{font-size:10.5px;border:1px solid var(--line);border-radius:999px;padding:4px 8px;color:var(--ink-soft);}
+          .private-preview-note{margin-top:18px;}
+          @media (max-width:700px){.soon-card{padding:52px 22px 48px;}.soon-card h3{font-size:21px;}.freelance-project-grid{grid-template-columns:1fr;}.private-preview-head{flex-direction:column;}}
           '''
-          if '/* ---------- FREELANCE PORTFOLIO ---------- */' not in s:
-              s = s.replace('</style>', css + '\n</style>', 1)
+          # Remove old freelance CSS block if present, then add the canonical block once.
+          s = re.sub(r'\s*/\* ---------- FREELANCE PORTFOLIO ---------- \*/[\s\S]*?(?=\n</style>)', '', s, count=1)
+          s = s.replace('</style>', css + '\n</style>', 1)
 
-          # Validation: exactly one section and one nav item.
-          if s.count('<section id="freelance">') != 1:
-              raise SystemExit('Freelance section duplicate/missing')
-          if s.count(nav_item) != 1:
-              raise SystemExit('Freelance Portfolio nav item duplicate/missing')
-          if 'Selected Projects Coming Soon' not in s:
-              raise SystemExit('Public Coming Soon state missing')
+          js_marker = '// ---------- PRIVATE FREELANCE PREVIEW ----------'
+          if js_marker not in s:
+              js = '''
+          // ---------- PRIVATE FREELANCE PREVIEW ----------
+          (function(){
+            const key='refat_freelance_drafts_v1';
+            const preview=document.getElementById('freelance-private-preview');
+            const publicState=document.getElementById('freelance-public-state');
+            const grid=document.getElementById('freelance-draft-grid');
+            const close=document.getElementById('freelance-preview-close');
+            if(!preview||!grid) return;
+            const drafts=()=>{try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}};
+            const escapeHtml=v=>String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+            function render(){const items=drafts();grid.innerHTML=items.length?items.map(x=>`<article class="freelance-project-card"><div class="project-type">${escapeHtml(x.type||'PROJECT')}</div><h4>${escapeHtml(x.title||'Untitled Project')}</h4><p>${escapeHtml(x.description||'')}</p><div class="project-meta">${(x.tags||[]).map(t=>`<span>${escapeHtml(t)}</span>`).join('')}</div></article>`).join(''):'<p class="private-preview-note">No private drafts are stored in this browser yet.</p>';}
+            function openPreview(){preview.hidden=false;publicState.hidden=true;render();preview.scrollIntoView({behavior:'smooth',block:'start'});}
+            close?.addEventListener('click',()=>{preview.hidden=true;publicState.hidden=false;});
+            if(location.hash==='#freelance-private') openPreview();
+          })();
+          '''
+              s = s.replace('</body>', js + '\n</body>', 1)
 
-          p.write_text(s, encoding='utf-8')
+          # Hard validation.
+          if s.count('<section id="freelance">') != 1: raise SystemExit('Freelance section duplicate/missing')
+          if s.count(nav_item) != 1: raise SystemExit('Freelance Portfolio nav duplicate/missing')
+          if s.count('Projects &amp; Case Studies') != 1: raise SystemExit('Freelance heading duplicate/missing')
+          if s.count('Selected Projects Coming Soon') != 1: raise SystemExit('Coming Soon state duplicate/missing')
+          if 'soon-card{background:var(--card);border:1px dashed' not in s: raise SystemExit('Coming Soon card CSS missing')
+
+          p.write_text(s,encoding='utf-8')
           PY
 
-      - name: Commit final navigation update
+      - name: Verify and commit
         run: |
+          test "$(grep -o 'href=\"#freelance\">Freelance Portfolio' index.html | wc -l)" -eq 1
+          test "$(grep -o 'id=\"freelance\"' index.html | wc -l)" -eq 1
+          test "$(grep -o 'Projects &amp; Case Studies' index.html | wc -l)" -eq 1
+          test "$(grep -o 'Selected Projects Coming Soon' index.html | wc -l)" -eq 1
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git diff --cached --quiet || git commit -m "Add freelance portfolio navigation"
+          git diff --cached --quiet || git commit -m "Finalize freelance portfolio layout and navigation"
           git push
