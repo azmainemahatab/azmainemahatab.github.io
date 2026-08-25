@@ -1,0 +1,151 @@
+name: Prepare Freelance Portfolio
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update freelance portfolio section
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          marker = '<!-- FREELANCE PORTFOLIO -->'
+          start = s.find(marker)
+          if start == -1:
+              raise SystemExit('FREELANCE PORTFOLIO marker not found')
+          sec_start = s.find('<section id="freelance">', start)
+          sec_end = s.find('</section>', sec_start)
+          if sec_start == -1 or sec_end == -1:
+              raise SystemExit('Freelance section boundaries not found')
+          sec_end += len('</section>')
+
+          new_section = '''<!-- FREELANCE PORTFOLIO -->
+          <section id="freelance">
+            <div class="section-head">
+              <div class="section-kicker">Freelance Portfolio</div>
+              <h2>Projects &amp; Case Studies</h2>
+            </div>
+
+            <p class="freelance-intro">A selection of freelance projects, self-directed work, and case studies across SEO, WordPress, digital marketing, and online growth.</p>
+
+            <div class="freelance-services" aria-label="Freelance services">
+              <span>SEO &amp; Search Optimization</span>
+              <span>WordPress</span>
+              <span>Digital Marketing</span>
+              <span>Website Optimization</span>
+              <span>Content Strategy</span>
+            </div>
+
+            <div class="soon-card" id="freelance-public-state">
+              <div class="soon-icon" aria-hidden="true">🚧</div>
+              <div class="freelance-status">WORK IN PROGRESS</div>
+              <h3>Selected Projects Coming Soon</h3>
+              <p>I’m currently documenting selected freelance projects, practical work, and case studies. Public case studies will be added here as projects are completed and ready to share.</p>
+              <div class="soon-dots" aria-hidden="true"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span></div>
+              <a href="#contact" class="btn btn-primary">Want to Work Together? Get in Touch</a>
+            </div>
+
+            <div class="freelance-private-preview" id="freelance-private-preview" hidden>
+              <div class="private-preview-head">
+                <div>
+                  <div class="section-kicker">Private Draft Workspace</div>
+                  <h3>Freelance Portfolio Drafts</h3>
+                  <p>Draft cards are stored only in this browser. They are not published to the website.</p>
+                </div>
+                <button type="button" class="btn btn-ghost" id="freelance-preview-close">Close Preview</button>
+              </div>
+              <div id="freelance-draft-grid" class="freelance-project-grid"></div>
+              <p class="private-preview-note">Public visitors continue to see only the Coming Soon state above. Draft content is kept in browser storage and is not included in the public HTML.</p>
+            </div>
+          </section>'''
+
+          s = s[:sec_start] + new_section + s[sec_end:]
+
+          css_marker = '/* ---------- FREELANCE PORTFOLIO ---------- */'
+          if css_marker not in s:
+              css = '''
+          /* ---------- FREELANCE PORTFOLIO ---------- */
+          .freelance-intro{color:var(--ink-soft);font-size:15px;max-width:760px;margin:-10px 0 20px;}
+          .freelance-services{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
+          .freelance-services span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:12.5px;color:var(--ink-soft);}
+          .freelance-status{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--lime);margin-bottom:8px;font-weight:600;}
+          .freelance-private-preview{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;}
+          .private-preview-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:22px;}
+          .private-preview-head h3{font-size:22px;margin-bottom:5px;}
+          .private-preview-head p,.private-preview-note{color:var(--ink-soft);font-size:13.5px;}
+          .freelance-project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+          .freelance-project-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:20px;}
+          .freelance-project-card .project-type{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:var(--blue);text-transform:uppercase;margin-bottom:8px;}
+          .freelance-project-card h4{font-family:'Space Grotesk',sans-serif;font-size:19px;margin-bottom:8px;}
+          .freelance-project-card p{color:var(--ink-soft);font-size:13.5px;margin-bottom:12px;}
+          .project-meta{display:flex;flex-wrap:wrap;gap:6px;}
+          .project-meta span{font-size:10.5px;border:1px solid var(--line);border-radius:999px;padding:4px 8px;color:var(--ink-soft);}
+          .private-preview-note{margin-top:18px;}
+          @media (max-width:700px){.freelance-project-grid{grid-template-columns:1fr;}.private-preview-head{flex-direction:column;}}
+          '''
+              s = s.replace('</style>', css + '\n</style>', 1)
+
+          js_marker = '// ---------- PRIVATE FREELANCE PREVIEW ----------'
+          if js_marker not in s:
+              js = '''
+          // ---------- PRIVATE FREELANCE PREVIEW ----------
+          (function(){
+            const key='refat_freelance_drafts_v1';
+            const preview=document.getElementById('freelance-private-preview');
+            const publicState=document.getElementById('freelance-public-state');
+            const grid=document.getElementById('freelance-draft-grid');
+            const close=document.getElementById('freelance-preview-close');
+            if(!preview||!grid) return;
+            const drafts=()=>{
+              try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}
+            };
+            function render(){
+              const items=drafts();
+              grid.innerHTML=items.length ? items.map(x=>`<article class="freelance-project-card"><div class="project-type">${escapeHtml(x.type||'PROJECT')}</div><h4>${escapeHtml(x.title||'Untitled Project')}</h4><p>${escapeHtml(x.description||'')}</p><div class="project-meta">${(x.tags||[]).map(t=>`<span>${escapeHtml(t)}</span>`).join('')}</div></article>`).join('') : '<p class="private-preview-note">No private drafts are stored in this browser yet.</p>';
+            }
+            function escapeHtml(v){return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+            function openPreview(){preview.hidden=false;publicState.hidden=true;render();preview.scrollIntoView({behavior:'smooth',block:'start'});}
+            close?.addEventListener('click',()=>{preview.hidden=true;publicState.hidden=false;publicState.scrollIntoView({behavior:'smooth',block:'start'});});
+            if(location.hash==='#freelance-private'){openPreview();}
+          })();
+          '''
+              s = s.replace('</body>', js + '\n</body>', 1)
+
+          p.write_text(s,encoding='utf-8')
+          PY
+
+      - name: Validate no duplicate freelance section
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('index.html').read_text(encoding='utf-8')
+          if s.count('id="freelance"') != 1:
+              raise SystemExit('Duplicate freelance section detected')
+          if s.count('<!-- FREELANCE PORTFOLIO -->') != 1:
+              raise SystemExit('Duplicate freelance marker detected')
+          if 'Projects &amp; Case Studies' not in s:
+              raise SystemExit('New freelance heading missing')
+          if 'Selected Projects Coming Soon' not in s:
+              raise SystemExit('Public coming-soon state missing')
+          if 'localStorage' not in s:
+              raise SystemExit('Private local workspace missing')
+          print('Freelance portfolio validation passed')
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Refine freelance portfolio workspace"
+          git push
