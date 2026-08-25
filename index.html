@@ -702,6 +702,14 @@ html.dark .contact-icon{background:#202B2F;}
 .contact-svg-email{width:16px;height:16px;}
 .contact-svg-linkedin{width:15px;height:15px;}
 .contact-svg-youtube{width:16px;height:16px;}
+
+/* ---------- FREELANCE PORTFOLIO ---------- */
+.freelance-intro{color:var(--ink-soft);font-size:15px;max-width:760px;margin:-10px 0 20px;}
+.freelance-services{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
+.freelance-services span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:12.5px;color:var(--ink-soft);}
+.freelance-status{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--lime);margin-bottom:8px;font-weight:600;}
+@media (max-width:700px){.freelance-services{gap:6px;}.freelance-services span{font-size:12px;}}
+
 </style>
 <noscript><!-- font stylesheet fallback --><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Roboto:wght@400;500;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"></noscript>
 </head>
@@ -721,7 +729,8 @@ html.dark .contact-icon{background:#202B2F;}
         <li><a href="#leadership">Leadership</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#freelance">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
       </ul>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">🌙</button>
       <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false" onclick="togglePortfolioMenu(event)">
@@ -1163,7 +1172,25 @@ html.dark .contact-icon{background:#202B2F;}
       </div>
     </div>
 
-  <!-- CERTIFICATIONS -->
+  <!-- FREELANCE PORTFOLIO -->
+<section id="freelance">
+  <div class="section-head">
+    <div class="section-kicker">Freelance Portfolio</div>
+    <h2>Projects &amp; Case Studies</h2>
+  </div>
+  <p class="freelance-intro">A selection of freelance projects, self-directed work, and case studies across SEO, WordPress, digital marketing, and online growth.</p>
+  <div class="freelance-services" aria-label="Freelance services">
+    <span>SEO &amp; Search Optimization</span><span>WordPress</span><span>Digital Marketing</span><span>Website Optimization</span><span>Content Strategy</span>
+  </div>
+  <div class="soon-card" id="freelance-public-state">
+    <div class="soon-icon" aria-hidden="true">🚧</div>
+    <div class="freelance-status">WORK IN PROGRESS</div>
+    <h3>Selected Projects Coming Soon</h3>
+    <p>I’m currently documenting selected freelance projects, practical work, and case studies. Public case studies will be added here as projects are completed and ready to share.</p>
+    <div class="soon-dots" aria-hidden="true"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span></div>
+    <a href="#contact" class="btn btn-primary">Want to Work Together? Get in Touch</a>
+  </div>
+</section><!-- CERTIFICATIONS -->
   <section id="certifications">
     <div class="section-head">
       <div class="section-kicker">Credentials</div>
