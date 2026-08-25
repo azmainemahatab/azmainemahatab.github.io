@@ -1,58 +1,46 @@
 name: Finalize Freelance Portfolio Navigation
 
 on:
-  workflow_dispatch:
   push:
-    paths:
-      - .github/workflows/finalize-freelance-nav.yml
+    branches: [main]
 
 permissions:
   contents: write
 
 jobs:
   finalize:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Normalize freelance navigation and section
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import re
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
 
-          p = Path('index.html')
-          s = p.read_text(encoding='utf-8')
+          # Remove every old freelance section and every old #freelance nav item.
+          s=re.sub(r'\s*<!--\s*FREELANCE PORTFOLIO\s*-->\s*<section\s+id=["\']freelance["\'][\s\S]*?</section>', '', s, flags=re.I)
+          s=re.sub(r'\s*<section\s+id=["\']freelance["\'][\s\S]*?</section>', '', s, flags=re.I)
+          s=re.sub(r'\s*<li>\s*<a\s+href=["\']#freelance["\'][^>]*>.*?</a>\s*</li>', '', s, flags=re.I)
 
-          # Remove all existing freelance sections, then insert exactly one.
-          s = re.sub(r'\s*<!--\s*FREELANCE PORTFOLIO\s*-->\s*<section\s+id=["\']freelance["\'][\s\S]*?</section>', '', s, flags=re.I)
-          s = re.sub(r'\s*<section\s+id=["\']freelance["\'][\s\S]*?</section>', '', s, flags=re.I)
+          nav='<li><a href="#freelance">Freelance Portfolio</a></li>'
+          contact='<li><a href="#contact">Contact</a></li>'
+          if contact not in s: raise SystemExit('Contact nav item missing')
+          s=s.replace(contact,nav+'\n          '+contact,1)
 
-          # Remove every existing #freelance navigation item and add exactly one named Freelance Portfolio.
-          s = re.sub(r'\s*<li>\s*<a\s+href=["\']#freelance["\'][^>]*>.*?</a>\s*</li>', '', s, flags=re.I)
-          nav_item = '<li><a href="#freelance">Freelance Portfolio</a></li>'
-          contact_item = '<li><a href="#contact">Contact</a></li>'
-          if contact_item not in s:
-              raise SystemExit('Contact navigation item not found')
-          s = s.replace(contact_item, nav_item + '\n          ' + contact_item, 1)
-
-          new_section = '''<!-- FREELANCE PORTFOLIO -->
+          section='''<!-- FREELANCE PORTFOLIO -->
           <section id="freelance">
             <div class="section-head">
               <div class="section-kicker">Freelance Portfolio</div>
               <h2>Projects &amp; Case Studies</h2>
             </div>
-
             <p class="freelance-intro">A selection of freelance projects, self-directed work, and case studies across SEO, WordPress, digital marketing, and online growth.</p>
-
             <div class="freelance-services" aria-label="Freelance services">
-              <span>SEO &amp; Search Optimization</span>
-              <span>WordPress</span>
-              <span>Digital Marketing</span>
-              <span>Website Optimization</span>
-              <span>Content Strategy</span>
+              <span>SEO &amp; Search Optimization</span><span>WordPress</span><span>Digital Marketing</span><span>Website Optimization</span><span>Content Strategy</span>
             </div>
-
             <div class="soon-card" id="freelance-public-state">
               <div class="soon-icon" aria-hidden="true">🚧</div>
               <div class="freelance-status">WORK IN PROGRESS</div>
@@ -61,28 +49,18 @@ jobs:
               <div class="soon-dots" aria-hidden="true"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span></div>
               <a href="#contact" class="btn btn-primary">Want to Work Together? Get in Touch</a>
             </div>
-
             <div class="freelance-private-preview" id="freelance-private-preview" hidden>
-              <div class="private-preview-head">
-                <div>
-                  <div class="section-kicker">Private Draft Workspace</div>
-                  <h3>Freelance Portfolio Drafts</h3>
-                  <p>Draft cards are stored only in this browser. They are not published to the website.</p>
-                </div>
-                <button type="button" class="btn btn-ghost" id="freelance-preview-close">Close Preview</button>
-              </div>
+              <div class="private-preview-head"><div><div class="section-kicker">Private Draft Workspace</div><h3>Freelance Portfolio Drafts</h3><p>Draft cards are stored only in this browser. They are not published to the website.</p></div><button type="button" class="btn btn-ghost" id="freelance-preview-close">Close Preview</button></div>
               <div id="freelance-draft-grid" class="freelance-project-grid"></div>
               <p class="private-preview-note">Public visitors continue to see only the Coming Soon state. Draft content stays in this browser's local storage and is not included in the public HTML.</p>
             </div>
           </section>'''
+          marker='<!-- CERTIFICATIONS -->'
+          pos=s.find(marker)
+          if pos<0: raise SystemExit('Certifications marker missing')
+          s=s[:pos]+section+'\n\n          '+s[pos:]
 
-          cert_marker = '<!-- CERTIFICATIONS -->'
-          pos = s.find(cert_marker)
-          if pos == -1:
-              raise SystemExit('Certifications insertion marker not found')
-          s = s[:pos] + new_section + '\n\n          ' + s[pos:]
-
-          css = '''
+          css='''
           /* ---------- FREELANCE PORTFOLIO ---------- */
           .freelance-intro{color:var(--ink-soft);font-size:15px;max-width:760px;margin:-10px 0 20px;}
           .freelance-services{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px;}
@@ -110,49 +88,35 @@ jobs:
           .private-preview-note{margin-top:18px;}
           @media (max-width:700px){.soon-card{padding:52px 22px 48px;}.soon-card h3{font-size:21px;}.freelance-project-grid{grid-template-columns:1fr;}.private-preview-head{flex-direction:column;}}
           '''
-          # Remove old freelance CSS block if present, then add the canonical block once.
-          s = re.sub(r'\s*/\* ---------- FREELANCE PORTFOLIO ---------- \*/[\s\S]*?(?=\n</style>)', '', s, count=1)
-          s = s.replace('</style>', css + '\n</style>', 1)
+          s=re.sub(r'\s*/\* ---------- FREELANCE PORTFOLIO ---------- \*/[\s\S]*?(?=\n</style>)','',s,count=1)
+          s=s.replace('</style>',css+'\n</style>',1)
 
-          js_marker = '// ---------- PRIVATE FREELANCE PREVIEW ----------'
-          if js_marker not in s:
-              js = '''
+          if '// ---------- PRIVATE FREELANCE PREVIEW ----------' not in s:
+            js='''
           // ---------- PRIVATE FREELANCE PREVIEW ----------
           (function(){
-            const key='refat_freelance_drafts_v1';
-            const preview=document.getElementById('freelance-private-preview');
-            const publicState=document.getElementById('freelance-public-state');
-            const grid=document.getElementById('freelance-draft-grid');
-            const close=document.getElementById('freelance-preview-close');
-            if(!preview||!grid) return;
-            const drafts=()=>{try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}};
-            const escapeHtml=v=>String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-            function render(){const items=drafts();grid.innerHTML=items.length?items.map(x=>`<article class="freelance-project-card"><div class="project-type">${escapeHtml(x.type||'PROJECT')}</div><h4>${escapeHtml(x.title||'Untitled Project')}</h4><p>${escapeHtml(x.description||'')}</p><div class="project-meta">${(x.tags||[]).map(t=>`<span>${escapeHtml(t)}</span>`).join('')}</div></article>`).join(''):'<p class="private-preview-note">No private drafts are stored in this browser yet.</p>';}
-            function openPreview(){preview.hidden=false;publicState.hidden=true;render();preview.scrollIntoView({behavior:'smooth',block:'start'});}
-            close?.addEventListener('click',()=>{preview.hidden=true;publicState.hidden=false;});
-            if(location.hash==='#freelance-private') openPreview();
+            const key='refat_freelance_drafts_v1',preview=document.getElementById('freelance-private-preview'),pub=document.getElementById('freelance-public-state'),grid=document.getElementById('freelance-draft-grid'),close=document.getElementById('freelance-preview-close');
+            if(!preview||!grid)return;
+            const esc=v=>String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+            function render(){let a=[];try{a=JSON.parse(localStorage.getItem(key)||'[]')}catch(e){}grid.innerHTML=a.length?a.map(x=>`<article class="freelance-project-card"><div class="project-type">${esc(x.type||'PROJECT')}</div><h4>${esc(x.title||'Untitled Project')}</h4><p>${esc(x.description||'')}</p><div class="project-meta">${(x.tags||[]).map(t=>`<span>${esc(t)}</span>`).join('')}</div></article>`).join(''):'<p class="private-preview-note">No private drafts are stored in this browser yet.</p>'}
+            function open(){preview.hidden=false;pub.hidden=true;render();preview.scrollIntoView({behavior:'smooth',block:'start'})}
+            close?.addEventListener('click',()=>{preview.hidden=true;pub.hidden=false});
+            if(location.hash==='#freelance-private')open();
           })();
           '''
-              s = s.replace('</body>', js + '\n</body>', 1)
+            s=s.replace('</body>',js+'\n</body>',1)
 
-          # Hard validation.
-          if s.count('<section id="freelance">') != 1: raise SystemExit('Freelance section duplicate/missing')
-          if s.count(nav_item) != 1: raise SystemExit('Freelance Portfolio nav duplicate/missing')
-          if s.count('Projects &amp; Case Studies') != 1: raise SystemExit('Freelance heading duplicate/missing')
-          if s.count('Selected Projects Coming Soon') != 1: raise SystemExit('Coming Soon state duplicate/missing')
-          if 'soon-card{background:var(--card);border:1px dashed' not in s: raise SystemExit('Coming Soon card CSS missing')
-
+          assert s.count('<section id="freelance">')==1
+          assert s.count(nav)==1
+          assert s.count('Projects &amp; Case Studies')==1
+          assert s.count('Selected Projects Coming Soon')==1
           p.write_text(s,encoding='utf-8')
           PY
-
-      - name: Verify and commit
+      - name: Commit final change and remove workflow
         run: |
-          test "$(grep -o 'href=\"#freelance\">Freelance Portfolio' index.html | wc -l)" -eq 1
-          test "$(grep -o 'id=\"freelance\"' index.html | wc -l)" -eq 1
-          test "$(grep -o 'Projects &amp; Case Studies' index.html | wc -l)" -eq 1
-          test "$(grep -o 'Selected Projects Coming Soon' index.html | wc -l)" -eq 1
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git diff --cached --quiet || git commit -m "Finalize freelance portfolio layout and navigation"
+          git rm -f .github/workflows/finalize-freelance-nav.yml
+          git commit -m "Finalize freelance portfolio navigation and coming soon layout"
           git push
