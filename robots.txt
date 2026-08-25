@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /freelance-admin-preview.html
+
+Sitemap: https://azmainemahatab.github.io/sitemap.xml
