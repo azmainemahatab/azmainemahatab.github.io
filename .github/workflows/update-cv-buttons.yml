@@ -1,0 +1,59 @@
+name: Update CV and Hero Buttons
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update index.html
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          old_contact = 'Sherpur Sadar, Mymensingh, Bangladesh &amp;nbsp;|&amp;nbsp; +8801999222166 &amp;nbsp;|&amp;nbsp; seoexpertrefat@gmail.com'
+          new_contact = 'seoexpertrefat@gmail.com'
+          if old_contact not in s:
+              raise SystemExit('Expected CV contact line was not found.')
+          s = s.replace(old_contact, new_contact, 1)
+
+          old_css = """.btn{\n    display:inline-flex;align-items:center;\n    padding:11px 20px;border-radius:9px;font-size:14px;font-weight:500;\n    font-family:'Roboto',sans-serif;\n    border:1px solid transparent;cursor:pointer;margin:0 12px 10px 0;\n  }"""
+          new_css = """.btn{\n    display:inline-flex;align-items:center;justify-content:center;text-align:center;\n    min-width:132px;padding:11px 20px;border-radius:9px;font-size:14px;font-weight:500;\n    font-family:'Roboto',sans-serif;\n    border:1px solid transparent;cursor:pointer;margin:0 12px 10px 0;\n  }"""
+          if old_css not in s:
+              raise SystemExit('Expected hero button CSS was not found.')
+          s = s.replace(old_css, new_css, 1)
+
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit update
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Fix hero buttons and remove CV contact details'
+          git push
+
+      - name: Remove temporary workflow
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git rm .github/workflows/update-cv-buttons.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Remove temporary CV update workflow'
+          git push
