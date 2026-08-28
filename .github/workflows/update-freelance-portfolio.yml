@@ -2,6 +2,9 @@ name: Prepare Freelance Portfolio
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/update-freelance-portfolio.yml'
 
 permissions:
   contents: write
@@ -121,10 +124,14 @@ jobs:
           '''
               s = s.replace('</body>', js + '\n</body>', 1)
 
+          # Keep About paragraphs justified on every viewport.
+          s = s.replace('.about-block p{text-align:left;}', '.about-block p{text-align:justify;text-justify:inter-word;hyphens:auto;overflow-wrap:break-word;}')
+          s = s.replace('.about-block p{color:var(--ink-soft);font-size:15px;text-align:justify;}', '.about-block p{color:var(--ink-soft);font-size:15px;text-align:justify;text-justify:inter-word;hyphens:auto;overflow-wrap:break-word;}')
+
           p.write_text(s,encoding='utf-8')
           PY
 
-      - name: Validate no duplicate freelance section
+      - name: Validate no duplicate freelance section and justified About text
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -139,7 +146,9 @@ jobs:
               raise SystemExit('Public coming-soon state missing')
           if 'localStorage' not in s:
               raise SystemExit('Private local workspace missing')
-          print('Freelance portfolio validation passed')
+          if '.about-block p{text-align:justify;text-justify:inter-word;hyphens:auto;overflow-wrap:break-word;}' not in s:
+              raise SystemExit('Mobile About justification missing')
+          print('Validation passed')
           PY
 
       - name: Commit changes
@@ -147,5 +156,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git diff --cached --quiet || git commit -m "Refine freelance portfolio workspace"
+          git diff --cached --quiet || git commit -m "Keep About text justified on mobile"
           git push
