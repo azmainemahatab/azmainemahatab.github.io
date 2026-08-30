@@ -58,7 +58,7 @@ jobs:
                     </div>
                     <span class="language-level">B2 · Upper-Intermediate</span>
                   </div>
-                  <div class="language-meta"><span>Issued: Dec 30, 2024</span><span>EnglishScore Certificate</span></div>
+                  <div class="language-meta"><span>EnglishScore Certificate</span></div>
                   <p class="language-note">CEFR B2 credential from the British Council EnglishScore Core Skills test.</p>
                   <div class="language-actions"><a class="btn btn-ghost" href="#" aria-label="View English certificate">View Certificate ↗</a></div>
                 </div>
@@ -76,9 +76,9 @@ jobs:
                     </div>
                     <div class="language-level-stack"><span class="language-level">HSK Level 1 · A1</span><span class="language-level">HSK Level 2 · A2</span></div>
                   </div>
-                  <div class="language-meta"><span>Issued: Dec 30, 2024</span><span>HSK Course Completion</span></div>
-                  <p class="language-note">Chinese language course completion credential; HSK levels are shown separately from CEFR equivalence.</p>
-                  <div class="language-actions"><a class="btn btn-ghost" href="#" aria-label="View Chinese certificate">View Certificate ↗</a></div>
+                  <div class="language-meta"><span>HSK Course Completion</span></div>
+                  <p class="language-note">Chinese language course credentials; HSK levels are shown separately from CEFR equivalence.</p>
+                  <div class="language-actions"><a class="btn btn-ghost" href="#" aria-label="View Chinese certificates">View Certificates ↗</a></div>
                 </div>
               </article>
 
@@ -187,3 +187,5 @@ jobs:
           git add index.html
           git diff --cached --quiet || git commit -m "Add Languages & Proficiency section"
           git push
+
+# Trigger refresh: portfolio language-section update requested.
