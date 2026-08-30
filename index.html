@@ -990,6 +990,164 @@ html.dark .contact-icon{background:#202B2F;}
       <div class="entry-desc">Institutional scholarship providing financial support toward my undergraduate education at the University of the People.</div>
     </div>
   </section>
+<style id="unified-credential-card-styles">
+  /* One visual language for Certifications, Research/Affiliations and International Programs. */
+  #research .entry,
+  #certifications .cert-card,
+  .international-program-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:0 10px 28px -22px rgba(18,24,26,.28);
+    overflow:hidden;
+  }
+
+  /* Research / Scientific Affiliations */
+  #research .entry{
+    display:grid;
+    grid-template-columns:minmax(260px,360px) minmax(0,1fr);
+    grid-template-rows:auto auto auto;
+    column-gap:28px;
+    padding:20px;
+    margin-bottom:18px;
+    border-top:1px solid var(--line);
+  }
+  #research .entry:first-of-type{border-top:1px solid var(--line);}
+  #research .entry > img{
+    grid-column:1;
+    grid-row:1 / span 3;
+    width:100%;
+    height:230px;
+    object-fit:contain;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    align-self:center;
+  }
+  #research .entry > .entry-top,
+  #research .entry > .entry-desc,
+  #research .entry > .tag{grid-column:2;}
+  #research .entry > .entry-top{grid-row:1;}
+  #research .entry > .entry-desc{grid-row:2;max-width:none;margin-top:10px;}
+  #research .entry > .tag{grid-row:3;align-self:start;width:max-content;}
+
+  /* Certifications */
+  #certifications .cert-featured{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:18px;
+    margin-bottom:28px;
+  }
+  #certifications .cert-card{
+    display:grid;
+    grid-template-columns:minmax(220px,300px) minmax(0,1fr);
+    min-width:0;
+  }
+  #certifications .cert-card > img{
+    width:100%;
+    height:190px;
+    object-fit:contain;
+    object-position:center;
+    background:#fff;
+    border-right:1px solid var(--line);
+    border-bottom:none;
+  }
+  #certifications .cert-card-body{
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    min-width:0;
+  }
+  #certifications .cert-card-body .name{font-size:19px;line-height:1.25;}
+  #certifications .cert-card-body .issuer{font-size:14px;margin-top:7px;color:var(--blue);}
+  .credential-view-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    align-self:flex-start;
+    margin-top:16px;
+    min-height:40px;
+    padding:9px 16px;
+    border:1px solid var(--blue);
+    border-radius:9px;
+    background:var(--card);
+    color:var(--blue);
+    font-family:'Roboto',sans-serif;
+    font-size:14px;
+    font-weight:500;
+    text-decoration:none;
+    cursor:pointer;
+  }
+  .credential-view-btn:hover{background:#F5F8FA;}
+
+  /* International Programs */
+  .international-program-card{
+    display:grid;
+    grid-template-columns:minmax(260px,360px) minmax(0,1fr);
+    gap:28px;
+    padding:20px;
+  }
+  .international-program-card .certificate-preview{
+    width:100%;
+    height:230px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:#fff;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .international-program-card .certificate-preview img{width:100%;height:100%;object-fit:contain;display:block;}
+  .international-program-card .program-content{min-width:0;display:flex;flex-direction:column;justify-content:center;}
+  .international-program-card .entry-desc{max-width:none;}
+  .international-program-card .certificate-action{align-self:flex-start;margin-top:16px;}
+
+  @media (max-width:700px){
+    #research .entry,
+    #certifications .cert-card,
+    .international-program-card{
+      grid-template-columns:1fr;
+      gap:16px;
+      padding:16px;
+    }
+    #research .entry > img{grid-column:1;grid-row:1;height:auto;max-height:320px;}
+    #research .entry > .entry-top,
+    #research .entry > .entry-desc,
+    #research .entry > .tag{grid-column:1;}
+    #research .entry > .entry-top{grid-row:2;}
+    #research .entry > .entry-desc{grid-row:3;}
+    #research .entry > .tag{grid-row:4;}
+    #certifications .cert-card > img{height:auto;max-height:320px;border-right:none;border-bottom:1px solid var(--line);}
+    #certifications .cert-card-body{padding:16px;}
+    .international-program-card .certificate-preview{height:auto;max-height:320px;}
+    .credential-view-btn,.international-program-card .certificate-action{width:100%;}
+  }
+</style>
+
+<!-- INTERNATIONAL PROGRAMS & PROFESSIONAL DEVELOPMENT -->
+<section id="international-programs">
+  <div class="section-head">
+    <div class="section-kicker">International Programs &amp; Professional Development</div>
+    <h2>International Programs &amp; Professional Development</h2>
+  </div>
+  <div class="international-program-card">
+    <a class="certificate-preview" href="/assets/open-certificate.svg" target="_blank" rel="noopener" aria-label="View OPEN certificate">
+      <img src="/assets/open-certificate.svg" alt="OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC certificate">
+    </a>
+    <div class="program-content">
+      <div class="entry-top">
+        <div><span class="entry-title">OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC</span></div>
+        <span class="entry-date">Aug 26, 2026</span>
+      </div>
+      <div class="entry-org">Online Professional English Network (OPEN)</div>
+      <div class="entry-desc">International professional development program sponsored by the U.S. Department of State, focused on teaching English academic writing to speakers of other languages.</div>
+      <a class="btn btn-ghost certificate-action" href="/assets/open-certificate.svg" target="_blank" rel="noopener" aria-label="View OPEN certificate">View Certificate</a>
+    </div>
+  </div>
+</section>
+
           <style id="international-program-card-styles">
             .international-program-card{display:flex;align-items:stretch;gap:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 10px 28px -22px rgba(18,24,26,.28);overflow:hidden;}
             .international-program-card .certificate-preview{flex:0 0 320px;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center;}
@@ -1005,29 +1163,6 @@ html.dark .contact-icon{background:#202B2F;}
               .international-program-card .certificate-action{width:100%;}
             }
           </style>
-          
-          <!-- INTERNATIONAL PROGRAMS & PROFESSIONAL DEVELOPMENT -->
-          <section id="international-programs">
-            <div class="section-head">
-              <div class="section-kicker">International Programs &amp; Professional Development</div>
-              <h2>International Programs &amp; Professional Development</h2>
-            </div>
-            <div class="international-program-card">
-              <a class="certificate-preview" href="/assets/open-certificate.svg" target="_blank" rel="noopener" aria-label="View OPEN certificate">
-                <img src="/assets/open-certificate.svg" alt="OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC certificate">
-              </a>
-              <div class="program-content">
-                <div class="entry-top">
-                  <div><span class="entry-title">OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC</span></div>
-                  <span class="entry-date">Aug 26, 2026</span>
-                </div>
-                <div class="entry-org">Online Professional English Network (OPEN)</div>
-                <div class="entry-desc">International professional development program sponsored by the U.S. Department of State, focused on teaching English academic writing to speakers of other languages.</div>
-                <a class="btn btn-ghost certificate-action" href="/assets/open-certificate.svg" target="_blank" rel="noopener" aria-label="View OPEN certificate">View Certificate</a>
-              </div>
-            </div>
-          </section>
-          
 <!-- EXPERIENCE -->
   <section id="experience">
     <div class="section-head">
@@ -1705,5 +1840,56 @@ function togglePortfolioMenu(event){
   if(location.hash==='#freelance-private')open();
 })();
 </script>
+
+<script id="unified-credential-card-script">
+(function(){
+  function openViewer(img){
+    var modal=document.getElementById('certificate-viewer-modal');
+    var viewer=document.getElementById('certificate-viewer-image');
+    if(!modal||!viewer||!img) return;
+    viewer.src=img.currentSrc||img.src;
+    viewer.alt=img.alt||'Certificate';
+    modal.hidden=false;
+    document.body.style.overflow='hidden';
+  }
+  function addButtons(){
+    document.querySelectorAll('#certifications .cert-card').forEach(function(card){
+      if(card.querySelector('.credential-view-btn')) return;
+      var img=card.querySelector('img'), body=card.querySelector('.cert-card-body');
+      if(!img||!body) return;
+      var b=document.createElement('button'); b.type='button'; b.className='credential-view-btn'; b.textContent='View Certificate';
+      b.addEventListener('click',function(){openViewer(img);}); body.appendChild(b);
+    });
+    document.querySelectorAll('#research .entry').forEach(function(entry){
+      if(entry.querySelector('.credential-view-btn')) return;
+      var img=entry.querySelector('img'); if(!img) return;
+      var b=document.createElement('button'); b.type='button'; b.className='credential-view-btn'; b.textContent='View Certificate';
+      b.addEventListener('click',function(){openViewer(img);});
+      var d=entry.querySelector('.entry-desc'); if(d) d.insertAdjacentElement('afterend',b);
+    });
+  }
+  function ensureViewer(){
+    if(document.getElementById('certificate-viewer-modal')) return;
+    var modal=document.createElement('div'); modal.id='certificate-viewer-modal'; modal.hidden=true;
+    modal.setAttribute('role','dialog'); modal.setAttribute('aria-modal','true');
+    modal.innerHTML='<div class="certificate-viewer-backdrop"></div><div class="certificate-viewer-panel"><button type="button" class="certificate-viewer-close" aria-label="Close certificate">×</button><img id="certificate-viewer-image" alt="Certificate"></div>';
+    document.body.appendChild(modal);
+    function close(){modal.hidden=true;document.body.style.overflow='';}
+    modal.querySelector('.certificate-viewer-backdrop').addEventListener('click',close);
+    modal.querySelector('.certificate-viewer-close').addEventListener('click',close);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)close();});
+  }
+  ensureViewer(); addButtons();
+})();
+</script>
+<style id="certificate-viewer-styles">
+  #certificate-viewer-modal[hidden]{display:none;}
+  #certificate-viewer-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;}
+  .certificate-viewer-backdrop{position:absolute;inset:0;background:rgba(18,24,26,.72);backdrop-filter:blur(4px);}
+  .certificate-viewer-panel{position:relative;z-index:1;max-width:min(1100px,94vw);max-height:92vh;background:#fff;border-radius:14px;padding:14px;box-shadow:0 24px 70px rgba(0,0,0,.28);overflow:auto;}
+  .certificate-viewer-panel img{max-width:100%;max-height:84vh;width:auto;height:auto;object-fit:contain;}
+  .certificate-viewer-close{position:absolute;top:8px;right:8px;width:36px;height:36px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--ink);font-size:24px;line-height:1;cursor:pointer;z-index:2;}
+</style>
+
 </body>
 </html>
