@@ -1,0 +1,55 @@
+name: Apply International Programs Section
+
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-international-programs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Insert international programs section
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          marker='<!-- INTERNATIONAL PROGRAMS & PROFESSIONAL DEVELOPMENT -->'
+          s=re.sub(r'\s*'+re.escape(marker)+r'.*?</section>\s*','\n',s,count=1,flags=re.S)
+          m=re.search(r'<section\b[^>]*>.*?<h2[^>]*>\s*Academic Achievements\s*</h2>.*?</section>',s,flags=re.S|re.I)
+          if not m:
+              raise SystemExit('Academic Achievements section not found')
+          section='''\n          <!-- INTERNATIONAL PROGRAMS & PROFESSIONAL DEVELOPMENT -->\n          <section id="international-programs">\n            <div class="section-head">\n              <div class="section-kicker">International Programs &amp; Professional Development</div>\n              <h2>International Programs &amp; Professional Development</h2>\n            </div>\n            <div class="entry">\n              <div class="entry-top">\n                <div><span class="entry-title">OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC</span></div>\n                <span class="entry-date">Aug 26, 2026</span>\n              </div>\n              <div class="entry-org">Online Professional English Network (OPEN)</div>\n              <div class="entry-desc">International professional development program sponsored by the U.S. Department of State, focused on teaching English academic writing to speakers of other languages.</div>\n              <span class="tag">U.S. Department of State–Sponsored Program</span>\n            </div>\n          </section>\n          '''
+          s=s[:m.end()]+section+s[m.end():]
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Validate
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('index.html').read_text(encoding='utf-8')
+          if s.count('id="international-programs"') != 1: raise SystemExit('International section duplicate/missing')
+          if 'OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC' not in s: raise SystemExit('OPEN entry missing')
+          if 'U.S. Department of State–Sponsored Program' not in s: raise SystemExit('Attribution missing')
+          m=re.search(r'<section\b[^>]*>.*?<h2[^>]*>\s*Academic Achievements\s*</h2>.*?</section>',s,re.S|re.I)
+          i=s.find('<section id="international-programs">')
+          if not m or i < m.end(): raise SystemExit('Wrong section order')
+          c=s.find('<section id="certifications">')
+          if c != -1 and i > c: raise SystemExit('International section must precede certifications')
+          print('Validation passed')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Add international professional development section"
+          git push
