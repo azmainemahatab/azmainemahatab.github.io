@@ -1,4 +1,4 @@
-name: Apply International Programs Section
+name: Apply Unified Portfolio Card System
 
 on:
   push:
@@ -14,46 +14,265 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Insert international programs section
+      - name: Apply unified portfolio card system
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import re
           p=Path('index.html')
           s=p.read_text(encoding='utf-8')
+
+          # Remove previously generated assets/section so this workflow stays idempotent.
+          for marker in ['unified-credential-card-styles','unified-credential-card-script','certificate-viewer-styles']:
+              s=re.sub(r'\s*<(?:style|script) id="'+re.escape(marker)+r'".*?</(?:style|script)>\s*','\n',s,count=1,flags=re.S)
           marker='<!-- INTERNATIONAL PROGRAMS & PROFESSIONAL DEVELOPMENT -->'
           s=re.sub(r'\s*'+re.escape(marker)+r'.*?</section>\s*','\n',s,count=1,flags=re.S)
+
+          styles='''
+          <style id="unified-credential-card-styles">
+            /* One visual language for Certifications, Research/Affiliations and International Programs. */
+            #research .entry,
+            #certifications .cert-card,
+            .international-program-card{
+              background:var(--card);
+              border:1px solid var(--line);
+              border-radius:var(--radius);
+              box-shadow:0 10px 28px -22px rgba(18,24,26,.28);
+              overflow:hidden;
+            }
+
+            /* Research / Scientific Affiliations */
+            #research .entry{
+              display:grid;
+              grid-template-columns:minmax(260px,360px) minmax(0,1fr);
+              grid-template-rows:auto auto auto;
+              column-gap:28px;
+              padding:20px;
+              margin-bottom:18px;
+              border-top:1px solid var(--line);
+            }
+            #research .entry:first-of-type{border-top:1px solid var(--line);}
+            #research .entry > img{
+              grid-column:1;
+              grid-row:1 / span 3;
+              width:100%;
+              height:230px;
+              object-fit:contain;
+              background:#fff;
+              border:1px solid var(--line);
+              border-radius:10px;
+              align-self:center;
+            }
+            #research .entry > .entry-top,
+            #research .entry > .entry-desc,
+            #research .entry > .tag{grid-column:2;}
+            #research .entry > .entry-top{grid-row:1;}
+            #research .entry > .entry-desc{grid-row:2;max-width:none;margin-top:10px;}
+            #research .entry > .tag{grid-row:3;align-self:start;width:max-content;}
+
+            /* Certifications */
+            #certifications .cert-featured{
+              display:grid;
+              grid-template-columns:1fr;
+              gap:18px;
+              margin-bottom:28px;
+            }
+            #certifications .cert-card{
+              display:grid;
+              grid-template-columns:minmax(220px,300px) minmax(0,1fr);
+              min-width:0;
+            }
+            #certifications .cert-card > img{
+              width:100%;
+              height:190px;
+              object-fit:contain;
+              object-position:center;
+              background:#fff;
+              border-right:1px solid var(--line);
+              border-bottom:none;
+            }
+            #certifications .cert-card-body{
+              padding:20px;
+              display:flex;
+              flex-direction:column;
+              justify-content:center;
+              min-width:0;
+            }
+            #certifications .cert-card-body .name{font-size:19px;line-height:1.25;}
+            #certifications .cert-card-body .issuer{font-size:14px;margin-top:7px;color:var(--blue);}
+            .credential-view-btn{
+              display:inline-flex;
+              align-items:center;
+              justify-content:center;
+              align-self:flex-start;
+              margin-top:16px;
+              min-height:40px;
+              padding:9px 16px;
+              border:1px solid var(--blue);
+              border-radius:9px;
+              background:var(--card);
+              color:var(--blue);
+              font-family:'Roboto',sans-serif;
+              font-size:14px;
+              font-weight:500;
+              text-decoration:none;
+              cursor:pointer;
+            }
+            .credential-view-btn:hover{background:#F5F8FA;}
+
+            /* International Programs */
+            .international-program-card{
+              display:grid;
+              grid-template-columns:minmax(260px,360px) minmax(0,1fr);
+              gap:28px;
+              padding:20px;
+            }
+            .international-program-card .certificate-preview{
+              width:100%;
+              height:230px;
+              border:1px solid var(--line);
+              border-radius:10px;
+              background:#fff;
+              overflow:hidden;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+            }
+            .international-program-card .certificate-preview img{width:100%;height:100%;object-fit:contain;display:block;}
+            .international-program-card .program-content{min-width:0;display:flex;flex-direction:column;justify-content:center;}
+            .international-program-card .entry-desc{max-width:none;}
+            .international-program-card .certificate-action{align-self:flex-start;margin-top:16px;}
+
+            @media (max-width:700px){
+              #research .entry,
+              #certifications .cert-card,
+              .international-program-card{
+                grid-template-columns:1fr;
+                gap:16px;
+                padding:16px;
+              }
+              #research .entry > img{grid-column:1;grid-row:1;height:auto;max-height:320px;}
+              #research .entry > .entry-top,
+              #research .entry > .entry-desc,
+              #research .entry > .tag{grid-column:1;}
+              #research .entry > .entry-top{grid-row:2;}
+              #research .entry > .entry-desc{grid-row:3;}
+              #research .entry > .tag{grid-row:4;}
+              #certifications .cert-card > img{height:auto;max-height:320px;border-right:none;border-bottom:1px solid var(--line);}
+              #certifications .cert-card-body{padding:16px;}
+              .international-program-card .certificate-preview{height:auto;max-height:320px;}
+              .credential-view-btn,.international-program-card .certificate-action{width:100%;}
+            }
+          </style>
+          '''
+
+          section='''
+          <!-- INTERNATIONAL PROGRAMS & PROFESSIONAL DEVELOPMENT -->
+          <section id="international-programs">
+            <div class="section-head">
+              <div class="section-kicker">International Programs &amp; Professional Development</div>
+              <h2>International Programs &amp; Professional Development</h2>
+            </div>
+            <div class="international-program-card">
+              <a class="certificate-preview" href="/assets/open-certificate.svg" target="_blank" rel="noopener" aria-label="View OPEN certificate">
+                <img src="/assets/open-certificate.svg" alt="OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC certificate">
+              </a>
+              <div class="program-content">
+                <div class="entry-top">
+                  <div><span class="entry-title">OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC</span></div>
+                  <span class="entry-date">Aug 26, 2026</span>
+                </div>
+                <div class="entry-org">Online Professional English Network (OPEN)</div>
+                <div class="entry-desc">International professional development program sponsored by the U.S. Department of State, focused on teaching English academic writing to speakers of other languages.</div>
+                <a class="btn btn-ghost certificate-action" href="/assets/open-certificate.svg" target="_blank" rel="noopener" aria-label="View OPEN certificate">View Certificate</a>
+              </div>
+            </div>
+          </section>
+          '''
+
           m=re.search(r'<section\b[^>]*>.*?<h2[^>]*>\s*Academic Achievements\s*</h2>.*?</section>',s,flags=re.S|re.I)
           if not m:
               raise SystemExit('Academic Achievements section not found')
-          styles='''\n          <style id="international-program-card-styles">\n            .international-program-card{display:flex;align-items:stretch;gap:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 10px 28px -22px rgba(18,24,26,.28);overflow:hidden;}\n            .international-program-card .certificate-preview{flex:0 0 320px;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center;}\n            .international-program-card .certificate-preview img{width:100%;height:220px;object-fit:contain;display:block;}\n            .international-program-card .program-content{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;}\n            .international-program-card .entry-top{margin-bottom:2px;}\n            .international-program-card .entry-desc{max-width:none;}\n            .international-program-card .certificate-action{align-self:flex-start;margin-top:16px;}\n            @media (max-width:700px){\n              .international-program-card{flex-direction:column;gap:18px;padding:16px;}\n              .international-program-card .certificate-preview{flex-basis:auto;width:100%;}\n              .international-program-card .certificate-preview img{height:auto;max-height:320px;}\n              .international-program-card .certificate-action{width:100%;}\n            }\n          </style>\n          '''
-          section='''\n          <!-- INTERNATIONAL PROGRAMS & PROFESSIONAL DEVELOPMENT -->\n          <section id="international-programs">\n            <div class="section-head">\n              <div class="section-kicker">International Programs &amp; Professional Development</div>\n              <h2>International Programs &amp; Professional Development</h2>\n            </div>\n            <div class="international-program-card">\n              <a class="certificate-preview" href="/assets/open-certificate.svg" target="_blank" rel="noopener" aria-label="View OPEN certificate">\n                <img src="/assets/open-certificate.svg" alt="OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC certificate">\n              </a>\n              <div class="program-content">\n                <div class="entry-top">\n                  <div><span class="entry-title">OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC</span></div>\n                  <span class="entry-date">Aug 26, 2026</span>\n                </div>\n                <div class="entry-org">Online Professional English Network (OPEN)</div>\n                <div class="entry-desc">International professional development program sponsored by the U.S. Department of State, focused on teaching English academic writing to speakers of other languages.</div>\n                <a class="btn btn-ghost certificate-action" href="/assets/open-certificate.svg" target="_blank" rel="noopener" aria-label="View OPEN certificate">View Certificate</a>\n              </div>\n            </div>\n          </section>\n          '''
           s=s[:m.end()]+styles+section+s[m.end():]
+
+          script='''
+          <script id="unified-credential-card-script">
+          (function(){
+            function openViewer(img){
+              var modal=document.getElementById('certificate-viewer-modal');
+              var viewer=document.getElementById('certificate-viewer-image');
+              if(!modal||!viewer||!img) return;
+              viewer.src=img.currentSrc||img.src;
+              viewer.alt=img.alt||'Certificate';
+              modal.hidden=false;
+              document.body.style.overflow='hidden';
+            }
+            function addButtons(){
+              document.querySelectorAll('#certifications .cert-card').forEach(function(card){
+                if(card.querySelector('.credential-view-btn')) return;
+                var img=card.querySelector('img'), body=card.querySelector('.cert-card-body');
+                if(!img||!body) return;
+                var b=document.createElement('button'); b.type='button'; b.className='credential-view-btn'; b.textContent='View Certificate';
+                b.addEventListener('click',function(){openViewer(img);}); body.appendChild(b);
+              });
+              document.querySelectorAll('#research .entry').forEach(function(entry){
+                if(entry.querySelector('.credential-view-btn')) return;
+                var img=entry.querySelector('img'); if(!img) return;
+                var b=document.createElement('button'); b.type='button'; b.className='credential-view-btn'; b.textContent='View Certificate';
+                b.addEventListener('click',function(){openViewer(img);});
+                var d=entry.querySelector('.entry-desc'); if(d) d.insertAdjacentElement('afterend',b);
+              });
+            }
+            function ensureViewer(){
+              if(document.getElementById('certificate-viewer-modal')) return;
+              var modal=document.createElement('div'); modal.id='certificate-viewer-modal'; modal.hidden=true;
+              modal.setAttribute('role','dialog'); modal.setAttribute('aria-modal','true');
+              modal.innerHTML='<div class="certificate-viewer-backdrop"></div><div class="certificate-viewer-panel"><button type="button" class="certificate-viewer-close" aria-label="Close certificate">×</button><img id="certificate-viewer-image" alt="Certificate"></div>';
+              document.body.appendChild(modal);
+              function close(){modal.hidden=true;document.body.style.overflow='';}
+              modal.querySelector('.certificate-viewer-backdrop').addEventListener('click',close);
+              modal.querySelector('.certificate-viewer-close').addEventListener('click',close);
+              document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)close();});
+            }
+            ensureViewer(); addButtons();
+          })();
+          </script>
+          <style id="certificate-viewer-styles">
+            #certificate-viewer-modal[hidden]{display:none;}
+            #certificate-viewer-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;}
+            .certificate-viewer-backdrop{position:absolute;inset:0;background:rgba(18,24,26,.72);backdrop-filter:blur(4px);}
+            .certificate-viewer-panel{position:relative;z-index:1;max-width:min(1100px,94vw);max-height:92vh;background:#fff;border-radius:14px;padding:14px;box-shadow:0 24px 70px rgba(0,0,0,.28);overflow:auto;}
+            .certificate-viewer-panel img{max-width:100%;max-height:84vh;width:auto;height:auto;object-fit:contain;}
+            .certificate-viewer-close{position:absolute;top:8px;right:8px;width:36px;height:36px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--ink);font-size:24px;line-height:1;cursor:pointer;z-index:2;}
+          </style>
+          '''
+          s=re.sub(r'</body>',script+'\n</body>',s,count=1,flags=re.I)
           p.write_text(s,encoding='utf-8')
           PY
-      - name: Validate
+      - name: Validate unified design
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import re
           s=Path('index.html').read_text(encoding='utf-8')
-          if s.count('id="international-programs"') != 1: raise SystemExit('International section duplicate/missing')
-          if 'OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC' not in s: raise SystemExit('OPEN entry missing')
-          if s.count('class="certificate-preview"') != 1: raise SystemExit('Certificate preview missing/duplicated')
-          if s.count('class="btn btn-ghost certificate-action"') != 1: raise SystemExit('View Certificate button missing/duplicated')
-          if '/assets/open-certificate.svg' not in s: raise SystemExit('Certificate image asset missing')
-          if 'international-program-card-styles' not in s: raise SystemExit('Card styles missing')
-          m=re.search(r'<section\b[^>]*>.*?<h2[^>]*>\s*Academic Achievements\s*</h2>.*?</section>',s,re.S|re.I)
-          i=s.find('<section id="international-programs">')
-          if not m or i < m.end(): raise SystemExit('Wrong section order')
-          c=s.find('<section id="certifications">')
-          if c != -1 and i > c: raise SystemExit('International section must precede certifications')
-          print('Validation passed')
+          checks={
+            'international section': s.count('id="international-programs"') == 1,
+            'international card': s.count('class="international-program-card"') == 1,
+            'OPEN certificate asset': '/assets/open-certificate.svg' in s,
+            'unified styles': 'id="unified-credential-card-styles"' in s,
+            'viewer script': 'id="unified-credential-card-script"' in s,
+            'certification cards': 'class="cert-card"' in s,
+            'research section': 'id="research"' in s,
+            'academic before international': s.find('Academic Achievements') < s.find('id="international-programs"'),
+            'international before certifications': s.find('id="international-programs"') < s.find('id="certifications"'),
+          }
+          failed=[k for k,v in checks.items() if not v]
+          if failed: raise SystemExit('Validation failed: '+', '.join(failed))
+          print('Unified card validation passed')
           PY
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git diff --cached --quiet || git commit -m "Polish international program certificate card"
+          git diff --cached --quiet || git commit -m "Unify research programs and certification cards"
           git push
