@@ -1,84 +1,29 @@
-name: Fix Languages & Proficiency Certificate Images
+name: Validate Languages & Proficiency
 
 on:
   push:
     paths:
       - '.github/workflows/apply-languages-proficiency.yml'
-      - 'index.html'
-      - 'assets/certificates/**'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  fix-images:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Replace broken WebP paths with existing SVG assets
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import re
-
-          p = Path('index.html')
-          s = p.read_text(encoding='utf-8')
-
-          replacements = {
-              'assets/certificates/british-council.webp': 'assets/certificates/british-council.svg',
-              'assets/certificates/ef-set.webp': 'assets/certificates/ef-set.svg',
-              'assets/certificates/chinese-hsk2.webp': 'assets/certificates/chinese-hsk2.svg',
-              'assets/certificates/russian.webp': 'assets/certificates/russian.svg',
-          }
-          for old, new in replacements.items():
-              s = s.replace(old, new)
-
-          # Remove external View Certificate buttons; certificate image itself is clickable.
-          s = re.sub(r'<a class="language-action"[^>]*>View Certificate ↗</a>', '', s)
-
-          # Make each certificate image open the same image in a new tab.
-          def wrap_media(m):
-              path = m.group(1)
-              alt = m.group(2)
-              return f'<div class="language-card-media"><a href="{path}" target="_blank" rel="noopener" aria-label="Open certificate image"><img src="{path}" alt="{alt}"></a></div>'
-
-          s = re.sub(
-              r'<div class="language-card-media"><img src="(assets/certificates/[^\"]+\.svg)" alt="([^\"]+)"></div>',
-              wrap_media,
-              s
-          )
-
-          p.write_text(s, encoding='utf-8')
-          PY
-
-      - name: Validate certificate assets and HTML
+      - name: Validate current certificate set
         run: |
           set -e
-          test -f assets/certificates/british-council.svg
-          test -f assets/certificates/ef-set.svg
-          test -f assets/certificates/chinese-hsk2.svg
+          test -f assets/certificates/englishscore.svg
+          test -f assets/certificates/chinese-hsk12.svg
           test -f assets/certificates/russian.svg
-          grep -q 'assets/certificates/british-council.svg' index.html
-          grep -q 'assets/certificates/ef-set.svg' index.html
-          grep -q 'assets/certificates/chinese-hsk2.svg' index.html
-          grep -q 'assets/certificates/russian.svg' index.html
-          ! grep -q 'assets/certificates/british-council.webp' index.html
-          ! grep -q 'assets/certificates/ef-set.webp' index.html
-          ! grep -q 'assets/certificates/chinese-hsk2.webp' index.html
-          ! grep -q 'assets/certificates/russian.webp' index.html
-          ! grep -q 'View Certificate ↗' index.html
-          echo 'Certificate image paths and click targets validated.'
-
-      - name: Commit updated index
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html
-          if git diff --cached --quiet; then
-            echo 'No changes needed.'
-          else
-            git commit -m "Fix language certificate image paths"
-            git push
-          fi
+          test ! -f assets/certificates/british-council.svg
+          test ! -f assets/certificates/ef-set.svg
+          test ! -f assets/certificates/chinese-hsk2.svg
+          grep -q 'certificate-modal' index.html
+          grep -q 'data-certificate=' index.html
+          ! grep -q 'target="_blank"' index.html
+          echo 'Current language certificates and in-page viewer validated.'
