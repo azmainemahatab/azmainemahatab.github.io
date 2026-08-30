@@ -26,7 +26,7 @@ jobs:
           m=re.search(r'<section\b[^>]*>.*?<h2[^>]*>\s*Academic Achievements\s*</h2>.*?</section>',s,flags=re.S|re.I)
           if not m:
               raise SystemExit('Academic Achievements section not found')
-          section='''\n          <!-- INTERNATIONAL PROGRAMS & PROFESSIONAL DEVELOPMENT -->\n          <section id="international-programs">\n            <div class="section-head">\n              <div class="section-kicker">International Programs &amp; Professional Development</div>\n              <h2>International Programs &amp; Professional Development</h2>\n            </div>\n            <div class="entry">\n              <div class="entry-top">\n                <div><span class="entry-title">OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC</span></div>\n                <span class="entry-date">Aug 26, 2026</span>\n              </div>\n              <div class="entry-org">Online Professional English Network (OPEN)</div>\n              <div class="entry-desc">International professional development program sponsored by the U.S. Department of State, focused on teaching English academic writing to speakers of other languages.</div>\n              <span class="tag">U.S. Department of State–Sponsored Program</span>\n            </div>\n          </section>\n          '''
+          section='''\n          <!-- INTERNATIONAL PROGRAMS & PROFESSIONAL DEVELOPMENT -->\n          <section id="international-programs">\n            <div class="section-head">\n              <div class="section-kicker">International Programs &amp; Professional Development</div>\n              <h2>International Programs &amp; Professional Development</h2>\n            </div>\n            <div class="entry international-credential">\n              <div class="entry-top">\n                <div><span class="entry-title">OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC</span></div>\n                <span class="entry-date">Aug 26, 2026</span>\n              </div>\n              <div class="entry-org">Online Professional English Network (OPEN)</div>\n              <div class="entry-desc">International professional development program sponsored by the U.S. Department of State, focused on teaching English academic writing to speakers of other languages.</div>\n              <span class="tag">U.S. Department of State–Sponsored Program</span>\n              <div style="margin-top:18px;max-width:520px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 24px -18px rgba(18,24,26,.22);">\n                <img src="https://api.badgr.io/public/assertions/YYw2kyeLSrCRjd_maPx7mQ/image" alt="OPEN professional development digital credential preview" style="width:100%;height:auto;display:block;background:#fff;">\n                <div style="padding:14px 16px;">\n                  <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;">Credential preview</div>\n                  <div style="font-size:12.5px;color:var(--ink-soft);margin-top:3px;">Official digital credential associated with this OPEN program.</div>\n                  <a class="btn btn-ghost" href="https://api.badgr.io/public/assertions/YYw2kyeLSrCRjd_maPx7mQ" target="_blank" rel="noopener" style="margin-top:12px;margin-bottom:0;">View Certificate</a>\n                </div>\n              </div>\n            </div>\n          </section>\n          '''
           s=s[:m.end()]+section+s[m.end():]
           p.write_text(s,encoding='utf-8')
           PY
@@ -39,6 +39,8 @@ jobs:
           if s.count('id="international-programs"') != 1: raise SystemExit('International section duplicate/missing')
           if 'OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC' not in s: raise SystemExit('OPEN entry missing')
           if 'U.S. Department of State–Sponsored Program' not in s: raise SystemExit('Attribution missing')
+          if 'https://api.badgr.io/public/assertions/YYw2kyeLSrCRjd_maPx7mQ/image' not in s: raise SystemExit('Credential preview missing')
+          if 'https://api.badgr.io/public/assertions/YYw2kyeLSrCRjd_maPx7mQ' not in s: raise SystemExit('Verification link missing')
           m=re.search(r'<section\b[^>]*>.*?<h2[^>]*>\s*Academic Achievements\s*</h2>.*?</section>',s,re.S|re.I)
           i=s.find('<section id="international-programs">')
           if not m or i < m.end(): raise SystemExit('Wrong section order')
@@ -51,5 +53,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git diff --cached --quiet || git commit -m "Add international professional development section"
+          git diff --cached --quiet || git commit -m "Refine OPEN credential presentation"
           git push
