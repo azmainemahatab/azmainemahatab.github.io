@@ -1,4 +1,4 @@
-name: Apply Languages & Proficiency
+name: Finalize Languages & Proficiency
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Apply compact evidence cards
+      - name: Apply image-only certificate cards
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -23,15 +23,13 @@ jobs:
 
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-
           s = re.sub(r'\s*<!-- LANGUAGES-PROFICIENCY-START -->.*?<!-- LANGUAGES-PROFICIENCY-END -->\s*', '\n', s, count=1, flags=re.S)
           s = re.sub(r'\s*<style id="languages-proficiency-styles">.*?</style>\s*', '\n', s, count=1, flags=re.S)
 
           nav_link = '<li><a href="#languages-proficiency">Languages &amp; Proficiency</a></li>'
           if 'href="#languages-proficiency"' not in s:
               m = re.search(r'(<li>\s*<a[^>]+href="#skills"[^>]*>.*?</a>\s*</li>)', s, re.S | re.I)
-              if m:
-                  s = s[:m.end()] + '\n' + nav_link + s[m.end():]
+              if m: s = s[:m.end()] + '\n' + nav_link + s[m.end():]
 
           section = '''
           <!-- LANGUAGES-PROFICIENCY-START -->
@@ -39,105 +37,47 @@ jobs:
             <div class="section-head">
               <div class="section-kicker">LANGUAGES</div>
               <h2>Languages &amp; Proficiency</h2>
-              <p class="languages-intro">Language credentials presented in the same evidence-first card system used across the portfolio.</p>
+              <p class="languages-intro">Selected language credentials and certificates.</p>
             </div>
-
-            <div class="language-card-list">
-              <article class="language-card">
-                <div class="language-card-media"><img src="assets/certificates/british-council.webp" alt="British Council English Online Self-Study certificate"></div>
-                <div class="language-card-body">
-                  <div class="language-main">
-                    <div class="language-title">English</div>
-                    <div class="language-issuer">British Council — English Online</div>
-                    <span class="language-level">B2 · Upper-Intermediate</span>
-                    <div class="language-credential">English Online Self-Study — Changes of Plan (24h)</div>
-                    <div class="language-meta"><span>Issued: 16 Jun 2024</span><span>Verify: QR Code</span></div>
-                    <p>Completed the British Council English Online Self-Study module “Changes of Plan (24h)” at Level B2 Upper-Intermediate.</p>
-                  </div>
-                  <a class="language-action" href="https://englishonline.britishcouncil.org/" target="_blank" rel="noopener">View Certificate ↗</a>
-                </div>
-              </article>
-
-              <article class="language-card">
-                <div class="language-card-media"><img src="assets/certificates/ef-set.webp" alt="EF SET English certificate"></div>
-                <div class="language-card-body">
-                  <div class="language-main">
-                    <div class="language-title">English</div>
-                    <div class="language-issuer">EF SET</div>
-                    <span class="language-level">B2 · Upper-Intermediate</span>
-                    <div class="language-credential">EF SET Certificate</div>
-                    <div class="language-meta"><span>Awarded: 23 Aug 2025</span><span>51/100</span><span>Reading 74 · Listening 28</span></div>
-                    <p>Overall EF SET level B2 Upper-Intermediate. Reading: C2 Proficient; Listening: A1 Beginner.</p>
-                  </div>
-                  <a class="language-action" href="https://cert.efset.org/6ZdKcA" target="_blank" rel="noopener">View Certificate ↗</a>
-                </div>
-              </article>
-
-              <article class="language-card">
-                <div class="language-card-media"><img src="assets/certificates/chinese-hsk2.webp" alt="Chinese HSK Level 2 certificate"></div>
-                <div class="language-card-body">
-                  <div class="language-main">
-                    <div class="language-title">Chinese (Mandarin)</div>
-                    <div class="language-issuer">Shanghai University of Political Science and Law</div>
-                    <span class="language-level">HSK Level 2 · A2</span>
-                    <div class="language-credential">HSK Course Completion — HSK Level 2</div>
-                    <div class="language-meta"><span>Completed: 30 Dec 2024</span><span>Credential ID: 2024WLZWKT20241000668</span></div>
-                    <p>Successfully completed the Chinese language HSK Level 2 course organized by the Shanghai University of Political Science and Law.</p>
-                  </div>
-                  <a class="language-action" href="#" aria-label="View Chinese HSK Level 2 certificate">View Certificate ↗</a>
-                </div>
-              </article>
-
-              <article class="language-card">
-                <div class="language-card-media"><img src="assets/certificates/russian.webp" alt="Russian language certificate"></div>
-                <div class="language-card-body">
-                  <div class="language-main">
-                    <div class="language-title">Russian</div>
-                    <div class="language-issuer">St. Petersburg University / Centre for Open Education</div>
-                    <span class="language-level">A1 · Beginner</span>
-                    <div class="language-credential">Russian Language in the Tourism Context</div>
-                    <div class="language-meta"><span>Issued: 22 Nov 2024</span><span>Course: 09 Sep 2024 – 22 Nov 2024</span></div>
-                    <p>Successfully completed the Russian language course in the tourism context through the Centre for Open Education at St. Petersburg University.</p>
-                  </div>
-                  <a class="language-action" href="#" aria-label="View Russian certificate">View Certificate ↗</a>
-                </div>
-              </article>
+            <div class="language-certificate-list">
+              <a class="language-certificate" href="/assets/certificates/british-council.svg" target="_blank" rel="noopener" aria-label="Open British Council certificate image">
+                <img src="/assets/certificates/british-council.svg" alt="British Council English certificate">
+                <div class="language-certificate-label"><strong>English</strong><span>British Council · English Online · B2 Upper-Intermediate</span></div>
+              </a>
+              <a class="language-certificate" href="/assets/certificates/ef-set.svg" target="_blank" rel="noopener" aria-label="Open EF SET certificate image">
+                <img src="/assets/certificates/ef-set.svg" alt="EF SET English certificate">
+                <div class="language-certificate-label"><strong>English</strong><span>EF SET · B2 Upper-Intermediate</span></div>
+              </a>
+              <a class="language-certificate" href="/assets/certificates/chinese-hsk2.svg" target="_blank" rel="noopener" aria-label="Open Chinese HSK Level 2 certificate image">
+                <img src="/assets/certificates/chinese-hsk2.svg" alt="Chinese HSK Level 2 certificate">
+                <div class="language-certificate-label"><strong>Chinese (Mandarin)</strong><span>HSK Level 2 · A2</span></div>
+              </a>
+              <a class="language-certificate" href="/assets/certificates/russian.svg" target="_blank" rel="noopener" aria-label="Open Russian certificate image">
+                <img src="/assets/certificates/russian.svg" alt="Russian language certificate">
+                <div class="language-certificate-label"><strong>Russian</strong><span>Russian Language Course · A1 Beginner</span></div>
+              </a>
             </div>
           </section>
           <!-- LANGUAGES-PROFICIENCY-END -->
           '''
 
           anchor = re.search(r'(?=<section[^>]+id=["\']research["\'])', s, re.I)
-          if not anchor:
-              anchor = re.search(r'(?=<section[^>]*>\s*.*?Research &amp; Scientific Affiliations)', s, re.S | re.I)
-          if not anchor:
-              raise SystemExit('Research section anchor not found')
+          if not anchor: anchor = re.search(r'(?=<section[^>]*>\s*.*?Research &amp; Scientific Affiliations)', s, re.S | re.I)
+          if not anchor: raise SystemExit('Research section anchor not found')
           s = s[:anchor.start()] + section + '\n' + s[anchor.start():]
 
           styles = '''
           <style id="languages-proficiency-styles">
             .languages-intro{color:var(--ink-soft);font-size:14.5px;margin-top:8px;max-width:720px;}
-            .language-card-list{display:flex;flex-direction:column;gap:10px;}
-            .language-card{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:190px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 24px -22px rgba(18,24,26,.28);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
-            .language-card:hover{transform:translateY(-2px);border-color:rgba(32,78,107,.24);box-shadow:0 12px 28px -20px rgba(18,24,26,.25);}
-            .language-card-media{margin:12px;width:256px;height:166px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#f5f7f9;display:flex;align-items:center;justify-content:center;}
-            .language-card-media img{width:100%;height:100%;object-fit:contain;display:block;background:#fff;}
-            .language-card-body{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:22px;min-width:0;}
-            .language-main{min-width:0;}
-            .language-title{font-family:'Space Grotesk',sans-serif;font-size:20px;line-height:1.15;font-weight:700;}
-            .language-issuer{color:var(--blue);font-size:13px;margin-top:4px;line-height:1.35;}
-            .language-level{display:inline-flex;margin-top:8px;border:1px solid rgba(32,78,107,.18);background:#F2F6FA;color:var(--blue);border-radius:999px;padding:4px 9px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;white-space:nowrap;}
-            .language-credential{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;margin-top:9px;}
-            .language-meta{display:flex;flex-wrap:wrap;gap:5px 14px;color:var(--ink-soft);font-size:11.5px;margin-top:7px;}
-            .language-main p{color:var(--ink-soft);font-size:12.5px;line-height:1.45;margin:7px 0 0;max-width:760px;}
-            .language-action{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-width:150px;border:1px solid var(--blue);border-radius:8px;padding:10px 14px;color:var(--blue);text-decoration:none;font-weight:600;font-size:12.5px;white-space:nowrap;}
-            .language-action:hover{background:var(--blue);color:#fff;}
-            html.dark .language-card-media{background:#182128;}
-            html.dark .language-card-media img{background:#fff;}
-            html.dark .language-level{background:#1E2A31;border-color:#30414A;}
-            @media (max-width:850px){.language-card{grid-template-columns:210px minmax(0,1fr);}.language-card-media{width:186px;height:140px;}.language-card-body{padding:15px;gap:12px;}.language-action{min-width:125px;}}
-            @media (max-width:650px){.language-card{grid-template-columns:1fr;}.language-card-media{width:auto;height:180px;margin:10px;}.language-card-body{align-items:flex-start;flex-direction:column;padding:12px 14px 15px;}.language-action{width:100%;}}
-            @media (prefers-reduced-motion:reduce){.language-card{transition:none}.language-card:hover{transform:none;}}
+            .language-certificate-list{display:flex;flex-direction:column;gap:12px;}
+            .language-certificate{display:grid;grid-template-columns:280px minmax(0,1fr);align-items:center;min-height:190px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-decoration:none;box-shadow:0 8px 24px -22px rgba(18,24,26,.28);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
+            .language-certificate:hover{text-decoration:none;transform:translateY(-2px);border-color:rgba(32,78,107,.25);box-shadow:0 12px 28px -20px rgba(18,24,26,.25);}
+            .language-certificate img{width:100%;height:170px;object-fit:contain;background:#fff;border-right:1px solid var(--line);display:block;}
+            .language-certificate-label{padding:18px 20px;display:flex;flex-direction:column;gap:5px;}
+            .language-certificate-label strong{font-family:'Space Grotesk',sans-serif;font-size:19px;color:var(--ink);}
+            .language-certificate-label span{font-size:13.5px;color:var(--ink-soft);}
+            @media (max-width:700px){.language-certificate{grid-template-columns:1fr;min-height:0;}.language-certificate img{height:auto;max-height:320px;border-right:none;border-bottom:1px solid var(--line);}.language-certificate-label{padding:14px 16px;}}
+            @media (prefers-reduced-motion:reduce){.language-certificate{transition:none}.language-certificate:hover{transform:none;}}
           </style>
           '''
           s=s.replace('</head>',styles+'\n</head>',1)
@@ -151,24 +91,24 @@ jobs:
           s=Path('index.html').read_text(encoding='utf-8')
           checks={
             'one section': s.count('id="languages-proficiency"') == 1,
-            'four cards': s.count('class="language-card"') == 4,
-            'one style block': s.count('id="languages-proficiency-styles"') == 1,
-            'British Council': 'English Online Self-Study — Changes of Plan (24h)' in s,
-            'EF SET': 'EF SET Certificate' in s and '51/100' in s,
-            'HSK Level 2 only': 'HSK Level 2 · A2' in s and 'HSK Level 1 · A1' not in s,
-            'Russian': 'Russian Language in the Tourism Context' in s,
+            'four cards': s.count('class="language-certificate"') == 4,
+            'British image': '/assets/certificates/british-council.svg' in s,
+            'EF SET image': '/assets/certificates/ef-set.svg' in s,
+            'HSK2 image': '/assets/certificates/chinese-hsk2.svg' in s,
+            'Russian image': '/assets/certificates/russian.svg' in s,
+            'no HSK1': 'HSK Level 1 · A1' not in s,
+            'no certificate links/buttons': 'View Certificate' not in s and 'https://cert.efset.org/' not in s and 'englishonline.britishcouncil.org' not in s,
             'research remains': 'id="research"' in s,
-            'before research': s.find('id="languages-proficiency"') < s.find('id="research"'),
           }
           failed=[k for k,v in checks.items() if not v]
           if failed: raise SystemExit('Validation failed: '+', '.join(failed))
-          print('Languages & Proficiency validation passed')
+          print('Image-only certificate card validation passed')
           PY
 
-      - name: Commit finalized section
+      - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git diff --cached --quiet || git commit -m "Finalize compact Languages & Proficiency cards"
+          git diff --cached --quiet || git commit -m "Use image-only language certificate cards"
           git push
