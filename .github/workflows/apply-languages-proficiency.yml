@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - '.github/workflows/apply-languages-proficiency.yml'
+      - 'index.html'
+      - 'assets/certificates/**'
   workflow_dispatch:
 
 permissions:
@@ -33,14 +35,10 @@ jobs:
           for old, new in replacements.items():
               s = s.replace(old, new)
 
-          # Make certificate thumbnails open the actual certificate image rather than an external issuer page.
-          s = re.sub(
-              r'<a class="language-action"[^>]*>View Certificate ↗</a>',
-              '',
-              s
-          )
+          # Remove external View Certificate buttons; certificate image itself is clickable.
+          s = re.sub(r'<a class="language-action"[^>]*>View Certificate ↗</a>', '', s)
 
-          # Keep certificate cards clickable: wrap each certificate media image with a link if not already linked.
+          # Make each certificate image open the same image in a new tab.
           def wrap_media(m):
               path = m.group(1)
               alt = m.group(2)
@@ -57,6 +55,7 @@ jobs:
 
       - name: Validate certificate assets and HTML
         run: |
+          set -e
           test -f assets/certificates/british-council.svg
           test -f assets/certificates/ef-set.svg
           test -f assets/certificates/chinese-hsk2.svg
@@ -69,7 +68,8 @@ jobs:
           ! grep -q 'assets/certificates/ef-set.webp' index.html
           ! grep -q 'assets/certificates/chinese-hsk2.webp' index.html
           ! grep -q 'assets/certificates/russian.webp' index.html
-          echo 'Certificate image paths validated.'
+          ! grep -q 'View Certificate ↗' index.html
+          echo 'Certificate image paths and click targets validated.'
 
       - name: Commit updated index
         run: |
