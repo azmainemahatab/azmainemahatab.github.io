@@ -788,6 +788,42 @@ html.dark .contact-icon{background:#202B2F;}
   @media (prefers-reduced-motion:reduce){.academic-achievement-card{transition:none}.academic-achievement-card:hover{transform:none;}}
 </style>
 
+
+<style id="languages-proficiency-styles">
+  .languages-intro{color:var(--ink-soft);font-size:14.5px;margin-top:8px;max-width:720px;}
+  .language-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;}
+  .language-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 28px -22px rgba(18,24,26,.28);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+  .language-card:hover{transform:translateY(-3px);border-color:rgba(32,78,107,.24);box-shadow:0 14px 32px -20px rgba(18,24,26,.25);}
+  .language-card-media{height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-bottom:1px solid var(--line);padding:20px;}
+  .language-media-english{background:linear-gradient(135deg,#f4f5fb,#ffffff);color:#3d2b8f;}
+  .language-media-chinese{background:linear-gradient(135deg,#f7f8fb,#ffffff);color:#204e6b;}
+  .language-media-russian{background:linear-gradient(135deg,#eaf4fb,#f9fbfd);color:#204e6b;}
+  .language-media-mark{font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:700;line-height:1;}
+  .language-media-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;margin-top:8px;}
+  .language-media-subtitle{font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:5px;opacity:.75;}
+  .language-media-fallback{font-size:58px;font-weight:700;line-height:1;}
+  .language-card-body{padding:18px;display:flex;flex-direction:column;min-height:235px;}
+  .language-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+  .language-title{font-family:'Space Grotesk',sans-serif;font-size:19px;line-height:1.25;font-weight:700;}
+  .language-issuer{color:var(--blue);font-size:13px;margin-top:5px;line-height:1.4;}
+  .language-level-stack{display:flex;flex-direction:column;gap:5px;align-items:flex-end;flex-shrink:0;}
+  .language-level{display:inline-flex;align-items:center;border:1px solid rgba(32,78,107,.18);background:#F2F6FA;color:var(--blue);border-radius:999px;padding:4px 9px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;white-space:nowrap;}
+  .language-meta{display:flex;flex-wrap:wrap;gap:8px 14px;color:var(--ink-soft);font-size:12px;margin-top:13px;}
+  .language-note{color:var(--ink-soft);font-size:13.5px;line-height:1.55;margin-top:10px;}
+  .language-actions{margin-top:auto;padding-top:16px;}
+  .language-actions .btn{margin:0;min-width:145px;}
+  .language-info-box{margin-top:18px;background:#F3F7FB;border:1px solid #DCE7EF;border-radius:var(--radius);padding:15px 18px;display:flex;flex-wrap:wrap;align-items:center;gap:7px 14px;color:var(--blue);font-size:12.5px;}
+  .language-info-box strong{font-family:'Space Grotesk',sans-serif;font-size:14px;margin-right:5px;}
+  .language-info-box span{font-family:'IBM Plex Mono',monospace;}
+  html.dark .language-media-english,html.dark .language-media-chinese{background:#1B2328;}
+  html.dark .language-media-russian{background:#17252D;}
+  html.dark .language-level{background:#1E2A31;border-color:#30414A;}
+  html.dark .language-info-box{background:#18262E;border-color:#2A3B44;}
+  @media (max-width:900px){.language-card-grid{grid-template-columns:1fr 1fr;}.language-card:last-child{grid-column:1 / -1;}}
+  @media (max-width:700px){.language-card-grid{grid-template-columns:1fr;}.language-card:last-child{grid-column:auto;}.language-card-media{height:180px;}.language-card-body{min-height:0;}.language-title-row{flex-direction:column;}.language-level-stack{align-items:flex-start;}}
+  @media (prefers-reduced-motion:reduce){.language-card{transition:none}.language-card:hover{transform:none;}}
+</style>
+
 </head>
 <body>
 <!-- data-official-contact-icons="v1" -->
@@ -804,6 +840,7 @@ html.dark .contact-icon{background:#202B2F;}
         <li><a href="#experience">Experience</a></li>
         <li><a href="#leadership">Leadership</a></li>
         <li><a href="#skills">Skills</a></li>
+<li><a href="#languages-proficiency">Languages &amp; Proficiency</a></li>
         <li><a href="#certifications">Certifications</a></li>
           <li><a href="freelance.html">Freelance Portfolio</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -996,7 +1033,83 @@ html.dark .contact-icon{background:#202B2F;}
   </section>
 
   <!-- RESEARCH -->
-  <section id="research">
+  
+<!-- LANGUAGES-PROFICIENCY-START -->
+<section id="languages-proficiency">
+  <div class="section-head">
+    <div class="section-kicker">LANGUAGES</div>
+    <h2>Languages &amp; Proficiency</h2>
+    <p class="languages-intro">Language credentials presented in the same evidence-first card system used across the portfolio.</p>
+  </div>
+
+  <div class="language-card-grid">
+    <article class="language-card">
+      <div class="language-card-media language-media-english" aria-label="EnglishScore certificate preview">
+        <div class="language-media-mark">B2</div>
+        <div class="language-media-title">EnglishScore</div>
+        <div class="language-media-subtitle">Certificate · CEFR B2</div>
+      </div>
+      <div class="language-card-body">
+        <div class="language-title-row">
+          <div>
+            <div class="language-title">English</div>
+            <div class="language-issuer">British Council</div>
+          </div>
+          <span class="language-level">B2 · Upper-Intermediate</span>
+        </div>
+        <div class="language-meta"><span>Issued: Dec 30, 2024</span><span>EnglishScore Certificate</span></div>
+        <p class="language-note">CEFR B2 credential from the British Council EnglishScore Core Skills test.</p>
+        <div class="language-actions"><a class="btn btn-ghost" href="#" aria-label="View English certificate">View Certificate ↗</a></div>
+      </div>
+    </article>
+
+    <article class="language-card">
+      <div class="language-card-media language-media-chinese" aria-label="Chinese certificate preview">
+        <div class="language-media-fallback">中文</div>
+      </div>
+      <div class="language-card-body">
+        <div class="language-title-row">
+          <div>
+            <div class="language-title">Chinese (Mandarin)</div>
+            <div class="language-issuer">Shanghai University of Political Science and Law</div>
+          </div>
+          <div class="language-level-stack"><span class="language-level">HSK Level 1 · A1</span><span class="language-level">HSK Level 2 · A2</span></div>
+        </div>
+        <div class="language-meta"><span>Issued: Dec 30, 2024</span><span>HSK Course Completion</span></div>
+        <p class="language-note">Chinese language course completion credential; HSK levels are shown separately from CEFR equivalence.</p>
+        <div class="language-actions"><a class="btn btn-ghost" href="#" aria-label="View Chinese certificate">View Certificate ↗</a></div>
+      </div>
+    </article>
+
+    <article class="language-card">
+      <div class="language-card-media language-media-russian" aria-label="Russian certificate preview">
+        <div class="language-media-mark">RU</div>
+        <div class="language-media-title">СЕРТИФИКАТ</div>
+        <div class="language-media-subtitle">Russian Language · Tourism</div>
+      </div>
+      <div class="language-card-body">
+        <div class="language-title-row">
+          <div>
+            <div class="language-title">Russian</div>
+            <div class="language-issuer">St. Petersburg University</div>
+          </div>
+          <span class="language-level">A1 · Beginner</span>
+        </div>
+        <div class="language-meta"><span>Issued: Nov 22, 2024</span><span>Russian Language Course</span></div>
+        <p class="language-note">Course completion credential for Russian language in the tourism context.</p>
+        <div class="language-actions"><a class="btn btn-ghost" href="#" aria-label="View Russian certificate">View Certificate ↗</a></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="language-info-box">
+    <strong>Proficiency reference</strong>
+    <span>A1 · Beginner</span><span>A2 · Elementary</span><span>B1 · Intermediate</span><span>B2 · Upper-Intermediate</span><span>C1 · Advanced</span><span>C2 · Proficient</span>
+  </div>
+</section>
+<!-- LANGUAGES-PROFICIENCY-END -->
+
+<section id="research">
     <div class="section-head">
       <div class="section-kicker">Research</div>
       <h2>Research &amp; Scientific Affiliations</h2>
