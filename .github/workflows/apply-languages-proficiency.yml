@@ -1,4 +1,4 @@
-name: Finalize Languages & Proficiency
+name: Fix Languages & Proficiency Certificate Images
 
 on:
   push:
@@ -10,12 +10,12 @@ permissions:
   contents: write
 
 jobs:
-  update:
+  fix-images:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Apply image-only certificate cards
+      - name: Replace broken WebP paths with existing SVG assets
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -23,92 +23,62 @@ jobs:
 
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-          s = re.sub(r'\s*<!-- LANGUAGES-PROFICIENCY-START -->.*?<!-- LANGUAGES-PROFICIENCY-END -->\s*', '\n', s, count=1, flags=re.S)
-          s = re.sub(r'\s*<style id="languages-proficiency-styles">.*?</style>\s*', '\n', s, count=1, flags=re.S)
 
-          nav_link = '<li><a href="#languages-proficiency">Languages &amp; Proficiency</a></li>'
-          if 'href="#languages-proficiency"' not in s:
-              m = re.search(r'(<li>\s*<a[^>]+href="#skills"[^>]*>.*?</a>\s*</li>)', s, re.S | re.I)
-              if m: s = s[:m.end()] + '\n' + nav_link + s[m.end():]
-
-          section = '''
-          <!-- LANGUAGES-PROFICIENCY-START -->
-          <section id="languages-proficiency">
-            <div class="section-head">
-              <div class="section-kicker">LANGUAGES</div>
-              <h2>Languages &amp; Proficiency</h2>
-              <p class="languages-intro">Selected language credentials and certificates.</p>
-            </div>
-            <div class="language-certificate-list">
-              <a class="language-certificate" href="/assets/certificates/british-council.svg" target="_blank" rel="noopener" aria-label="Open British Council certificate image">
-                <img src="/assets/certificates/british-council.svg" alt="British Council English certificate">
-                <div class="language-certificate-label"><strong>English</strong><span>British Council · English Online · B2 Upper-Intermediate</span></div>
-              </a>
-              <a class="language-certificate" href="/assets/certificates/ef-set.svg" target="_blank" rel="noopener" aria-label="Open EF SET certificate image">
-                <img src="/assets/certificates/ef-set.svg" alt="EF SET English certificate">
-                <div class="language-certificate-label"><strong>English</strong><span>EF SET · B2 Upper-Intermediate</span></div>
-              </a>
-              <a class="language-certificate" href="/assets/certificates/chinese-hsk2.svg" target="_blank" rel="noopener" aria-label="Open Chinese HSK Level 2 certificate image">
-                <img src="/assets/certificates/chinese-hsk2.svg" alt="Chinese HSK Level 2 certificate">
-                <div class="language-certificate-label"><strong>Chinese (Mandarin)</strong><span>HSK Level 2 · A2</span></div>
-              </a>
-              <a class="language-certificate" href="/assets/certificates/russian.svg" target="_blank" rel="noopener" aria-label="Open Russian certificate image">
-                <img src="/assets/certificates/russian.svg" alt="Russian language certificate">
-                <div class="language-certificate-label"><strong>Russian</strong><span>Russian Language Course · A1 Beginner</span></div>
-              </a>
-            </div>
-          </section>
-          <!-- LANGUAGES-PROFICIENCY-END -->
-          '''
-
-          anchor = re.search(r'(?=<section[^>]+id=["\']research["\'])', s, re.I)
-          if not anchor: anchor = re.search(r'(?=<section[^>]*>\s*.*?Research &amp; Scientific Affiliations)', s, re.S | re.I)
-          if not anchor: raise SystemExit('Research section anchor not found')
-          s = s[:anchor.start()] + section + '\n' + s[anchor.start():]
-
-          styles = '''
-          <style id="languages-proficiency-styles">
-            .languages-intro{color:var(--ink-soft);font-size:14.5px;margin-top:8px;max-width:720px;}
-            .language-certificate-list{display:flex;flex-direction:column;gap:12px;}
-            .language-certificate{display:grid;grid-template-columns:280px minmax(0,1fr);align-items:center;min-height:190px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-decoration:none;box-shadow:0 8px 24px -22px rgba(18,24,26,.28);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
-            .language-certificate:hover{text-decoration:none;transform:translateY(-2px);border-color:rgba(32,78,107,.25);box-shadow:0 12px 28px -20px rgba(18,24,26,.25);}
-            .language-certificate img{width:100%;height:170px;object-fit:contain;background:#fff;border-right:1px solid var(--line);display:block;}
-            .language-certificate-label{padding:18px 20px;display:flex;flex-direction:column;gap:5px;}
-            .language-certificate-label strong{font-family:'Space Grotesk',sans-serif;font-size:19px;color:var(--ink);}
-            .language-certificate-label span{font-size:13.5px;color:var(--ink-soft);}
-            @media (max-width:700px){.language-certificate{grid-template-columns:1fr;min-height:0;}.language-certificate img{height:auto;max-height:320px;border-right:none;border-bottom:1px solid var(--line);}.language-certificate-label{padding:14px 16px;}}
-            @media (prefers-reduced-motion:reduce){.language-certificate{transition:none}.language-certificate:hover{transform:none;}}
-          </style>
-          '''
-          s=s.replace('</head>',styles+'\n</head>',1)
-          p.write_text(s,encoding='utf-8')
-          PY
-
-      - name: Validate
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          s=Path('index.html').read_text(encoding='utf-8')
-          checks={
-            'one section': s.count('id="languages-proficiency"') == 1,
-            'four cards': s.count('class="language-certificate"') == 4,
-            'British image': '/assets/certificates/british-council.svg' in s,
-            'EF SET image': '/assets/certificates/ef-set.svg' in s,
-            'HSK2 image': '/assets/certificates/chinese-hsk2.svg' in s,
-            'Russian image': '/assets/certificates/russian.svg' in s,
-            'no HSK1': 'HSK Level 1 · A1' not in s,
-            'no certificate links/buttons': 'View Certificate' not in s and 'https://cert.efset.org/' not in s and 'englishonline.britishcouncil.org' not in s,
-            'research remains': 'id="research"' in s,
+          replacements = {
+              'assets/certificates/british-council.webp': 'assets/certificates/british-council.svg',
+              'assets/certificates/ef-set.webp': 'assets/certificates/ef-set.svg',
+              'assets/certificates/chinese-hsk2.webp': 'assets/certificates/chinese-hsk2.svg',
+              'assets/certificates/russian.webp': 'assets/certificates/russian.svg',
           }
-          failed=[k for k,v in checks.items() if not v]
-          if failed: raise SystemExit('Validation failed: '+', '.join(failed))
-          print('Image-only certificate card validation passed')
+          for old, new in replacements.items():
+              s = s.replace(old, new)
+
+          # Make certificate thumbnails open the actual certificate image rather than an external issuer page.
+          s = re.sub(
+              r'<a class="language-action"[^>]*>View Certificate ↗</a>',
+              '',
+              s
+          )
+
+          # Keep certificate cards clickable: wrap each certificate media image with a link if not already linked.
+          def wrap_media(m):
+              path = m.group(1)
+              alt = m.group(2)
+              return f'<div class="language-card-media"><a href="{path}" target="_blank" rel="noopener" aria-label="Open certificate image"><img src="{path}" alt="{alt}"></a></div>'
+
+          s = re.sub(
+              r'<div class="language-card-media"><img src="(assets/certificates/[^\"]+\.svg)" alt="([^\"]+)"></div>',
+              wrap_media,
+              s
+          )
+
+          p.write_text(s, encoding='utf-8')
           PY
 
-      - name: Commit
+      - name: Validate certificate assets and HTML
+        run: |
+          test -f assets/certificates/british-council.svg
+          test -f assets/certificates/ef-set.svg
+          test -f assets/certificates/chinese-hsk2.svg
+          test -f assets/certificates/russian.svg
+          grep -q 'assets/certificates/british-council.svg' index.html
+          grep -q 'assets/certificates/ef-set.svg' index.html
+          grep -q 'assets/certificates/chinese-hsk2.svg' index.html
+          grep -q 'assets/certificates/russian.svg' index.html
+          ! grep -q 'assets/certificates/british-council.webp' index.html
+          ! grep -q 'assets/certificates/ef-set.webp' index.html
+          ! grep -q 'assets/certificates/chinese-hsk2.webp' index.html
+          ! grep -q 'assets/certificates/russian.webp' index.html
+          echo 'Certificate image paths validated.'
+
+      - name: Commit updated index
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git diff --cached --quiet || git commit -m "Use image-only language certificate cards"
-          git push
+          if git diff --cached --quiet; then
+            echo 'No changes needed.'
+          else
+            git commit -m "Fix language certificate image paths"
+            git push
+          fi
