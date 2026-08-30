@@ -990,20 +990,41 @@ html.dark .contact-icon{background:#202B2F;}
       <div class="entry-desc">Institutional scholarship providing financial support toward my undergraduate education at the University of the People.</div>
     </div>
   </section>
+          <style id="international-program-card-styles">
+            .international-program-card{display:flex;align-items:stretch;gap:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 10px 28px -22px rgba(18,24,26,.28);overflow:hidden;}
+            .international-program-card .certificate-preview{flex:0 0 320px;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+            .international-program-card .certificate-preview img{width:100%;height:220px;object-fit:contain;display:block;}
+            .international-program-card .program-content{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;}
+            .international-program-card .entry-top{margin-bottom:2px;}
+            .international-program-card .entry-desc{max-width:none;}
+            .international-program-card .certificate-action{align-self:flex-start;margin-top:16px;}
+            @media (max-width:700px){
+              .international-program-card{flex-direction:column;gap:18px;padding:16px;}
+              .international-program-card .certificate-preview{flex-basis:auto;width:100%;}
+              .international-program-card .certificate-preview img{height:auto;max-height:320px;}
+              .international-program-card .certificate-action{width:100%;}
+            }
+          </style>
+          
           <!-- INTERNATIONAL PROGRAMS & PROFESSIONAL DEVELOPMENT -->
           <section id="international-programs">
             <div class="section-head">
               <div class="section-kicker">International Programs &amp; Professional Development</div>
               <h2>International Programs &amp; Professional Development</h2>
             </div>
-            <div class="entry international-credential">
-              <div class="entry-top">
-                <div><span class="entry-title">OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC</span></div>
-                <span class="entry-date">Aug 26, 2026</span>
+            <div class="international-program-card">
+              <a class="certificate-preview" href="/assets/open-certificate.svg" target="_blank" rel="noopener" aria-label="View OPEN certificate">
+                <img src="/assets/open-certificate.svg" alt="OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC certificate">
+              </a>
+              <div class="program-content">
+                <div class="entry-top">
+                  <div><span class="entry-title">OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC</span></div>
+                  <span class="entry-date">Aug 26, 2026</span>
+                </div>
+                <div class="entry-org">Online Professional English Network (OPEN)</div>
+                <div class="entry-desc">International professional development program sponsored by the U.S. Department of State, focused on teaching English academic writing to speakers of other languages.</div>
+                <a class="btn btn-ghost certificate-action" href="/assets/open-certificate.svg" target="_blank" rel="noopener" aria-label="View OPEN certificate">View Certificate</a>
               </div>
-              <div class="entry-org">Online Professional English Network (OPEN)</div>
-              <div class="entry-desc">International professional development program sponsored by the U.S. Department of State, focused on teaching English academic writing to speakers of other languages.</div>
-              <a href="/assets/open-certificate.svg" target="_blank" rel="noopener" aria-label="View OPEN certificate image" style="display:inline-flex;align-items:center;justify-content:center;margin-top:16px;padding:11px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;text-decoration:none;box-shadow:0 6px 18px -14px rgba(18,24,26,.28);">View Certificate</a>
             </div>
           </section>
           
