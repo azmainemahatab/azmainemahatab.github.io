@@ -1,0 +1,48 @@
+name: Finalize Certificate Cards
+on:
+  push:
+    paths:
+      - '_certificate_cards_trigger.txt'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace language cards with certificate images
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('index.html'); s=p.read_text(encoding='utf-8')
+          s=re.sub(r'\s*<!-- LANGUAGES-PROFICIENCY-START -->.*?<!-- LANGUAGES-PROFICIENCY-END -->\s*','\n',s,count=1,flags=re.S)
+          s=re.sub(r'\s*<style id="languages-proficiency-styles">.*?</style>\s*','\n',s,count=1,flags=re.S)
+          section='''\n<!-- LANGUAGES-PROFICIENCY-START -->\n<section id="languages-proficiency"><div class="section-head"><div class="section-kicker">LANGUAGES</div><h2>Languages &amp; Proficiency</h2><p class="languages-intro">Selected language credentials and certificates.</p></div><div class="language-certificate-list">\n<a class="language-certificate" href="/assets/certificates/british-council.svg" target="_blank" rel="noopener"><img src="/assets/certificates/british-council.svg" alt="British Council English certificate"><div class="language-certificate-label"><strong>English</strong><span>British Council · English Online · B2 Upper-Intermediate</span></div></a>\n<a class="language-certificate" href="/assets/certificates/ef-set.svg" target="_blank" rel="noopener"><img src="/assets/certificates/ef-set.svg" alt="EF SET English certificate"><div class="language-certificate-label"><strong>English</strong><span>EF SET · B2 Upper-Intermediate · 51/100</span></div></a>\n<a class="language-certificate" href="/assets/certificates/chinese-hsk2.svg" target="_blank" rel="noopener"><img src="/assets/certificates/chinese-hsk2.svg" alt="Chinese HSK Level 2 certificate"><div class="language-certificate-label"><strong>Chinese (Mandarin)</strong><span>Shanghai University of Political Science and Law · HSK Level 2 · A2</span></div></a>\n<a class="language-certificate" href="/assets/certificates/russian.svg" target="_blank" rel="noopener"><img src="/assets/certificates/russian.svg" alt="Russian language certificate"><div class="language-certificate-label"><strong>Russian</strong><span>St. Petersburg University · A1 Beginner</span></div></a>\n</div></section>\n<!-- LANGUAGES-PROFICIENCY-END -->\n'''
+          anchor=re.search(r'(?=<section[^>]+id=["\']research["\'])',s,re.I)
+          if not anchor: raise SystemExit('research section not found')
+          s=s[:anchor.start()]+section+'\n'+s[anchor.start():]
+          styles='''\n<style id="languages-proficiency-styles">.languages-intro{color:var(--ink-soft);font-size:14.5px;margin-top:8px;max-width:720px}.language-certificate-list{display:flex;flex-direction:column;gap:12px}.language-certificate{display:grid;grid-template-columns:280px minmax(0,1fr);align-items:center;min-height:190px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-decoration:none;box-shadow:0 8px 24px -22px rgba(18,24,26,.28)}.language-certificate:hover{text-decoration:none;transform:translateY(-2px)}.language-certificate img{width:100%;height:170px;object-fit:contain;background:#fff;border-right:1px solid var(--line);display:block}.language-certificate-label{padding:18px 20px;display:flex;flex-direction:column;gap:5px}.language-certificate-label strong{font-family:'Space Grotesk',sans-serif;font-size:19px;color:var(--ink)}.language-certificate-label span{font-size:13.5px;color:var(--ink-soft)}@media(max-width:700px){.language-certificate{grid-template-columns:1fr;min-height:0}.language-certificate img{height:auto;max-height:320px;border-right:none;border-bottom:1px solid var(--line)}}\n</style>\n'''
+          s=s.replace('</head>',styles+'</head>',1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Validate
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('index.html').read_text(encoding='utf-8')
+          required=['/assets/certificates/british-council.svg','/assets/certificates/ef-set.svg','/assets/certificates/chinese-hsk2.svg','/assets/certificates/russian.svg']
+          assert s.count('class="language-certificate"')==4
+          assert all(x in s for x in required)
+          assert 'View Certificate' not in s
+          assert 'cert.efset.org/' not in s
+          print('Certificate cards validated')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Show certificate images in language cards"
+          git push
