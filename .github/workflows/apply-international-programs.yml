@@ -26,7 +26,7 @@ jobs:
           m=re.search(r'<section\b[^>]*>.*?<h2[^>]*>\s*Academic Achievements\s*</h2>.*?</section>',s,flags=re.S|re.I)
           if not m:
               raise SystemExit('Academic Achievements section not found')
-          section='''\n          <!-- INTERNATIONAL PROGRAMS & PROFESSIONAL DEVELOPMENT -->\n          <section id="international-programs">\n            <div class="section-head">\n              <div class="section-kicker">International Programs &amp; Professional Development</div>\n              <h2>International Programs &amp; Professional Development</h2>\n            </div>\n            <div class="entry international-credential">\n              <div class="entry-top">\n                <div><span class="entry-title">OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC</span></div>\n                <span class="entry-date">Aug 26, 2026</span>\n              </div>\n              <div class="entry-org">Online Professional English Network (OPEN)</div>\n              <div class="entry-desc">International professional development program sponsored by the U.S. Department of State, focused on teaching English academic writing to speakers of other languages.</div>\n              <a href="https://api.badgr.io/public/assertions/YYw2kyeLSrCRjd_maPx7mQ/image" target="_blank" rel="noopener" aria-label="View OPEN certificate image" style="display:inline-flex;align-items:center;justify-content:center;margin-top:16px;padding:11px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;text-decoration:none;box-shadow:0 6px 18px -14px rgba(18,24,26,.28);">View Certificate</a>\n            </div>\n          </section>\n          '''
+          section='''\n          <!-- INTERNATIONAL PROGRAMS & PROFESSIONAL DEVELOPMENT -->\n          <section id="international-programs">\n            <div class="section-head">\n              <div class="section-kicker">International Programs &amp; Professional Development</div>\n              <h2>International Programs &amp; Professional Development</h2>\n            </div>\n            <div class="entry international-credential">\n              <div class="entry-top">\n                <div><span class="entry-title">OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC</span></div>\n                <span class="entry-date">Aug 26, 2026</span>\n              </div>\n              <div class="entry-org">Online Professional English Network (OPEN)</div>\n              <div class="entry-desc">International professional development program sponsored by the U.S. Department of State, focused on teaching English academic writing to speakers of other languages.</div>\n              <a href="/assets/open-certificate.svg" target="_blank" rel="noopener" aria-label="View OPEN certificate image" style="display:inline-flex;align-items:center;justify-content:center;margin-top:16px;padding:11px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;text-decoration:none;box-shadow:0 6px 18px -14px rgba(18,24,26,.28);">View Certificate</a>\n            </div>\n          </section>\n          '''
           s=s[:m.end()]+section+s[m.end():]
           p.write_text(s,encoding='utf-8')
           PY
@@ -39,7 +39,7 @@ jobs:
           if s.count('id="international-programs"') != 1: raise SystemExit('International section duplicate/missing')
           if 'OPEN Teaching English Academic Writing to Speakers of Other Languages MOOC' not in s: raise SystemExit('OPEN entry missing')
           if 'View Certificate' not in s: raise SystemExit('View Certificate button missing')
-          if 'https://api.badgr.io/public/assertions/YYw2kyeLSrCRjd_maPx7mQ/image' not in s: raise SystemExit('Certificate image link missing')
+          if '/assets/open-certificate.svg' not in s: raise SystemExit('Certificate image link missing')
           m=re.search(r'<section\b[^>]*>.*?<h2[^>]*>\s*Academic Achievements\s*</h2>.*?</section>',s,re.S|re.I)
           i=s.find('<section id="international-programs">')
           if not m or i < m.end(): raise SystemExit('Wrong section order')
@@ -52,5 +52,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git diff --cached --quiet || git commit -m "Simplify OPEN certificate card"
+          git diff --cached --quiet || git commit -m "Use portfolio certificate image"
           git push
