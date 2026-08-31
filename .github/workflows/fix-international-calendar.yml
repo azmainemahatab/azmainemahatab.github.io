@@ -1,0 +1,57 @@
+name: Fix International Program Date Icons
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fix calendar icon sizing
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          rule = '#international-programs .meta > svg{width:14px !important;height:14px !important;min-width:14px;min-height:14px;flex:0 0 14px;display:block;align-self:center;}'
+
+          if rule not in s:
+              anchor = '#international-programs .meta{display:flex;flex-wrap:wrap;gap:5px 14px;color:var(--ink-soft);font-size:11.5px;margin-top:7px;}'
+              if anchor in s:
+                  s = s.replace(anchor, anchor + '\n' + rule, 1)
+              else:
+                  raise SystemExit('International Programs meta CSS anchor not found')
+              p.write_text(s, encoding='utf-8')
+              changed = True
+          else:
+              changed = False
+
+          if s.count('id="international-programs"') != 1:
+              raise SystemExit('Unexpected International Programs section count')
+          if 'Issued 30 Aug 2026' not in s:
+              raise SystemExit('30 Aug 2026 program entry missing')
+          if 'English for Career Development MOOC' not in s:
+              raise SystemExit('Career Development entry missing')
+          print('Calendar icon CSS fixed:', changed)
+          PY
+
+      - name: Commit fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes needed."
+          else
+            git commit -m "Fix international program date icon sizing"
+            git push
+          fi
