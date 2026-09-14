@@ -1,162 +1,73 @@
-#                                                    Mahatab Azmaine Refat
+<p align="center">
+  <img src="profile.jpg" alt="Mahatab Azmaine Refat" width="180" style="border-radius: 50%;" />
+</p>
 
-### Health Science • Public Health • Botany • Environmental Health • Research
+<h1 align="center">Mahatab Azmaine Refat</h1>
 
-I am an interdisciplinary academic and emerging researcher interested in the intersection of **human health, public health, plant science, environmental health, research, data, and digital technology**.
+<p align="center">
+Health Science • Botany • Public Health • Environmental Health • Research • Data
+</p>
 
-My interests span health and environmental research, plant–health relationships, evidence-based practice, scientific communication, and the use of data and digital tools to support academic and research work.
+<p align="center">
+  <a href="https://azmainemahatab.github.io/">Portfolio</a> |
+  <a href="https://github.com/azmainemahatab?tab=repositories">Projects</a> |
+  <a href="https://orcid.org/0009-0003-0763-1649">ORCID</a> |
+  <a href="https://www.researchgate.net/profile/Mahatab-Azmaine-Refat-2">ResearchGate</a> |
+  <a href="https://linkedin.com/in/mahatabazmaine">LinkedIn</a>
+</p>
 
 ---
 
 ## What I Work On
 
-My current academic and research interests include:
+I'm building an interdisciplinary academic profile that connects **human health, plant science, and environmental factors** through research and data.
 
-* **Health Science** — human health and health-related academic research
-* **Public Health** — population health, prevention, and evidence-based practice
-* **Botany & Plant Science** — plant science and related research communities
-* **Environmental Health** — relationships between environmental factors and health
-* **Plant–Health Relationships** — interdisciplinary connections between plant science and human health
-* **Research & Evidence** — literature review, evidence synthesis, and scientific communication
-* **Data & Analytics** — statistics, quantitative reasoning, data interpretation, and visualization
-* **Digital Health & Technology** — digital tools and technology applied to health and academic work
-
----
-
-## Academic Highlights
-
-* **President's List** — Academic recognition
-* **Government of Kazakhstan Scholarship** — Space Engineering
-* **University of the People Institutional Scholarship** — Undergraduate educational support
-* **International Research Affiliations** — Botanical, conservation, evolution, and plant taxonomy communities
-
----
-
-## Research & Academic Skills
-
-### Research
-
-* Literature review
-* Evidence synthesis
-* Academic writing
-* Scientific communication
-* Research-oriented information analysis
-* APA-style referencing
-
-### Data & Analytics
-
-* Statistics
-* Quantitative reasoning
-* Data interpretation
-* Data visualization
-* Spreadsheet-based analysis
-
-### Technology
-
-`HTML` `CSS` `JavaScript` `Git` `GitHub` `GitHub Pages`
-
-* Digital content development
-* Static website development
-* GitHub-based project management
-
-### Business & Digital
-
-* Digital marketing
-* SEO
-* HR & administration
-* Sales management
-
----
-
-## Academic & Research Portfolio
-
-My digital portfolio brings together my academic background, research interests, professional development, certifications, memberships, leadership activities, technical skills, and selected digital work.
-
-**Live Portfolio:**
-https://azmainemahatab.github.io/
-
----
-
-## Selected Work
-
-### Personal Academic & Research Portfolio
-
-A centralized digital platform documenting my academic and research journey across **health science, botany, public health, environmental health, research, data, and digital technology**.
-
-**Website:**
-https://azmainemahatab.github.io/
-
-**Source Repository:**
-https://github.com/azmainemahatab/azmainemahatab.github.io
-
----
+- **Health Science** — human health and health-related academic research
+- **Public Health** — population health, prevention, and evidence-based practice
+- **Botany & Plant Science** — plant science and its links to human health
+- **Environmental Health** — how environmental factors shape health outcomes
+- **Research & Evidence Synthesis** — literature review and research-oriented analysis
+- **Data & Analytics** — statistics, quantitative reasoning, and visualization
+- **Scientific Communication** — academic writing and communicating research clearly
+- **Digital Health & Technology** — digital tools applied to health and academic work
 
 ## Research Interests
 
-I am particularly interested in developing interdisciplinary work around:
+Interdisciplinary work connecting human health, plant science, and environmental factors — with a focus on evidence-based practice and plant–health relationships. Active in international botanical, conservation, evolution, and plant taxonomy research communities.
 
-**Human Health**
-↓
-**Public Health**
-↓
-**Environmental Health**
-↓
-**Plant Science & Botany**
-↓
-**Evidence & Data**
-↓
-**Digital Health & Technology**
+## Selected Work
 
-This interdisciplinary perspective allows me to explore connections between biological systems, environmental factors, population health, and evidence-based research.
+- [Personal Academic & Research Portfolio](https://azmainemahatab.github.io/) — Centralized portfolio documenting my academic background, research interests, certifications, memberships, skills, and selected work.
+<!-- Add papers, projects, or presentations here as they're published -->
 
----
+## Academic Highlights
 
-## Research & Professional Development
+- **President's List** — Academic recognition <!-- add year / institution -->
+- **Government of Kazakhstan Scholarship** — Space Engineering <!-- add year -->
+- **University of the People Institutional Scholarship** — Undergraduate educational support <!-- add year -->
 
-I continuously develop my academic and professional profile through:
+## Certifications & Memberships
 
-* Research-oriented learning
-* Academic and professional training
-* Scientific communication
-* International research communities
-* Technical and digital skill development
-* Leadership and extracurricular activities
+<!-- Add specific certifications and memberships here -->
 
----
+## Skills
 
-## Security
+**Research & Academic**
+Literature review · Evidence synthesis · Academic writing · Scientific communication · APA-style referencing
 
-Security-related information and vulnerability reporting procedures are documented in [SECURITY.md](SECURITY.md).
+**Data & Analytics**
+Statistics · Quantitative reasoning · Data interpretation · Data visualization · Spreadsheet-based analysis
 
-Sensitive security issues should be reported through the private vulnerability reporting process rather than through a public issue.
+**Technology**
+HTML · CSS · JavaScript · Git & GitHub · GitHub Pages · Digital content development
 
----
+**Business & Digital** *(applied to portfolio/website management and outreach)*
+Digital marketing · SEO · HR & administration · Sales management
 
-## Deployment
+## Contact
 
-This portfolio is deployed through **GitHub Pages** from the `main` branch.
-
-**Live deployment:**
-https://azmainemahatab.github.io/
-
----
-
-## Connect
-
-**Portfolio**
-https://azmainemahatab.github.io/
-
-**GitHub**
-https://github.com/azmainemahatab
-
-**LinkedIn**
-https://linkedin.com/in/mahatabazmaine
-
-**ORCID**
-https://orcid.org/0009-0003-0763-1649
-
-**ResearchGate**
-https://www.researchgate.net/profile/Mahatab-Azmaine-Refat-2
-
-**YouTube**
-https://youtube.com/@mahatabazmaine
+[Portfolio](https://azmainemahatab.github.io/) ·
+[GitHub](https://github.com/azmainemahatab) ·
+[LinkedIn](https://linkedin.com/in/mahatabazmaine) ·
+[ORCID](https://orcid.org/0009-0003-0763-1649) ·
+[ResearchGate](https://www.researchgate.net/profile/Mahatab-Azmaine-Refat-2)
