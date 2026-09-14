@@ -8,35 +8,27 @@ My interests span health and environmental research, plant–health relationship
 
 ---
 
-## About
-
-My academic interests sit at the intersection of **human health, plant science, public health, environmental health, research, and evidence-based practice**.
-
-I am also interested in data, scientific communication, and digital technology as tools for academic and research work.
-
----
-
-## Academic & Research Focus
+## What I Work On
 
 My current academic and research interests include:
 
-- **Health Science** — human health and health-related academic research
-- **Public Health** — population health, prevention, and evidence-based practice
-- **Botany & Plant Science** — plant science and related research communities
-- **Environmental Health** — relationships between environmental factors and health
-- **Plant–Health Relationships** — connections between plant science and human health
-- **Research & Evidence** — literature review, evidence synthesis, and scientific communication
-- **Data & Analytics** — statistics, data interpretation, and visualization
-- **Digital Health & Technology** — digital tools applied to health and academic work
+* **Health Science** — human health and health-related academic research
+* **Public Health** — population health, prevention, and evidence-based practice
+* **Botany & Plant Science** — plant science and related research communities
+* **Environmental Health** — relationships between environmental factors and health
+* **Plant–Health Relationships** — interdisciplinary connections between plant science and human health
+* **Research & Evidence** — literature review, evidence synthesis, and scientific communication
+* **Data & Analytics** — statistics, quantitative reasoning, data interpretation, and visualization
+* **Digital Health & Technology** — digital tools and technology applied to health and academic work
 
 ---
 
 ## Academic Highlights
 
-- **President's List** — Academic recognition
-- **Government of Kazakhstan Scholarship** — Space Engineering
-- **University of the People Institutional Scholarship** — Undergraduate educational support
-- **International Research Affiliations** — Botanical, conservation, evolution, and plant taxonomy communities
+* **President's List** — Academic recognition
+* **Government of Kazakhstan Scholarship** — Space Engineering
+* **University of the People Institutional Scholarship** — Undergraduate educational support
+* **International Research Affiliations** — Botanical, conservation, evolution, and plant taxonomy communities
 
 ---
 
@@ -44,35 +36,35 @@ My current academic and research interests include:
 
 ### Research
 
-- Literature review
-- Evidence synthesis
-- Academic writing
-- Scientific communication
-- Research-oriented information analysis
-- APA-style referencing
+* Literature review
+* Evidence synthesis
+* Academic writing
+* Scientific communication
+* Research-oriented information analysis
+* APA-style referencing
 
 ### Data & Analytics
 
-- Statistics
-- Quantitative reasoning
-- Data interpretation
-- Data visualization
-- Spreadsheet-based analysis
+* Statistics
+* Quantitative reasoning
+* Data interpretation
+* Data visualization
+* Spreadsheet-based analysis
 
 ### Technology
 
 `HTML` `CSS` `JavaScript` `Git` `GitHub` `GitHub Pages`
 
-- Digital content development
-- Static website development
-- GitHub-based project management
+* Digital content development
+* Static website development
+* GitHub-based project management
 
 ### Business & Digital
 
-- Digital marketing
-- SEO
-- HR & administration
-- Sales management
+* Digital marketing
+* SEO
+* HR & administration
+* Sales management
 
 ---
 
@@ -80,8 +72,8 @@ My current academic and research interests include:
 
 My digital portfolio brings together my academic background, research interests, professional development, certifications, memberships, leadership activities, technical skills, and selected digital work.
 
-**Live Portfolio:**  
-[azmainemahatab.github.io](https://azmainemahatab.github.io/)
+**Live Portfolio:**
+https://azmainemahatab.github.io/
 
 ---
 
@@ -91,11 +83,31 @@ My digital portfolio brings together my academic background, research interests,
 
 A centralized digital platform documenting my academic and research journey across **health science, botany, public health, environmental health, research, data, and digital technology**.
 
-**Website:**  
-[azmainemahatab.github.io](https://azmainemahatab.github.io/)
+**Website:**
+https://azmainemahatab.github.io/
 
-**Source Repository:**  
-[github.com/azmainemahatab/azmainemahatab.github.io](https://github.com/azmainemahatab/azmainemahatab.github.io)
+**Source Repository:**
+https://github.com/azmainemahatab/azmainemahatab.github.io
+
+---
+
+## Research Interests
+
+I am particularly interested in developing interdisciplinary work around:
+
+**Human Health**
+↓
+**Public Health**
+↓
+**Environmental Health**
+↓
+**Plant Science & Botany**
+↓
+**Evidence & Data**
+↓
+**Digital Health & Technology**
+
+This interdisciplinary perspective allows me to explore connections between biological systems, environmental factors, population health, and evidence-based research.
 
 ---
 
@@ -103,12 +115,12 @@ A centralized digital platform documenting my academic and research journey acro
 
 I continuously develop my academic and professional profile through:
 
-- Research-oriented learning
-- Academic and professional training
-- Scientific communication
-- International research communities
-- Technical and digital skill development
-- Leadership and extracurricular activities
+* Research-oriented learning
+* Academic and professional training
+* Scientific communication
+* International research communities
+* Technical and digital skill development
+* Leadership and extracurricular activities
 
 ---
 
@@ -120,11 +132,31 @@ Sensitive security issues should be reported through the private vulnerability r
 
 ---
 
+## Deployment
+
+This portfolio is deployed through **GitHub Pages** from the `main` branch.
+
+**Live deployment:**
+https://azmainemahatab.github.io/
+
+---
+
 ## Connect
 
-- **Portfolio:** [azmainemahatab.github.io](https://azmainemahatab.github.io/)
-- **GitHub:** [github.com/azmainemahatab](https://github.com/azmainemahatab)
-- **LinkedIn:** [linkedin.com/in/mahatabazmaine](https://linkedin.com/in/mahatabazmaine)
-- **ORCID:** [0009-0003-0763-1649](https://orcid.org/0009-0003-0763-1649)
-- **ResearchGate:** [Mahatab Azmaine Refat](https://www.researchgate.net/profile/Mahatab-Azmaine-Refat-2)
-- **YouTube:** [@mahatabazmaine](https://youtube.com/@mahatabazmaine)
+**Portfolio**
+https://azmainemahatab.github.io/
+
+**GitHub**
+https://github.com/azmainemahatab
+
+**LinkedIn**
+https://linkedin.com/in/mahatabazmaine
+
+**ORCID**
+https://orcid.org/0009-0003-0763-1649
+
+**ResearchGate**
+https://www.researchgate.net/profile/Mahatab-Azmaine-Refat-2
+
+**YouTube**
+https://youtube.com/@mahatabazmaine
