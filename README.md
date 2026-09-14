@@ -1,142 +1,162 @@
 # Mahatab Azmaine Refat
 
-### Personal Academic & Research Portfolio
+### Health Science • Public Health • Botany • Environmental Health • Research
 
-**Health Science • Botany • Public Health • Research • Data • Technology**
+I am an interdisciplinary academic and emerging researcher interested in the intersection of **human health, public health, plant science, environmental health, research, data, and digital technology**.
 
-An academic and research portfolio documenting my interdisciplinary journey across health science, botany, public health, research, data, and digital technology.
+My interests span health and environmental research, plant–health relationships, evidence-based practice, scientific communication, and the use of data and digital tools to support academic and research work.
 
-## About
+---
 
-This repository contains the source code for my personal academic and research portfolio website.
+## What I Work On
 
-The portfolio brings together my academic background, research interests, professional development, certifications, leadership activities, technical skills, and selected digital work.
+My current academic and research interests include:
 
-My academic interests sit at the intersection of **human health, plant science, public health, environmental health, research, and evidence-based practice**.
+* **Health Science** — human health and health-related academic research
+* **Public Health** — population health, prevention, and evidence-based practice
+* **Botany & Plant Science** — plant science and related research communities
+* **Environmental Health** — relationships between environmental factors and health
+* **Plant–Health Relationships** — interdisciplinary connections between plant science and human health
+* **Research & Evidence** — literature review, evidence synthesis, and scientific communication
+* **Data & Analytics** — statistics, quantitative reasoning, data interpretation, and visualization
+* **Digital Health & Technology** — digital tools and technology applied to health and academic work
 
-## Portfolio
-
-Visit the live portfolio:
-
-**[View Live Portfolio](https://azmainemahatab.github.io/)**
-
-The website presents:
-
-- Academic background and achievements
-- Research interests
-- Professional and volunteer experience
-- Certifications and memberships
-- Technical and research skills
-- Selected projects and digital work
-- Leadership and extracurricular activities
+---
 
 ## Academic Highlights
 
-- **President's List** — academic recognition
-- **Government of Kazakhstan Scholarship** — Space Engineering
-- **University of the People Institutional Scholarship** — undergraduate educational support
-- **Research affiliations** across international botanical, conservation, evolution, and plant taxonomy communities
+* **President's List** — Academic recognition
+* **Government of Kazakhstan Scholarship** — Space Engineering
+* **University of the People Institutional Scholarship** — Undergraduate educational support
+* **International Research Affiliations** — Botanical, conservation, evolution, and plant taxonomy communities
 
-## Academic & Research Focus
+---
 
-- Health Science
-- Public Health
-- Botany & Plant Science
-- Environmental Health
-- Plant–Health Relationships
-- Health Research
-- Evidence-Based Practice
-- Data & Analytics
-- Scientific Communication
-- Digital Health
+## Research & Academic Skills
 
-## Skills
+### Research
 
-### Research & Academic
-
-- Literature review
-- Evidence synthesis
-- Academic writing
-- Scientific communication
-- Research-oriented information analysis
-- APA-style referencing
+* Literature review
+* Evidence synthesis
+* Academic writing
+* Scientific communication
+* Research-oriented information analysis
+* APA-style referencing
 
 ### Data & Analytics
 
-- Statistics
-- Quantitative reasoning
-- Data interpretation
-- Data visualization
-- Spreadsheet-based analysis
+* Statistics
+* Quantitative reasoning
+* Data interpretation
+* Data visualization
+* Spreadsheet-based analysis
 
 ### Technology
 
-- HTML
-- CSS
-- JavaScript
-- Git & GitHub
-- GitHub Pages
-- Digital content development
+`HTML` `CSS` `JavaScript` `Git` `GitHub` `GitHub Pages`
+
+* Digital content development
+* Static website development
+* GitHub-based project management
 
 ### Business & Digital
 
-- Digital marketing
-- SEO
-- HR & administration
-- Sales management
+* Digital marketing
+* SEO
+* HR & administration
+* Sales management
 
-## Featured Work
+---
+
+## Academic & Research Portfolio
+
+My digital portfolio brings together my academic background, research interests, professional development, certifications, memberships, leadership activities, technical skills, and selected digital work.
+
+**Live Portfolio:**
+https://azmainemahatab.github.io/
+
+---
+
+## Selected Work
 
 ### Personal Academic & Research Portfolio
 
-A centralized digital portfolio showcasing my academic background, research interests, professional development, skills, certifications, leadership activities, and selected digital work.
+A centralized digital platform documenting my academic and research journey across **health science, botany, public health, environmental health, research, data, and digital technology**.
 
-**Live Website:**  
-[azmainemahatab.github.io](https://azmainemahatab.github.io/)
+**Website:**
+https://azmainemahatab.github.io/
 
-## Repository
+**Source Repository:**
+https://github.com/azmainemahatab/azmainemahatab.github.io
 
-This repository is the source code for the portfolio website.
+---
 
-**Repository:**  
-[azmainemahatab.github.io](https://github.com/azmainemahatab/azmainemahatab.github.io)
+## Research Interests
 
-## Technology Stack
+I am particularly interested in developing interdisciplinary work around:
 
-This is a lightweight, responsive static website designed for reliable deployment through GitHub Pages.
+**Human Health**
+↓
+**Public Health**
+↓
+**Environmental Health**
+↓
+**Plant Science & Botany**
+↓
+**Evidence & Data**
+↓
+**Digital Health & Technology**
 
-**Core technologies:**
+This interdisciplinary perspective allows me to explore connections between biological systems, environmental factors, population health, and evidence-based research.
 
-`HTML` `CSS` `JavaScript` `Git` `GitHub Pages`
+---
+
+## Research & Professional Development
+
+I continuously develop my academic and professional profile through:
+
+* Research-oriented learning
+* Academic and professional training
+* Scientific communication
+* International research communities
+* Technical and digital skill development
+* Leadership and extracurricular activities
+
+---
 
 ## Security
 
-Security-related information and vulnerability reporting procedures are documented in:
+Security-related information and vulnerability reporting procedures are documented in [SECURITY.md](SECURITY.md).
 
-**[SECURITY.md](SECURITY.md)**
+Sensitive security issues should be reported through the private vulnerability reporting process rather than through a public issue.
 
-Please use the private vulnerability reporting process for sensitive security issues rather than opening a public issue.
+---
 
 ## Deployment
 
-The website is deployed using **GitHub Pages** from the `main` branch.
+This portfolio is deployed through **GitHub Pages** from the `main` branch.
 
-**Live deployment:**  
-[azmainemahatab.github.io](https://azmainemahatab.github.io/)
-
-## Contact
-
-**Portfolio:** [azmainemahatab.github.io](https://azmainemahatab.github.io/)
-
-**GitHub:** [github.com/azmainemahatab](https://github.com/azmainemahatab)
-
-**LinkedIn:** [linkedin.com/in/mahatabazmaine](https://linkedin.com/in/mahatabazmaine)
-
-**ORCID:** [0009-0003-0763-1649](https://orcid.org/0009-0003-0763-1649)
-
-**ResearchGate:** [Mahatab Azmaine Refat](https://www.researchgate.net/profile/Mahatab-Azmaine-Refat-2)
-
-**YouTube:** [@mahatabazmaine](https://youtube.com/@mahatabazmaine)
-
+**Live deployment:**
+https://azmainemahatab.github.io/
 
 ---
+
+## Connect
+
+**Portfolio**
+https://azmainemahatab.github.io/
+
+**GitHub**
+https://github.com/azmainemahatab
+
+**LinkedIn**
+https://linkedin.com/in/mahatabazmaine
+
+**ORCID**
+https://orcid.org/0009-0003-0763-1649
+
+**ResearchGate**
+https://www.researchgate.net/profile/Mahatab-Azmaine-Refat-2
+
+**YouTube**
+https://youtube.com/@mahatabazmaine
