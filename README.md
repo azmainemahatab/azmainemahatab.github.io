@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="profile.jpg" alt="Mahatab Azmaine Refat" width="180" style="border-radius: 50%;" />
+  <img src="profile.jpg" alt="Mahatab Azmaine Refat" width="150" />
 </p>
 
 <h1 align="center">Mahatab Azmaine Refat</h1>
