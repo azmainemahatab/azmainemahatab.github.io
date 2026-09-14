@@ -18,49 +18,50 @@ Health Science • Botany • Public Health • Environmental Health • Researc
 
 ---
 
-## What I Work On
+## Profile
 
-I'm building an interdisciplinary academic profile that connects **human health, plant science, and environmental factors** through research and data.
+I am building an interdisciplinary academic profile at the intersection of **health science, plant science, public health, and environmental health**, with a growing focus on research, evidence synthesis, and data-driven analysis.
+
+## Areas of Focus
 
 - **Health Science** — human health and health-related academic research
 - **Public Health** — population health, prevention, and evidence-based practice
-- **Botany & Plant Science** — plant science and its links to human health
-- **Environmental Health** — how environmental factors shape health outcomes
+- **Botany & Plant Science** — plant science and plant–health relationships
+- **Environmental Health** — environmental factors and their connections to health outcomes
 - **Research & Evidence Synthesis** — literature review and research-oriented analysis
 - **Data & Analytics** — statistics, quantitative reasoning, and visualization
-- **Scientific Communication** — academic writing and communicating research clearly
+- **Scientific Communication** — academic writing and clear communication of scientific information
 - **Digital Health & Technology** — digital tools applied to health and academic work
 
 ## Research Interests
 
-Interdisciplinary work connecting human health, plant science, and environmental factors — with a focus on evidence-based practice and plant–health relationships. Active in international botanical, conservation, evolution, and plant taxonomy research communities.
+My research interests center on interdisciplinary questions connecting **human health, plant science, and environmental factors**, with an emphasis on evidence-based approaches, plant–health relationships, and research that can contribute to better understanding of health and environmental challenges.
 
 ## Selected Work
 
-- [Personal Academic & Research Portfolio](https://azmainemahatab.github.io/) — Centralized portfolio documenting my academic background, research interests, certifications, memberships, skills, and selected work.
-<!-- Add papers, projects, or presentations here as they're published -->
+- [Personal Academic & Research Portfolio](https://azmainemahatab.github.io/) — A centralized portfolio presenting my academic background, research interests, skills, and selected work.
 
 ## Academic Highlights
 
-- **President's List** — Academic recognition <!-- add year / institution -->
-- **Government of Kazakhstan Scholarship** — Space Engineering <!-- add year -->
-- **University of the People Institutional Scholarship** — Undergraduate educational support <!-- add year -->
+- **President's List** — Academic recognition
+- **Government of Kazakhstan Scholarship** — Space Engineering
+- **University of the People Institutional Scholarship** — Undergraduate educational support
 
 ## Skills
 
-**Research & Academic**
+**Research & Academic**  
 Literature review · Evidence synthesis · Academic writing · Scientific communication · APA-style referencing
 
-**Data & Analytics**
+**Data & Analytics**  
 Statistics · Quantitative reasoning · Data interpretation · Data visualization · Spreadsheet-based analysis
 
-**Technology**
+**Technology**  
 HTML · CSS · JavaScript · Git & GitHub · GitHub Pages · Digital content development
 
-**Business & Digital** *(applied to portfolio/website management and outreach)*
+**Business & Digital**  
 Digital marketing · SEO · HR & administration · Sales management
 
-## Contact
+## Professional Links
 
 [Portfolio](https://azmainemahatab.github.io/) ·
 [GitHub](https://github.com/azmainemahatab) ·
