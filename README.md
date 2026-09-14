@@ -46,10 +46,6 @@ Interdisciplinary work connecting human health, plant science, and environmental
 - **Government of Kazakhstan Scholarship** — Space Engineering <!-- add year -->
 - **University of the People Institutional Scholarship** — Undergraduate educational support <!-- add year -->
 
-## Certifications & Memberships
-
-<!-- Add specific certifications and memberships here -->
-
 ## Skills
 
 **Research & Academic**
