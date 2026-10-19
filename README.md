@@ -112,43 +112,24 @@ These skills reflect my current academic and practical experience; I continue to
 - **FutureNation / UNDP Campus Volunteer** — 2025–present
 - **UN Online Volunteering assignments** — including digital-skills mentoring and youth-week support
 
-## Source Code Architecture
-
-This portfolio is a **static, single-page website** published through GitHub Pages. The main application lives in `index.html`: HTML defines the content, CSS is embedded in the same file, and JavaScript handles browser-side interactions. The CV document is also embedded in an iframe using `srcdoc`. Image resources and the architecture diagram are stored in `assets/`.
-
-<p align="center">
-  <img src="assets/architecture.svg" alt="Source code architecture showing index.html with embedded HTML, CSS, JavaScript and CV srcdoc; assets and supporting files; browser interactions; GitHub Pages publishing; Google Fonts; and separate SEO discovery files." width="100%" />
-</p>
-
-### Architecture Notes
-
-- **Source:** `index.html` is the main application file; there are no separate `style.css` or `script.js` files in the current repository.
-- **Browser behavior:** JavaScript manages the navigation menu, theme toggle, coursework disclosure, CV modal, and certificate viewers. The theme preference is stored in `localStorage`.
-- **Assets:** `assets/` contains the portfolio's image resources and `architecture.svg`.
-- **Publishing:** GitHub Pages serves the static repository content over HTTPS. The repository does not currently define a separate backend, database, API, or build pipeline.
-- **External dependency:** Google Fonts supplies the site's selected typefaces.
-- **Search discovery:** Canonical and social metadata are defined in `index.html`; `robots.txt` and `sitemap.xml` support crawler discovery. These are separate from the page-rendering flow.
-
-### Repository Structure
+## Repository Structure
 
 | Path | Purpose |
 |---|---|
-| `index.html` | Main portfolio page; contains HTML, embedded CSS/JavaScript, and the CV iframe's `srcdoc` document |
-| `assets/` | Portfolio images and `architecture.svg` |
+| `index.html` | Main portfolio page, including embedded CSS and JavaScript |
+| `assets/` | Portfolio images and supporting visual resources |
 | `404.html` | Custom page for unavailable URLs |
 | `favicon.svg` | Browser tab icon |
 | `robots.txt` | Crawler directives and sitemap location |
 | `sitemap.xml` | Public website URL for search-engine discovery |
-| `README.md` | Project overview, academic profile, and architecture documentation |
+| `README.md` | Project overview and academic profile |
 | `SECURITY.md` | Security reporting guidance |
 | `profile.jpg` | Profile image used in this README |
 | `social-preview.png.jpg` | Social-sharing preview image |
 
-### Technology Stack
+## Technology Stack
 
-- **HTML** — page structure and content
-- **CSS** — responsive styling, embedded in `index.html`
-- **JavaScript** — browser-side interactions, embedded in `index.html`
+- **HTML, CSS, and JavaScript** — website structure, styling, and browser interactions
 - **Git and GitHub** — source control and repository hosting
 - **GitHub Pages** — static website publishing
 - **Google Fonts** — external typography dependency
