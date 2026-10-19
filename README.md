@@ -43,11 +43,11 @@ My academic interests include public and environmental health, plant–health re
 ## Education
 
 ### University of the People
-**Bachelor of Science in Health Science** — In progress  
-Expected completion: September–October 2027  
+**Bachelor of Science in Health Science** — In progress
+Expected completion: September–October 2027
 Academic recognition: President's List (four terms)
 
-**Associate of Science in Health Science** — Completed  
+**Associate of Science in Health Science** — Completed
 Graduated with High Honors; GPA: **3.85/4.00**
 
 ### Gurudayal Government College, National University, Bangladesh
@@ -57,71 +57,10 @@ Graduated with High Honors; GPA: **3.85/4.00**
 - **Higher Secondary Certificate (Science)** — Hossainpur Government College; GPA 5.00/5.00
 - **Secondary School Certificate (Science)** — Jangaldi High School; GPA 5.00/5.00
 
-## Website Architecture
-
-A lightweight, static academic portfolio maintained in GitHub and published with GitHub Pages. The diagram below shows the main repository components and how the published site reaches visitors.
-
-```mermaid
-flowchart TB
-    subgraph SOURCE["01 · SOURCE & VERSION CONTROL"]
-        REPO["GitHub Repository"]
-        MAIN["Main Branch"]
-        REPO --> MAIN
-    end
-
-    subgraph SITE["02 · WEBSITE SOURCE"]
-        PAGE["index.html<br/>Page structure and content"]
-        ASSETS["assets/<br/>Optimized images"]
-        META["robots.txt · sitemap.xml<br/>Crawling and discovery"]
-        ERROR["404.html<br/>Unavailable-page handling"]
-    end
-
-    subgraph PUBLISH["03 · PUBLISHING"]
-        PAGES["GitHub Pages<br/>Static site hosting"]
-    end
-
-    subgraph EXPERIENCE["04 · VISITOR EXPERIENCE"]
-        BROWSER["Web Browser"]
-        DEVICES["Desktop · Tablet · Mobile"]
-        BROWSER --- DEVICES
-    end
-
-    MAIN --> PAGE
-    MAIN --> ASSETS
-    MAIN --> META
-    MAIN --> ERROR
-    PAGE --> PAGES
-    ASSETS --> PAGES
-    META -. site discovery .-> BROWSER
-    ERROR --> PAGES
-    PAGES --> BROWSER
-```
-
-### Repository Structure
-
-| Path | Purpose |
-|---|---|
-| `index.html` | Main portfolio page |
-| `assets/` | Optimized images used by the website |
-| `404.html` | Custom page for unavailable URLs |
-| `robots.txt` | Crawler instructions |
-| `sitemap.xml` | Important website URLs for discovery |
-| `README.md` | Project overview and documentation |
-| `profile.jpg` | Profile image used in this README |
-| `social-preview.png.jpg` | Social-sharing preview image |
-
-### Technology Stack
-
-- **HTML, CSS, and JavaScript** — page structure, presentation, and interactive behavior
-- **Git and GitHub** — version control and source hosting
-- **GitHub Pages** — static website publishing
-
-This is a high-level architecture overview, not a representation of backend services or a database. The repository structure and diagram describe the current static-site approach.
- 
 ## Selected Academic Work
 
 ### Personal Academic Website & Digital Portfolio
-A GitHub Pages website presenting my education, academic interests, skills, experience, and selected work.  
+A GitHub Pages website presenting my education, academic interests, skills, experience, and selected work.
 [Visit the portfolio](https://azmainemahatab.github.io/)
 
 ### Natural Selection and Protist Diversity — Virtual Lab Coursework
@@ -172,6 +111,75 @@ These skills reflect my current academic and practical experience; I continue to
 - **University of the People Student Ambassador** — August 2025–present
 - **FutureNation / UNDP Campus Volunteer** — 2025–present
 - **UN Online Volunteering assignments** — including digital-skills mentoring and youth-week support
+
+## Website Architecture
+
+This is a static academic portfolio hosted by GitHub Pages. The page structure, styling, and interactive behavior are maintained in `index.html`; image resources are stored in `assets/`. GitHub Pages publishes the repository files, and visitors access the resulting site through a web browser.
+
+```mermaid
+flowchart TB
+    subgraph SOURCE["01 · SOURCE CONTROL"]
+        REPO["GitHub Repository"]
+        MAIN["main branch"]
+        REPO --> MAIN
+    end
+
+    subgraph FILES["02 · WEBSITE FILES"]
+        PAGE["index.html<br/>HTML + embedded CSS and JavaScript"]
+        ASSETS["assets/<br/>Optimized image assets"]
+        ERROR["404.html<br/>Not-found page"]
+        ROBOTS["robots.txt<br/>Crawler directives"]
+        MAP["sitemap.xml<br/>Site URL index"]
+    end
+
+    MAIN --> PAGE
+    MAIN --> ASSETS
+    MAIN --> ERROR
+    MAIN --> ROBOTS
+    MAIN --> MAP
+
+    subgraph HOSTING["03 · STATIC HOSTING"]
+        PAGES["GitHub Pages"]
+    end
+
+    PAGE --> PAGES
+    ASSETS --> PAGES
+    ERROR --> PAGES
+    ROBOTS --> PAGES
+    MAP --> PAGES
+
+    subgraph ACCESS["04 · DELIVERY & DISCOVERY"]
+        VISITOR["Visitor's browser<br/>Responsive desktop, tablet, and mobile"]
+        CRAWLER["Search-engine crawlers"]
+    end
+
+    PAGES --> VISITOR
+    PAGES -. "serves robots.txt and sitemap.xml" .-> CRAWLER
+```
+
+### Repository Structure
+
+| Path | Purpose |
+|---|---|
+| `index.html` | Main portfolio page; includes the page's CSS and JavaScript |
+| `assets/` | Optimized images used by the website |
+| `404.html` | Custom page for unavailable URLs |
+| `robots.txt` | Crawler directives and sitemap location |
+| `sitemap.xml` | Public website URLs for search-engine discovery |
+| `README.md` | Project overview and documentation |
+| `SECURITY.md` | Security reporting guidance |
+| `profile.jpg` | Profile image displayed in this README |
+| `social-preview.png.jpg` | Social-sharing preview image |
+
+### Technology Stack
+
+- **HTML** — page structure and content
+- **CSS** — visual styling, currently embedded in `index.html`
+- **JavaScript** — interactive behavior, currently embedded in `index.html`
+- **Git and GitHub** — source control and repository hosting
+- **GitHub Pages** — static website hosting and publishing
+
+The diagram is a high-level representation of the current repository, not a claim that the site uses a backend, database, or API.
 
 ## Professional & Academic Profiles
 
