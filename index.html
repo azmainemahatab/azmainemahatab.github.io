@@ -105,12 +105,14 @@
     font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--ink);
   }
   .nav-links{display:flex;align-items:center;list-style:none;}
-  .nav-links li + li{margin-left:28px;}
+  .nav-links li + li{margin-left:16px;}
   .nav-links a{
-    color:var(--ink-soft);font-size:14px;font-weight:500;
-    text-decoration:none;
+    color:var(--ink-soft);font-size:13px;font-weight:500;
+    text-decoration:none;white-space:nowrap;
   }
-  .nav-links a:hover{color:var(--blue);text-decoration:none;}
+  .nav-links a:hover,.nav-links a:focus-visible{color:var(--blue);text-decoration:none;}
+  .nav-links a:focus-visible,.nav-toggle:focus-visible,.theme-toggle:focus-visible{outline:2px solid var(--blue);outline-offset:4px;}
+  #academic-projects,#media-features,#skills-languages-anchor,#contact{scroll-margin-top:90px;}
 
   .theme-toggle{
     background:var(--card);border:1px solid var(--line);border-radius:999px;
@@ -121,7 +123,7 @@
   .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;margin-left:10px;}
   .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px;}
 
-  @media (max-width:820px){
+  @media (max-width:1040px){
     .nav-inner{padding:12px 20px;}
     .nav-actions{margin-left:auto;}
     .nav-links{
@@ -132,7 +134,7 @@
       transition:max-height .25s ease;
       border-bottom:1px solid var(--line);
     }
-    .nav-links.open{max-height:480px;}
+    .nav-links.open{max-height:min(80vh,720px);overflow-y:auto;}
     .nav-links li + li{margin-left:0;}
     .nav-links a{
       padding:14px 24px;border-top:1px solid var(--line);
@@ -810,18 +812,20 @@
 <body>
 <!-- data-official-contact-icons="v1" -->
 
-<nav>
+<nav aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="#home" class="nav-logo" style="text-decoration:none;">Mahatab Azmaine Refat</a>
+    <a href="#home" class="nav-logo" style="text-decoration:none;" aria-label="Home">Mahatab Azmaine Refat</a>
     <div class="nav-actions">
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
         <li><a href="#education">Education</a></li>
+        <li><a href="#academic-projects">Projects</a></li>
         <li><a href="#research">Research</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#leadership">Leadership</a></li>
-        <li><a href="#skills">Skills &amp; Languages</a></li>
-        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#skills-languages-anchor">Skills &amp; Languages</a></li>
+        <li><a href="#certifications">Credentials</a></li>
+        <li><a href="#media-features">Media</a></li>
         <li><a href="#contact" class="nav-cta">Contact</a></li>
       </ul>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">🌙</button>
@@ -1016,7 +1020,7 @@
       </div>
     </div>
 
-    <div class="section-head" style="margin-top:44px;">
+    <div class="section-head" id="academic-projects" style="margin-top:44px;">
       <h2 style="font-size:25px;">Academic Projects</h2>
     </div>
     <div class="entry">
@@ -1570,7 +1574,7 @@
       </div>
     </details>
 
-    <div class="section-head" style="margin-top:44px;">
+    <div class="section-head" id="media-features" style="margin-top:44px;">
       <h2 style="font-size:25px;">Media Features</h2>
     </div>
     <div class="entry">
