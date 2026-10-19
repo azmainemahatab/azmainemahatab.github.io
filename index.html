@@ -863,7 +863,7 @@
         <span>Health Science</span><span>Botany</span><span>Public Health</span><span>Research</span>
       </div>
     </div>
-    <img class="hero-photo" src="/assets/portfolio-image-01.jpg" alt="Portrait of Mahatab Azmaine Refat" decoding="async" fetchpriority="high">
+    <img class="hero-photo" src="/assets/portfolio-image-01.jpg" alt="Portrait of Mahatab Azmaine Refat" decoding="async" fetchpriority="high" decoding="async" fetchpriority="high">
   </section>
 
   <!-- STATS -->
@@ -1459,7 +1459,7 @@
   </div>
   <div class="language-card-list">
     <article class="language-card">
-      <div class="language-card-media"><img src="/assets/portfolio-image-03.jpg" alt="British Council Changes of Plan certificate" data-certificate="/assets/portfolio-image-03.jpg" data-certificate-title="British Council Changes of Plan certificate" style="cursor:pointer;"></div>
+      <div class="language-card-media"><img src="/assets/portfolio-image-03.jpg" alt="British Council Changes of Plan certificate" data-certificate="/assets/portfolio-image-03.jpg" data-certificate-title="British Council Changes of Plan certificate" style="cursor:pointer;" loading="lazy" decoding="async"></div>
       <div class="language-card-body"><div class="language-main">
         <div class="language-title">English</div><div class="language-issuer">British Council</div>
         <span class="language-level">B2 &middot; Upper-Intermediate</span>
@@ -1470,7 +1470,7 @@
     </article>
 
     <article class="language-card">
-      <div class="language-card-media"><img src="/assets/portfolio-image-04.jpg" alt="EF SET English Certificate" data-certificate="/assets/portfolio-image-04.jpg" data-certificate-title="EF SET English Certificate" style="cursor:pointer;"></div>
+      <div class="language-card-media"><img src="/assets/portfolio-image-04.jpg" alt="EF SET English Certificate" data-certificate="/assets/portfolio-image-04.jpg" data-certificate-title="EF SET English Certificate" style="cursor:pointer;" loading="lazy" decoding="async"></div>
       <div class="language-card-body"><div class="language-main">
         <div class="language-title">English</div><div class="language-issuer">EF SET</div>
         <span class="language-level">B2 &middot; Upper-Intermediate</span>
@@ -1481,7 +1481,7 @@
     </article>
 
     <article class="language-card">
-      <div class="language-card-media"><img src="/assets/portfolio-image-05.jpg" alt="Chinese HSK Level 1 and Level 2 certificate" data-certificate="/assets/portfolio-image-05.jpg" data-certificate-title="Chinese HSK Level 1 and Level 2 certificate" style="cursor:pointer;"></div>
+      <div class="language-card-media"><img src="/assets/portfolio-image-05.jpg" alt="Chinese HSK Level 1 and Level 2 certificate" data-certificate="/assets/portfolio-image-05.jpg" data-certificate-title="Chinese HSK Level 1 and Level 2 certificate" style="cursor:pointer;" loading="lazy" decoding="async"></div>
       <div class="language-card-body"><div class="language-main">
         <div class="language-title">Chinese (Mandarin)</div><div class="language-issuer">Shanghai University of Political Science and Law</div>
         <div class="language-levels"><span class="language-level">HSK Level 1 &middot; A1</span><span class="language-level">HSK Level 2 &middot; A2</span></div>
@@ -1492,7 +1492,7 @@
     </article>
 
     <article class="language-card">
-      <div class="language-card-media"><img src="/assets/portfolio-image-06.jpg" alt="Russian language certificate from St. Petersburg University" data-certificate="/assets/portfolio-image-06.jpg" data-certificate-title="Russian language certificate from St. Petersburg University" style="cursor:pointer;"></div>
+      <div class="language-card-media"><img src="/assets/portfolio-image-06.jpg" alt="Russian language certificate from St. Petersburg University" data-certificate="/assets/portfolio-image-06.jpg" data-certificate-title="Russian language certificate from St. Petersburg University" style="cursor:pointer;" loading="lazy" decoding="async"></div>
       <div class="language-card-body"><div class="language-main">
         <div class="language-title">Russian</div><div class="language-issuer">St. Petersburg University</div>
         <span class="language-level">A1 &middot; Beginner</span>
@@ -1997,7 +1997,7 @@
     var openThis=function(){
       var modal=document.getElementById('certificate-viewer-modal'),panel=document.getElementById('certificate-viewer-content');
       if(!modal||!panel)return;
-      panel.innerHTML='<img src="'+(img.currentSrc||img.src)+'" alt="'+(img.alt||'Certificate')+'" style="max-width:100%;max-height:84vh;width:auto;height:auto;display:block;"/>';
+      panel.innerHTML='<img src="'+(img.currentSrc||img.src)+'" alt="'+(img.alt||'Certificate')+'" style="max-width:100%;max-height:84vh;width:auto;height:auto;display:block;" loading="lazy" decoding="async"/>';
       modal.hidden=false;
       document.body.style.overflow='hidden';
     };
@@ -2010,8 +2010,8 @@
     }
     if(action){action.addEventListener('click',openThis);}
   });
-  document.querySelectorAll('#certifications .cert-card').forEach(function(card){if(card.querySelector('.credential-view-btn'))return;var img=card.querySelector('img'),body=card.querySelector('.cert-card-body');if(!img||!body)return;var b=document.createElement('button');b.type='button';b.className='credential-view-btn';b.textContent='View Certificate';b.addEventListener('click',function(){var modal=document.getElementById('certificate-viewer-modal'),panel=document.getElementById('certificate-viewer-content');panel.innerHTML='<img src="'+(img.currentSrc||img.src)+'" alt="'+(img.alt||'Certificate')+'" style="max-width:100%;max-height:84vh;width:auto;height:auto;display:block;"/>';modal.hidden=false;document.body.style.overflow='hidden';});body.appendChild(b);});
-  document.querySelectorAll('#research .entry').forEach(function(entry){if(entry.querySelector('.credential-view-btn'))return;var img=entry.querySelector('img');if(!img)return;var b=document.createElement('button');b.type='button';b.className='credential-view-btn';b.textContent='View Certificate';b.addEventListener('click',function(){var modal=document.getElementById('certificate-viewer-modal'),panel=document.getElementById('certificate-viewer-content');panel.innerHTML='<img src="'+(img.currentSrc||img.src)+'" alt="'+(img.alt||'Certificate')+'" style="max-width:100%;max-height:84vh;width:auto;height:auto;display:block;"/>';modal.hidden=false;document.body.style.overflow='hidden';});var d=entry.querySelector('.entry-desc');if(d)d.insertAdjacentElement('afterend',b);});
+  document.querySelectorAll('#certifications .cert-card').forEach(function(card){if(card.querySelector('.credential-view-btn'))return;var img=card.querySelector('img'),body=card.querySelector('.cert-card-body');if(!img||!body)return;var b=document.createElement('button');b.type='button';b.className='credential-view-btn';b.textContent='View Certificate';b.addEventListener('click',function(){var modal=document.getElementById('certificate-viewer-modal'),panel=document.getElementById('certificate-viewer-content');panel.innerHTML='<img src="'+(img.currentSrc||img.src)+'" alt="'+(img.alt||'Certificate')+'" style="max-width:100%;max-height:84vh;width:auto;height:auto;display:block;" loading="lazy" decoding="async"/>';modal.hidden=false;document.body.style.overflow='hidden';});body.appendChild(b);});
+  document.querySelectorAll('#research .entry').forEach(function(entry){if(entry.querySelector('.credential-view-btn'))return;var img=entry.querySelector('img');if(!img)return;var b=document.createElement('button');b.type='button';b.className='credential-view-btn';b.textContent='View Certificate';b.addEventListener('click',function(){var modal=document.getElementById('certificate-viewer-modal'),panel=document.getElementById('certificate-viewer-content');panel.innerHTML='<img src="'+(img.currentSrc||img.src)+'" alt="'+(img.alt||'Certificate')+'" style="max-width:100%;max-height:84vh;width:auto;height:auto;display:block;" loading="lazy" decoding="async"/>';modal.hidden=false;document.body.style.overflow='hidden';});var d=entry.querySelector('.entry-desc');if(d)d.insertAdjacentElement('afterend',b);});
 })();
 </script>
 
@@ -2020,7 +2020,7 @@
   <div class="certificate-modal-backdrop" data-certificate-close></div>
   <div class="certificate-modal-panel" role="document">
     <div class="certificate-modal-header"><h3 id="certificate-modal-title">Certificate</h3><button class="certificate-modal-close" type="button" aria-label="Close certificate viewer" data-certificate-close>×</button></div>
-    <div class="certificate-modal-content"><img id="certificate-modal-image" src="" alt="Certificate preview"></div>
+    <div class="certificate-modal-content"><img id="certificate-modal-image" src="" alt="Certificate preview" loading="lazy" decoding="async"></div>
   </div>
 </div>
 <!-- CERTIFICATE-VIEWER-END -->
