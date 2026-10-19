@@ -59,42 +59,65 @@ Graduated with High Honors; GPA: **3.85/4.00**
 
 ## Website Architecture
 
-This portfolio is published as a static website using GitHub Pages. The repository contains the page markup, supporting assets, and site configuration files. A visitor's browser renders the published HTML, CSS, and JavaScript.
+A lightweight, static academic portfolio maintained in GitHub and published with GitHub Pages. The diagram below shows the main repository components and how the published site reaches visitors.
 
 ```mermaid
-flowchart TD
-    A[GitHub Repository] --> B[index.html]
-    A --> C[assets/]
-    A --> D[Site support files]
-    B --> E[GitHub Pages]
-    C --> E
-    D --> E
-    E --> F[Visitor's browser]
+flowchart TB
+    subgraph SOURCE["01 · SOURCE & VERSION CONTROL"]
+        REPO["GitHub Repository"]
+        MAIN["Main Branch"]
+        REPO --> MAIN
+    end
+
+    subgraph SITE["02 · WEBSITE SOURCE"]
+        PAGE["index.html<br/>Page structure and content"]
+        ASSETS["assets/<br/>Optimized images"]
+        META["robots.txt · sitemap.xml<br/>Crawling and discovery"]
+        ERROR["404.html<br/>Unavailable-page handling"]
+    end
+
+    subgraph PUBLISH["03 · PUBLISHING"]
+        PAGES["GitHub Pages<br/>Static site hosting"]
+    end
+
+    subgraph EXPERIENCE["04 · VISITOR EXPERIENCE"]
+        BROWSER["Web Browser"]
+        DEVICES["Desktop · Tablet · Mobile"]
+        BROWSER --- DEVICES
+    end
+
+    MAIN --> PAGE
+    MAIN --> ASSETS
+    MAIN --> META
+    MAIN --> ERROR
+    PAGE --> PAGES
+    ASSETS --> PAGES
+    META -. site discovery .-> BROWSER
+    ERROR --> PAGES
+    PAGES --> BROWSER
 ```
 
 ### Repository Structure
 
 | Path | Purpose |
 |---|---|
-| `index.html` | Main portfolio page and its page content |
+| `index.html` | Main portfolio page |
 | `assets/` | Optimized images used by the website |
 | `404.html` | Custom page for unavailable URLs |
-| `robots.txt` | Instructions for search-engine crawlers |
-| `sitemap.xml` | Sitemap listing important website URLs |
+| `robots.txt` | Crawler instructions |
+| `sitemap.xml` | Important website URLs for discovery |
 | `README.md` | Project overview and documentation |
-| `profile.jpg` | Profile image displayed in this README |
+| `profile.jpg` | Profile image used in this README |
 | `social-preview.png.jpg` | Social-sharing preview image |
 
 ### Technology Stack
 
-- **HTML** — page structure and content
-- **CSS** — visual presentation and layout
-- **JavaScript** — interactive page behavior
-- **Git and GitHub** — source control and repository hosting
+- **HTML, CSS, and JavaScript** — page structure, presentation, and interactive behavior
+- **Git and GitHub** — version control and source hosting
 - **GitHub Pages** — static website publishing
 
-The repository is designed to keep the portfolio straightforward to maintain. The architecture diagram is a high-level overview rather than a complete dependency or runtime diagram.
-
+This is a high-level architecture overview, not a representation of backend services or a database. The repository structure and diagram describe the current static-site approach.
+ 
 ## Selected Academic Work
 
 ### Personal Academic Website & Digital Portfolio
