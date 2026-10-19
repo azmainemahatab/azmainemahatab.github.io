@@ -112,39 +112,46 @@ These skills reflect my current academic and practical experience; I continue to
 - **FutureNation / UNDP Campus Volunteer** — 2025–present
 - **UN Online Volunteering assignments** — including digital-skills mentoring and youth-week support
 
-## Website Architecture
+## Source Code Architecture
 
-This is a static academic portfolio hosted by GitHub Pages. The page structure, styling, and interactive behavior are maintained in `index.html`; image resources are stored in `assets/`. GitHub Pages publishes the repository files, and visitors access the resulting site through a web browser.
+This portfolio is a **static, single-page website** published through GitHub Pages. The main application lives in `index.html`: HTML defines the content, CSS is embedded in the same file, and JavaScript handles browser-side interactions. The CV document is also embedded in an iframe using `srcdoc`. Image resources and the architecture diagram are stored in `assets/`.
 
 <p align="center">
-  <img src="assets/architecture.svg" alt="Architecture diagram showing the GitHub repository, website source files, GitHub Pages hosting, visitors, and search-engine discovery." width="100%" />
+  <img src="assets/architecture.svg" alt="Source code architecture showing index.html with embedded HTML, CSS, JavaScript and CV srcdoc; assets and supporting files; browser interactions; GitHub Pages publishing; Google Fonts; and separate SEO discovery files." width="100%" />
 </p>
 
-<p align="center"><sub>Static-site architecture · Vector graphic · No client-side diagram rendering required</sub></p>
+### Architecture Notes
+
+- **Source:** `index.html` is the main application file; there are no separate `style.css` or `script.js` files in the current repository.
+- **Browser behavior:** JavaScript manages the navigation menu, theme toggle, coursework disclosure, CV modal, and certificate viewers. The theme preference is stored in `localStorage`.
+- **Assets:** `assets/` contains the portfolio's image resources and `architecture.svg`.
+- **Publishing:** GitHub Pages serves the static repository content over HTTPS. The repository does not currently define a separate backend, database, API, or build pipeline.
+- **External dependency:** Google Fonts supplies the site's selected typefaces.
+- **Search discovery:** Canonical and social metadata are defined in `index.html`; `robots.txt` and `sitemap.xml` support crawler discovery. These are separate from the page-rendering flow.
 
 ### Repository Structure
 
 | Path | Purpose |
 |---|---|
-| `index.html` | Main portfolio page; includes the page's CSS and JavaScript |
-| `assets/` | Optimized images used by the website |
+| `index.html` | Main portfolio page; contains HTML, embedded CSS/JavaScript, and the CV iframe's `srcdoc` document |
+| `assets/` | Portfolio images and `architecture.svg` |
 | `404.html` | Custom page for unavailable URLs |
+| `favicon.svg` | Browser tab icon |
 | `robots.txt` | Crawler directives and sitemap location |
-| `sitemap.xml` | Public website URLs for search-engine discovery |
-| `README.md` | Project overview and documentation |
+| `sitemap.xml` | Public website URL for search-engine discovery |
+| `README.md` | Project overview, academic profile, and architecture documentation |
 | `SECURITY.md` | Security reporting guidance |
-| `profile.jpg` | Profile image displayed in this README |
+| `profile.jpg` | Profile image used in this README |
 | `social-preview.png.jpg` | Social-sharing preview image |
 
 ### Technology Stack
 
 - **HTML** — page structure and content
-- **CSS** — visual styling, currently embedded in `index.html`
-- **JavaScript** — interactive behavior, currently embedded in `index.html`
+- **CSS** — responsive styling, embedded in `index.html`
+- **JavaScript** — browser-side interactions, embedded in `index.html`
 - **Git and GitHub** — source control and repository hosting
-- **GitHub Pages** — static website hosting and publishing
-
-The diagram is a high-level representation of the current repository, not a claim that the site uses a backend, database, or API.
+- **GitHub Pages** — static website publishing
+- **Google Fonts** — external typography dependency
 
 ## Professional & Academic Profiles
 

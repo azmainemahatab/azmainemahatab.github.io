@@ -1,94 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1050" viewBox="0 0 1000 1050" role="img" aria-labelledby="title desc">
-  <title id="title">Academic Portfolio Website Architecture</title>
-  <desc id="desc">A high-level architecture diagram: GitHub repository and main branch feed the website files, which GitHub Pages publishes to visitor browsers. Robots and sitemap files support search-engine discovery.</desc>
-  <defs>
-    <linearGradient id="canvas" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f8fafc"/>
-      <stop offset="100%" stop-color="#edf3f8"/>
-    </linearGradient>
-    <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#173b57"/>
-      <stop offset="100%" stop-color="#245e7a"/>
-    </linearGradient>
-    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#087f8c"/>
-      <stop offset="100%" stop-color="#0e9b9a"/>
-    </linearGradient>
-    <filter id="shadow" x="-15%" y="-15%" width="130%" height="140%">
-      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#19364b" flood-opacity=".10"/>
-    </filter>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#6b8496"/>
-    </marker>
-    <style>
-      text{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-      .eyebrow{font-size:14px;font-weight:700;letter-spacing:2.2px;fill:#547083}
-      .heading{font-size:25px;font-weight:700;fill:#18364c}
-      .body{font-size:17px;fill:#4e6879}
-      .small{font-size:14px;fill:#587184}
-      .step{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#6c8495}
-      .white{fill:#fff}
-      .line{stroke:#6b8496;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#arrow)}
-      .card{fill:#fff;stroke:#d9e4eb;stroke-width:1.5}
-    </style>
-  </defs>
-  <rect width="1000" height="1050" rx="28" fill="url(#canvas)"/>
-  <circle cx="905" cy="90" r="95" fill="#dceaf1" opacity=".55"/>
-  <circle cx="65" cy="955" r="105" fill="#dcefe9" opacity=".55"/>
-  <text x="500" y="65" text-anchor="middle" class="eyebrow">SYSTEM OVERVIEW · 01</text>
-  <text x="500" y="105" text-anchor="middle" font-size="31" font-weight="750" fill="#173b57">Academic Portfolio Website</text>
-  <text x="500" y="137" text-anchor="middle" class="body">Source control · Static hosting · Web delivery</text>
-
-  <rect x="155" y="175" width="690" height="132" rx="18" fill="url(#navy)" filter="url(#shadow)"/>
-  <circle cx="205" cy="222" r="22" fill="#ffffff" opacity=".15"/>
-  <path d="M205 208v25m-9-16 9-9 9 9m-18 11 9 9 9-9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="250" y="210" class="step" fill="#b9d7e6">LAYER 01 · SOURCE CONTROL</text>
-  <text x="250" y="245" class="heading white">GitHub Repository</text>
-  <text x="250" y="275" font-size="16" fill="#d6e7f0">main branch · Version history</text>
-
-  <path d="M500 308 V350" class="line"/>
-  <text x="520" y="336" class="small">source files</text>
-
-  <rect x="90" y="360" width="820" height="254" rx="20" class="card" filter="url(#shadow)"/>
-  <text x="125" y="400" class="step">LAYER 02 · WEBSITE SOURCE</text>
-  <text x="125" y="432" class="heading">Portfolio files &amp; supporting resources</text>
-
-  <rect x="120" y="455" width="365" height="112" rx="13" fill="#edf4f8" stroke="#d5e3ec"/>
-  <rect x="142" y="477" width="42" height="42" rx="9" fill="#d6e7f0"/>
-  <path d="M153 488h20v19h-20zM157 493h12m-12 5h12" stroke="#245e7a" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <text x="200" y="488" font-size="19" font-weight="700" fill="#18364c">index.html</text>
-  <text x="200" y="515" class="small">Page content, CSS &amp; JavaScript</text>
-  <text x="142" y="548" class="small">Main portfolio interface</text>
-
-  <rect x="505" y="455" width="375" height="112" rx="13" fill="#e8f5f1" stroke="#cce6dc"/>
-  <rect x="527" y="477" width="42" height="42" rx="9" fill="#cce9df"/>
-  <path d="M538 488h20v19h-20zM538 493l10 8 10-8" stroke="#087f70" stroke-width="2" fill="none" stroke-linejoin="round"/>
-  <text x="585" y="488" font-size="19" font-weight="700" fill="#18364c">assets/</text>
-  <text x="585" y="515" class="small">Optimized image resources</text>
-  <text x="527" y="548" class="small">Plus 404 &amp; site metadata files</text>
-
-  <path d="M500 615 V660" class="line"/>
-  <text x="520" y="645" class="small">publishing</text>
-
-  <rect x="155" y="670" width="690" height="125" rx="18" fill="url(#teal)" filter="url(#shadow)"/>
-  <circle cx="205" cy="716" r="22" fill="#ffffff" opacity=".17"/>
-  <path d="M193 718a12 12 0 0 1 23-4h2a8 8 0 0 1 0 16h-23a6 6 0 0 1-2-12z" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="250" y="705" class="step" fill="#c8f0eb">LAYER 03 · STATIC HOSTING</text>
-  <text x="250" y="741" class="heading white">GitHub Pages</text>
-  <text x="250" y="770" font-size="16" fill="#e0f7f3">Publishes the static portfolio website</text>
-
-  <path d="M500 796 V838" class="line"/>
-  <text x="520" y="824" class="small">HTTPS delivery</text>
-
-  <rect x="155" y="848" width="690" height="112" rx="18" fill="#fff" stroke="#cbdde7" stroke-width="1.5" filter="url(#shadow)"/>
-  <rect x="180" y="875" width="54" height="45" rx="7" fill="#e8eff4" stroke="#a7bfce" stroke-width="2"/>
-  <path d="M207 920v8m-14 0h28" stroke="#6c8495" stroke-width="2.5" stroke-linecap="round"/>
-  <rect x="196" y="883" width="22" height="25" rx="3" fill="#fff" stroke="#6c8495" stroke-width="1.5"/>
-  <text x="258" y="886" class="step">LAYER 04 · VISITOR EXPERIENCE</text>
-  <text x="258" y="918" font-size="23" font-weight="700" fill="#18364c">Visitor's browser</text>
-  <text x="258" y="943" class="small">Responsive access · Desktop · Tablet · Mobile</text>
-
-  <rect x="95" y="982" width="810" height="42" rx="12" fill="#e1eaf0"/>
-  <circle cx="120" cy="1003" r="5" fill="#087f8c"/>
-  <text x="138" y="1008" font-size="14" fill="#405e70">Discovery files: robots.txt and sitemap.xml help search engines find site URLs.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1050" viewBox="0 0 1200 1050" role="img" aria-labelledby="title desc">
+<title id="title">Academic Portfolio Source Code Architecture</title>
+<desc id="desc">Current source architecture: GitHub repository and source files; index.html contains HTML, embedded CSS, JavaScript and CV srcdoc; assets and supporting files; GitHub Pages delivery to the browser; Google Fonts and separate SEO discovery resources. No backend, database or API.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8fafc"/><stop offset="1" stop-color="#edf3f8"/></linearGradient>
+<linearGradient id="navy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#173b57"/><stop offset="1" stop-color="#245e7a"/></linearGradient>
+<linearGradient id="teal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#087f8c"/><stop offset="1" stop-color="#0e9b9a"/></linearGradient>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#6b8496"/></marker>
+<style>
+text{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}.eyebrow{font-size:13px;font-weight:700;letter-spacing:2px;fill:#607d8f}.title{font-size:30px;font-weight:750;fill:#173b57}.sub{font-size:16px;fill:#587184}.head{font-size:20px;font-weight:700;fill:#18364c}.body{font-size:15px;fill:#4e6879}.small{font-size:13px;fill:#587184}.white{fill:#fff}.line{stroke:#6b8496;stroke-width:2.5;fill:none;stroke-linecap:round;marker-end:url(#arrow)}.card{fill:#fff;stroke:#d9e4eb;stroke-width:1.4}
+</style></defs>
+<rect width="1200" height="1050" rx="24" fill="url(#bg)"/>
+<circle cx="1090" cy="70" r="95" fill="#dceaf1" opacity=".5"/><circle cx="70" cy="970" r="80" fill="#dcefe9" opacity=".5"/>
+<text x="600" y="42" text-anchor="middle" class="eyebrow">SOURCE CODE · RUNTIME · DEPLOYMENT</text>
+<text x="600" y="80" text-anchor="middle" class="title">Academic Portfolio Architecture</text>
+<text x="600" y="108" text-anchor="middle" class="sub">Reflecting the current GitHub repository</text>
+<rect x="310" y="130" width="580" height="76" rx="14" fill="url(#navy)"/>
+<text x="345" y="160" class="eyebrow" fill="#b9d7e6">SOURCE CONTROL</text><text x="345" y="188" font-size="23" font-weight="700" class="white">GitHub repository · main</text>
+<path d="M600 206 V234" class="line"/>
+<rect x="55" y="245" width="1090" height="290" rx="18" class="card"/>
+<text x="85" y="278" class="eyebrow">LAYER 01 · SOURCE FILES</text><text x="85" y="308" class="head">Repository structure</text>
+<rect x="80" y="330" width="510" height="175" rx="12" fill="#edf4f8" stroke="#cbdde7"/>
+<text x="105" y="362" class="head">index.html</text><text x="105" y="389" class="body">HTML content and page structure</text><text x="105" y="416" class="body">Embedded CSS: layout, responsive styles, theme</text><text x="105" y="443" class="body">Embedded JavaScript: menu, theme, CV and</text><text x="105" y="466" class="body">certificate viewers, coursework disclosure</text><text x="105" y="490" class="small">CV markup is embedded in iframe srcdoc.</text>
+<rect x="610" y="330" width="235" height="175" rx="12" fill="#e8f5f1" stroke="#cce6dc"/>
+<text x="635" y="362" class="head">assets/</text><text x="635" y="393" class="body">Portfolio images</text><text x="635" y="420" class="body">architecture.svg</text><text x="635" y="458" class="small">Visual resources</text>
+<rect x="865" y="330" width="250" height="175" rx="12" fill="#f5f2eb" stroke="#e6dcc8"/>
+<text x="890" y="362" class="head">Support files</text><text x="890" y="393" class="body">404.html · favicon.svg</text><text x="890" y="420" class="body">robots.txt · sitemap.xml</text><text x="890" y="447" class="small">README.md · SECURITY.md</text><text x="890" y="474" class="small">Profile/social preview images</text>
+<path d="M330 535 V565" class="line"/><path d="M865 535 V565" class="line"/>
+<rect x="55" y="575" width="510" height="205" rx="16" class="card"/>
+<text x="85" y="610" class="eyebrow">LAYER 02 · BROWSER RUNTIME</text><text x="85" y="642" class="head">Rendered portfolio</text>
+<rect x="85" y="660" width="120" height="38" rx="8" fill="#edf4f8"/><text x="145" y="684" text-anchor="middle" class="body">HTML</text>
+<rect x="215" y="660" width="120" height="38" rx="8" fill="#edf4f8"/><text x="275" y="684" text-anchor="middle" class="body">CSS</text>
+<rect x="345" y="660" width="185" height="38" rx="8" fill="#e8f5f1"/><text x="437" y="684" text-anchor="middle" class="body">JavaScript</text>
+<text x="85" y="727" class="small">Browser interactions include navigation, theme</text><text x="85" y="749" class="small">preference (localStorage), CV and certificate viewers.</text>
+<rect x="590" y="575" width="555" height="205" rx="16" class="card"/>
+<text x="620" y="610" class="eyebrow">LAYER 03 · PUBLISHING</text>
+<rect x="620" y="638" width="135" height="70" rx="10" fill="#edf4f8" stroke="#d5e3ec"/><text x="687" y="667" text-anchor="middle" class="head">main</text><text x="687" y="690" text-anchor="middle" class="small">repository</text>
+<path d="M756 673 H787" class="line"/>
+<rect x="797" y="638" width="135" height="70" rx="10" fill="url(#teal)"/><text x="864" y="667" text-anchor="middle" class="head white">GitHub</text><text x="864" y="690" text-anchor="middle" font-size="14" class="white">Pages</text>
+<path d="M933 673 H964" class="line"/>
+<rect x="974" y="638" width="140" height="70" rx="10" fill="#173b57"/><text x="1044" y="667" text-anchor="middle" font-size="18" font-weight="700" class="white">HTTPS</text><text x="1044" y="690" text-anchor="middle" font-size="13" fill="#d6e7f0">public site</text>
+<text x="620" y="738" class="small">Static hosting; no separate backend, database,</text><text x="620" y="758" class="small">API, or build pipeline is defined in this repository.</text>
+<path d="M310 780 V806 H340 V825" class="line"/><path d="M860 780 V806 H840 V825" class="line"/>
+<rect x="55" y="835" width="510" height="130" rx="14" fill="#fff" stroke="#d9e4eb"/>
+<text x="82" y="869" class="eyebrow">EXTERNAL DEPENDENCY</text><text x="82" y="900" class="head">Google Fonts</text><text x="82" y="927" class="body">Space Grotesk · Roboto · IBM Plex Mono</text><text x="82" y="949" class="small">Typography is loaded externally when available.</text>
+<rect x="590" y="835" width="555" height="130" rx="14" fill="#fff" stroke="#d9e4eb"/>
+<text x="617" y="869" class="eyebrow">SEO &amp; DISCOVERY · SEPARATE CONCERN</text><text x="617" y="900" class="head">Metadata and crawler files</text><text x="617" y="927" class="body">Canonical URL · Open Graph · JSON-LD</text><text x="617" y="949" class="small">robots.txt and sitemap.xml support discovery.</text>
+<rect x="55" y="985" width="1090" height="42" rx="10" fill="#e1eaf0"/><text x="75" y="1011" class="small">Source-accurate: no separate CSS/JS files, backend, database, API, or build system is implied.</text>
 </svg>
