@@ -10,122 +10,120 @@
 
 <p align="center">
   <a href="https://azmainemahatab.github.io/">Portfolio</a> •
-  <a href="https://github.com/azmainemahatab?tab=repositories">Projects</a> •
+  <a href="https://github.com/azmainemahatab?tab=repositories">GitHub Projects</a> •
   <a href="https://orcid.org/0009-0003-0763-1649">ORCID</a> •
   <a href="https://www.researchgate.net/profile/Mahatab-Azmaine-Refat-2">ResearchGate</a> •
-  <a href="https://linkedin.com/in/mahatabazmaine">LinkedIn</a>
+  <a href="https://www.linkedin.com/in/mahatabazmaine">LinkedIn</a> •
+  <a href="https://youtube.com/@mahatabazmaine">YouTube</a>
+</p>
+
+<p align="center">
+  <a href="mailto:rifatmahtab107@gmail.com">rifatmahtab107@gmail.com</a>
 </p>
 
 ---
 
 ## About
 
-I am building an interdisciplinary academic and professional profile at the intersection of **health science, plant science, public health, and environmental health**.
+I am developing an interdisciplinary academic profile connecting **Health Science, Botany, Public Health, and Environmental Health**. I am pursuing a Bachelor of Science in Health Science at the University of the People and an Honours degree in Botany at Gurudayal Government College under Bangladesh's National University. I have also completed an Associate of Science in Health Science at the University of the People with **High Honors and a GPA of 3.85/4.00**.
 
-My interests include **research, evidence synthesis, data analysis, scientific communication, and the relationship between environmental and biological factors and human health**.
-
-I am particularly interested in applying interdisciplinary approaches to research questions involving **health, plants, environments, and evidence-based decision-making**.
-
-## Areas of Focus
-
-- **Health Science** — human health and health-related academic research
-- **Public Health** — population health, prevention, and evidence-based practice
-- **Botany & Plant Science** — plant science and plant–health relationships
-- **Environmental Health** — environmental factors and their connections to health outcomes
-- **Research & Evidence Synthesis** — literature review and research-oriented analysis
-- **Data & Analytics** — statistics, quantitative reasoning, data interpretation, and visualization
-- **Scientific Communication** — academic writing and communication of scientific information
-- **Digital Health & Technology** — digital tools and technology applied to health and academic work
+My academic interests include public and environmental health, plant–health relationships, literature review, evidence synthesis, scientific communication, and introductory health-data analysis. I am interested in opportunities for **higher education and scholarships**, as well as **research internships and academic collaboration**.
 
 ## Research Interests
 
-My research interests focus on interdisciplinary questions connecting **human health, plant science, and environmental factors**.
-
-Areas of particular interest include:
-
-- Public and environmental health
-- Plant–health relationships
-- Environmental determinants of health
-- Evidence-based health research
-- Research methodology and literature synthesis
-- Health data and quantitative analysis
-- Digital health and technology
-- Interdisciplinary approaches to health and environmental challenges
+- Public health and epidemiology
+- Environmental health and environmental determinants of health
+- Climate change and health
+- Air pollution and respiratory health
+- Biostatistics and health-data analysis
+- Plant–health relationships and ethnobotany
+- Evidence synthesis and research methodology
+- Digital health and technology in academic work
 
 ## Education
 
 ### University of the People
-**Bachelor's Degree in Health Science**
+**Bachelor of Science in Health Science** — In progress  
+Expected completion: September–October 2027  
+Academic recognition: President's List (four terms)
 
-Academic interests: Health Science • Public Health • Environmental Health • Research
+**Associate of Science in Health Science** — Completed  
+Graduated with High Honors; GPA: **3.85/4.00**
 
-### Botany
-**Honours in Botany**
+### Gurudayal Government College, National University, Bangladesh
+**B.Sc. (Honours) in Botany** — In progress
 
-Academic interests: Plant Science • Biology • Plant–Health Relationships • Environmental Science
+### Previous Education
+- **Higher Secondary Certificate (Science)** — Hossainpur Government College; GPA 5.00/5.00
+- **Secondary School Certificate (Science)** — Jangaldi High School; GPA 5.00/5.00
 
-## Academic Highlights
+## Selected Academic Work
 
-- **President's List** — Academic recognition
-- **High Honors** — Associate Degree achievement
-- **Government of Kazakhstan Scholarship** — Space Engineering
-- **University of the People Institutional Scholarship** — Undergraduate educational support
+### Personal Academic Website & Digital Portfolio
+A GitHub Pages website presenting my education, academic interests, skills, experience, and selected work.  
+[Visit the portfolio](https://azmainemahatab.github.io/)
+
+### Natural Selection and Protist Diversity — Virtual Lab Coursework
+A course-based virtual laboratory exercise completed as part of Biology 2 for Health Studies Majors (BIOL 1121). This is coursework, not a claim of independent or published research.
+
+### Kantian Analysis of Labour Issues in the Global Garment Industry
+A philosophy coursework assignment applying Kantian ethical analysis to labour issues in the global garment industry (PHIL 1404).
+
+### IASC Asteroid Search Campaign
+Participated in an International Astronomical Search Collaboration (IASC) campaign in August–September 2023, reviewing Pan-STARRS image data for candidate Near-Earth Objects and Main-Belt asteroids.
 
 ## Research & Academic Skills
 
-**Research**
-- Literature Review
-- Evidence Synthesis
-- Research-Oriented Analysis
-- Academic Research
-- Scientific Communication
+**Research and communication**
+- Literature review and evidence synthesis
+- Academic writing and APA-style referencing
+- Research documentation and scientific communication
+- Reading and summarizing academic sources
 
-**Data & Analytics**
-- Statistics
-- Quantitative Reasoning
-- Data Interpretation
-- Data Visualization
-- Spreadsheet-Based Analysis
+**Data and analysis**
+- Foundational data cleaning, interpretation, and visualization
+- Basic Python and Google Colab
+- Introductory statistics and biostatistics
+- Spreadsheet-based analysis with Microsoft Excel
 
-**Academic Writing**
-- Academic Writing
-- APA-Style Referencing
-- Research Documentation
-- Scientific Information Communication
+**Digital and technical**
+- HTML, CSS, and JavaScript
+- Git, GitHub, and GitHub Pages
+- WordPress and digital content development
+- SEO, Google Analytics, and Google Search Console
+- Canva and online collaboration tools
 
-## Technology & Digital Skills
+These skills reflect my current academic and practical experience; I continue to develop them through coursework, training, and projects.
 
-- HTML
-- CSS
-- JavaScript
-- Git & GitHub
-- GitHub Pages
-- Digital Content Development
-- Data & Spreadsheet Tools
+## Selected Training & Recognition
 
-## Business & Digital Skills
+- **GCI World 2026 September Academic Training**, Matsuo-Iwasawa Laboratory, Graduate School of Engineering, The University of Tokyo — online training in data science, AI/ML, Python, statistics, and data analysis (17 September–23 December 2026).
+- **Kazakhstan Government Scholarship (2023)** — Space Engineering and Technologies at Al-Farabi Kazakh National University.
+- **President's List**, University of the People — four terms.
+- **University of the People Institutional Scholarship**.
+- **Associate of Science in Health Science, High Honors** — GPA 3.85/4.00.
 
-- Digital Marketing
-- Search Engine Optimization (SEO)
-- HR & Administration
-- Sales Management
+## Professional & Volunteer Experience
 
-## Selected Work
-
-### Personal Academic & Research Portfolio
-
-A centralized portfolio presenting my **academic background, research interests, skills, experience, and selected work**.
-
-[Visit Portfolio](https://azmainemahatab.github.io/)
+- **Freelance Digital Marketer / SEO Specialist** — 2022–present
+- **HR Operations Manager Intern, BYOSD** — July–December 2022
+- **Aspire Leaders Campus Leader** — 2026–present
+- **University of the People Student Ambassador** — August 2025–present
+- **FutureNation / UNDP Campus Volunteer** — 2025–present
+- **UN Online Volunteering assignments** — including digital-skills mentoring and youth-week support
 
 ## Professional & Academic Profiles
 
-- [GitHub](https://github.com/azmainemahatab)
 - [Portfolio](https://azmainemahatab.github.io/)
-- [LinkedIn](https://linkedin.com/in/mahatabazmaine)
+- [GitHub](https://github.com/azmainemahatab)
+- [LinkedIn](https://www.linkedin.com/in/mahatabazmaine)
+- [ORCID](https://orcid.org/0009-0003-0763-1649)
+- [ResearchGate](https://www.researchgate.net/profile/Mahatab-Azmaine-Refat-2)
+- [YouTube — Study Abroad with Mahatab Azmaine Refat](https://youtube.com/@mahatabazmaine)
+- Email: [rifatmahtab107@gmail.com](mailto:rifatmahtab107@gmail.com)
 
 ---
 
 <p align="center">
-  <i>Building an interdisciplinary academic profile through health science, plant science, research, and technology.</i>
+  <i>Building an interdisciplinary academic profile through health science, plant science, public health, research, and technology.</i>
 </p>
