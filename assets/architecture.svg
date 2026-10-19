@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1050" viewBox="0 0 1000 1050" role="img" aria-labelledby="title desc">
+  <title id="title">Academic Portfolio Website Architecture</title>
+  <desc id="desc">A high-level architecture diagram: GitHub repository and main branch feed the website files, which GitHub Pages publishes to visitor browsers. Robots and sitemap files support search-engine discovery.</desc>
+  <defs>
+    <linearGradient id="canvas" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#edf3f8"/>
+    </linearGradient>
+    <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#173b57"/>
+      <stop offset="100%" stop-color="#245e7a"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#087f8c"/>
+      <stop offset="100%" stop-color="#0e9b9a"/>
+    </linearGradient>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#19364b" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#6b8496"/>
+    </marker>
+    <style>
+      text{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+      .eyebrow{font-size:14px;font-weight:700;letter-spacing:2.2px;fill:#547083}
+      .heading{font-size:25px;font-weight:700;fill:#18364c}
+      .body{font-size:17px;fill:#4e6879}
+      .small{font-size:14px;fill:#587184}
+      .step{font-size:13px;font-weight:700;letter-spacing:1.6px;fill:#6c8495}
+      .white{fill:#fff}
+      .line{stroke:#6b8496;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#arrow)}
+      .card{fill:#fff;stroke:#d9e4eb;stroke-width:1.5}
+    </style>
+  </defs>
+  <rect width="1000" height="1050" rx="28" fill="url(#canvas)"/>
+  <circle cx="905" cy="90" r="95" fill="#dceaf1" opacity=".55"/>
+  <circle cx="65" cy="955" r="105" fill="#dcefe9" opacity=".55"/>
+  <text x="500" y="65" text-anchor="middle" class="eyebrow">SYSTEM OVERVIEW · 01</text>
+  <text x="500" y="105" text-anchor="middle" font-size="31" font-weight="750" fill="#173b57">Academic Portfolio Website</text>
+  <text x="500" y="137" text-anchor="middle" class="body">Source control · Static hosting · Web delivery</text>
+
+  <rect x="155" y="175" width="690" height="132" rx="18" fill="url(#navy)" filter="url(#shadow)"/>
+  <circle cx="205" cy="222" r="22" fill="#ffffff" opacity=".15"/>
+  <path d="M205 208v25m-9-16 9-9 9 9m-18 11 9 9 9-9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="250" y="210" class="step" fill="#b9d7e6">LAYER 01 · SOURCE CONTROL</text>
+  <text x="250" y="245" class="heading white">GitHub Repository</text>
+  <text x="250" y="275" font-size="16" fill="#d6e7f0">main branch · Version history</text>
+
+  <path d="M500 308 V350" class="line"/>
+  <text x="520" y="336" class="small">source files</text>
+
+  <rect x="90" y="360" width="820" height="254" rx="20" class="card" filter="url(#shadow)"/>
+  <text x="125" y="400" class="step">LAYER 02 · WEBSITE SOURCE</text>
+  <text x="125" y="432" class="heading">Portfolio files &amp; supporting resources</text>
+
+  <rect x="120" y="455" width="365" height="112" rx="13" fill="#edf4f8" stroke="#d5e3ec"/>
+  <rect x="142" y="477" width="42" height="42" rx="9" fill="#d6e7f0"/>
+  <path d="M153 488h20v19h-20zM157 493h12m-12 5h12" stroke="#245e7a" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="200" y="488" font-size="19" font-weight="700" fill="#18364c">index.html</text>
+  <text x="200" y="515" class="small">Page content, CSS &amp; JavaScript</text>
+  <text x="142" y="548" class="small">Main portfolio interface</text>
+
+  <rect x="505" y="455" width="375" height="112" rx="13" fill="#e8f5f1" stroke="#cce6dc"/>
+  <rect x="527" y="477" width="42" height="42" rx="9" fill="#cce9df"/>
+  <path d="M538 488h20v19h-20zM538 493l10 8 10-8" stroke="#087f70" stroke-width="2" fill="none" stroke-linejoin="round"/>
+  <text x="585" y="488" font-size="19" font-weight="700" fill="#18364c">assets/</text>
+  <text x="585" y="515" class="small">Optimized image resources</text>
+  <text x="527" y="548" class="small">Plus 404 &amp; site metadata files</text>
+
+  <path d="M500 615 V660" class="line"/>
+  <text x="520" y="645" class="small">publishing</text>
+
+  <rect x="155" y="670" width="690" height="125" rx="18" fill="url(#teal)" filter="url(#shadow)"/>
+  <circle cx="205" cy="716" r="22" fill="#ffffff" opacity=".17"/>
+  <path d="M193 718a12 12 0 0 1 23-4h2a8 8 0 0 1 0 16h-23a6 6 0 0 1-2-12z" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="250" y="705" class="step" fill="#c8f0eb">LAYER 03 · STATIC HOSTING</text>
+  <text x="250" y="741" class="heading white">GitHub Pages</text>
+  <text x="250" y="770" font-size="16" fill="#e0f7f3">Publishes the static portfolio website</text>
+
+  <path d="M500 796 V838" class="line"/>
+  <text x="520" y="824" class="small">HTTPS delivery</text>
+
+  <rect x="155" y="848" width="690" height="112" rx="18" fill="#fff" stroke="#cbdde7" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="180" y="875" width="54" height="45" rx="7" fill="#e8eff4" stroke="#a7bfce" stroke-width="2"/>
+  <path d="M207 920v8m-14 0h28" stroke="#6c8495" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="196" y="883" width="22" height="25" rx="3" fill="#fff" stroke="#6c8495" stroke-width="1.5"/>
+  <text x="258" y="886" class="step">LAYER 04 · VISITOR EXPERIENCE</text>
+  <text x="258" y="918" font-size="23" font-weight="700" fill="#18364c">Visitor's browser</text>
+  <text x="258" y="943" class="small">Responsive access · Desktop · Tablet · Mobile</text>
+
+  <rect x="95" y="982" width="810" height="42" rx="12" fill="#e1eaf0"/>
+  <circle cx="120" cy="1003" r="5" fill="#087f8c"/>
+  <text x="138" y="1008" font-size="14" fill="#405e70">Discovery files: robots.txt and sitemap.xml help search engines find site URLs.</text>
+</svg>

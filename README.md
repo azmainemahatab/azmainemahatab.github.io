@@ -116,46 +116,11 @@ These skills reflect my current academic and practical experience; I continue to
 
 This is a static academic portfolio hosted by GitHub Pages. The page structure, styling, and interactive behavior are maintained in `index.html`; image resources are stored in `assets/`. GitHub Pages publishes the repository files, and visitors access the resulting site through a web browser.
 
-```mermaid
-flowchart TB
-    subgraph SOURCE["01 · SOURCE CONTROL"]
-        REPO["GitHub Repository"]
-        MAIN["main branch"]
-        REPO --> MAIN
-    end
+<p align="center">
+  <img src="assets/architecture.svg" alt="Architecture diagram showing the GitHub repository, website source files, GitHub Pages hosting, visitors, and search-engine discovery." width="100%" />
+</p>
 
-    subgraph FILES["02 · WEBSITE FILES"]
-        PAGE["index.html<br/>HTML + embedded CSS and JavaScript"]
-        ASSETS["assets/<br/>Optimized image assets"]
-        ERROR["404.html<br/>Not-found page"]
-        ROBOTS["robots.txt<br/>Crawler directives"]
-        MAP["sitemap.xml<br/>Site URL index"]
-    end
-
-    MAIN --> PAGE
-    MAIN --> ASSETS
-    MAIN --> ERROR
-    MAIN --> ROBOTS
-    MAIN --> MAP
-
-    subgraph HOSTING["03 · STATIC HOSTING"]
-        PAGES["GitHub Pages"]
-    end
-
-    PAGE --> PAGES
-    ASSETS --> PAGES
-    ERROR --> PAGES
-    ROBOTS --> PAGES
-    MAP --> PAGES
-
-    subgraph ACCESS["04 · DELIVERY & DISCOVERY"]
-        VISITOR["Visitor's browser<br/>Responsive desktop, tablet, and mobile"]
-        CRAWLER["Search-engine crawlers"]
-    end
-
-    PAGES --> VISITOR
-    PAGES -. "serves robots.txt and sitemap.xml" .-> CRAWLER
-```
+<p align="center"><sub>Static-site architecture · Vector graphic · No client-side diagram rendering required</sub></p>
 
 ### Repository Structure
 
