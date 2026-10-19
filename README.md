@@ -57,6 +57,44 @@ Graduated with High Honors; GPA: **3.85/4.00**
 - **Higher Secondary Certificate (Science)** — Hossainpur Government College; GPA 5.00/5.00
 - **Secondary School Certificate (Science)** — Jangaldi High School; GPA 5.00/5.00
 
+## Website Architecture
+
+This portfolio is published as a static website using GitHub Pages. The repository contains the page markup, supporting assets, and site configuration files. A visitor's browser renders the published HTML, CSS, and JavaScript.
+
+```mermaid
+flowchart TD
+    A[GitHub Repository] --> B[index.html]
+    A --> C[assets/]
+    A --> D[Site support files]
+    B --> E[GitHub Pages]
+    C --> E
+    D --> E
+    E --> F[Visitor's browser]
+```
+
+### Repository Structure
+
+| Path | Purpose |
+|---|---|
+| `index.html` | Main portfolio page and its page content |
+| `assets/` | Optimized images used by the website |
+| `404.html` | Custom page for unavailable URLs |
+| `robots.txt` | Instructions for search-engine crawlers |
+| `sitemap.xml` | Sitemap listing important website URLs |
+| `README.md` | Project overview and documentation |
+| `profile.jpg` | Profile image displayed in this README |
+| `social-preview.png.jpg` | Social-sharing preview image |
+
+### Technology Stack
+
+- **HTML** — page structure and content
+- **CSS** — visual presentation and layout
+- **JavaScript** — interactive page behavior
+- **Git and GitHub** — source control and repository hosting
+- **GitHub Pages** — static website publishing
+
+The repository is designed to keep the portfolio straightforward to maintain. The architecture diagram is a high-level overview rather than a complete dependency or runtime diagram.
+
 ## Selected Academic Work
 
 ### Personal Academic Website & Digital Portfolio
