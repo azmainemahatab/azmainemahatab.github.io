@@ -789,6 +789,14 @@
 </style>
 
 <style>
+  /* IASC certificate: show it only in the modal after the user selects View Certificate */
+  #research .iasc-certificate-entry{display:block;padding:20px;}
+  #research .iasc-certificate-entry>img{display:none!important;}
+  #research .iasc-certificate-entry>.entry-top,
+  #research .iasc-certificate-entry>.entry-desc,
+  #research .iasc-certificate-entry>.credential-view-btn{grid-column:1!important;grid-row:auto!important;}
+  #research .iasc-certificate-entry>.credential-view-btn{margin-top:16px;width:100%;}
+
   .research-subhead{
     margin:32px 0 16px;
     font-size:14px;
@@ -1052,7 +1060,7 @@
       <h2>Research &amp; Academic Engagement</h2>
     </div>
     <div class="research-subhead">Research Affiliations</div>
-    <div class="entry">
+    <div class="entry iasc-certificate-entry">
       <div class="entry-top">
         <div><span class="entry-title">International Astronomical Search Collaboration (IASC)</span><br><span class="entry-org">IASC campaign · Pan-STARRS data</span></div>
         <span class="entry-date">Aug – Sep 2023</span>
