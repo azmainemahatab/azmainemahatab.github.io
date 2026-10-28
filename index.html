@@ -827,11 +827,11 @@
     <div class="nav-actions">
       <ul class="nav-links" id="navLinks">
         <li><a class="nav-home" href="#home">Home</a></li>
-        <li class="nav-group"><details><summary>Academic Identity</summary><div class="nav-submenu"><a href="#about">About Me</a><a href="#education">Education</a><a href="#research-interests">Research Interests</a><a href="#coursework">Relevant Coursework</a></div></details></li>
-        <li class="nav-group"><details><summary>Research &amp; Academic Work</summary><div class="nav-submenu"><a href="#research">Research Experience &amp; Scientific Training</a><a href="#academic-projects">Academic Projects &amp; Research Portfolio</a><a href="#skills">Research Skills &amp; Technical Competencies</a></div></details></li>
-        <li class="nav-group"><details><summary>Achievements &amp; Development</summary><div class="nav-submenu"><a href="#achievements">Academic Achievements &amp; Honors</a><a href="#scholarships">Scholarships &amp; Funding</a><a href="#experience">Professional Experience</a><a href="#leadership">Leadership &amp; Volunteering</a><a href="#memberships">Professional &amp; Scientific Memberships</a><a href="#certifications">Certifications &amp; Training</a></div></details></li>
-        <li class="nav-group"><details><summary>Additional</summary><div class="nav-submenu"><a href="#languages-proficiency">Languages &amp; Proficiency</a><a href="#media-features">Media Features &amp; Publications</a><a href="#contact">Contact &amp; Collaboration</a></div></details></li>
-        <li><button type="button" class="nav-cv-btn" id="viewCvNavBtn">Download CV</button></li>
+        <li class="nav-group"><details><summary>Academic</summary><div class="nav-submenu"><a href="#about">About Me</a><a href="#education">Education</a><a href="#research-interests">Research Interests</a><a href="#coursework">Relevant Coursework</a></div></details></li>
+        <li class="nav-group"><details><summary>Research</summary><div class="nav-submenu"><a href="#research">Research Experience &amp; Training</a><a href="#academic-projects">Academic Projects &amp; Research Portfolio</a><a href="#skills">Research Skills &amp; Technical Competencies</a></div></details></li>
+        <li class="nav-group"><details><summary>Experience &amp; Achievements</summary><div class="nav-submenu"><a href="#experience">Professional Experience</a><a href="#leadership">Leadership &amp; Volunteering</a><a href="#achievements">Academic Achievements &amp; Honors</a><a href="#scholarships">Scholarships &amp; Funding</a><a href="#memberships">Professional &amp; Scientific Memberships</a><a href="#certifications">Certifications &amp; Training</a></div></details></li>
+        <li class="nav-group"><details><summary>More</summary><div class="nav-submenu"><a href="#languages-proficiency">Languages &amp; Proficiency</a><a href="#media-features">Media Features &amp; Publications</a><a href="#contact">Contact &amp; Collaboration</a></div></details></li>
+        <li><button type="button" class="nav-cv-btn" id="viewCvNavBtn">View CV</button></li>
       </ul>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">🌙</button>
       <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false" onclick="togglePortfolioMenu(event)"><span></span><span></span><span></span></button>
@@ -1994,7 +1994,7 @@
 
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
-  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  links.querySelectorAll('a, #viewCvNavBtn').forEach(a => a.addEventListener('click', () => {
     links.querySelectorAll('.nav-group details[open]').forEach(d => d.removeAttribute('open'));
     links.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
