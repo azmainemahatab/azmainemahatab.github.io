@@ -2255,12 +2255,23 @@
     nav .nav-logo{flex:0 0 auto;}
     nav .theme-toggle,nav .nav-toggle{width:38px;height:38px;}
   }
+  /* Desktop: logo left, links across the middle, theme control on the right. */
   @media (min-width:1041px){
-    /* Keep the logo, navigation links, and controls in one balanced row. */
-    nav .nav-inner{justify-content:flex-start;gap:18px;}
-    nav .nav-actions{margin-left:0;flex:1;min-width:0;gap:12px;}
-    nav .nav-links{flex:1;min-width:0;justify-content:space-between;gap:12px;}
-    nav .theme-toggle,nav .nav-toggle{flex:0 0 auto;}
+    nav .nav-inner{display:flex;align-items:center;justify-content:flex-start;gap:20px;padding-inline:28px;}
+    nav .nav-actions{display:flex;align-items:center;flex:1;min-width:0;margin-left:0;gap:14px;}
+    nav .nav-links{display:flex;align-items:center;flex:1;min-width:0;justify-content:space-between;gap:12px;}
+    nav .nav-links>li{flex:0 0 auto;}
+    nav .theme-toggle{flex:0 0 auto;margin-left:0;}
+    nav .nav-toggle{display:none;}
+  }
+  /* Mobile/tablet: compact header with the logo and controls only; links open in menu. */
+  @media (max-width:1040px){
+    nav .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;}
+    nav .nav-logo{flex:0 0 auto;margin-right:auto;}
+    nav .nav-actions{display:flex;align-items:center;justify-content:flex-end;flex:0 0 auto;margin-left:0;gap:8px;}
+    nav .nav-links{display:none;}
+    nav .nav-links.open{display:flex;}
+    nav .theme-toggle,nav .nav-toggle{display:flex;flex:0 0 auto;width:38px;height:38px;margin:0;}
   }
 </style>
 </body>
