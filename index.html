@@ -2349,6 +2349,14 @@
     nav .nav-links-desktop a,nav .nav-links-desktop .nav-group summary{
       display:block;padding:8px 0;font-size:13px;font-weight:500;color:var(--ink-soft);white-space:nowrap;
     }
+    /* Reference-style active indicator for the Home link on the landing page. */
+    nav .nav-links-desktop>li:first-child>a{
+      position:relative;color:var(--ink);
+    }
+    nav .nav-links-desktop>li:first-child>a::after{
+      content:"";position:absolute;left:0;right:0;bottom:-7px;height:2px;
+      background:var(--lime,#6b9f43);border-radius:2px;
+    }
     nav .nav-links-desktop .nav-group details{background:transparent;border:0;border-radius:0;padding:0;box-shadow:none;}
     nav .nav-links-desktop .nav-submenu{top:calc(100% + 8px);}
     nav .theme-toggle{margin:0;width:42px;height:42px;}
