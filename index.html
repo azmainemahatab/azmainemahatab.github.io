@@ -2256,8 +2256,11 @@
     nav .theme-toggle,nav .nav-toggle{width:38px;height:38px;}
   }
   @media (min-width:1041px){
-    nav .nav-inner{justify-content:flex-start;}
-    nav .nav-actions{margin-left:auto;}
+    /* Keep the logo, navigation links, and controls in one balanced row. */
+    nav .nav-inner{justify-content:flex-start;gap:18px;}
+    nav .nav-actions{margin-left:0;flex:1;min-width:0;gap:12px;}
+    nav .nav-links{flex:1;min-width:0;justify-content:space-between;gap:12px;}
+    nav .theme-toggle,nav .nav-toggle{flex:0 0 auto;}
   }
 </style>
 </body>
