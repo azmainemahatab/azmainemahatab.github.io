@@ -2106,7 +2106,7 @@
     var modal=document.getElementById('certificate-viewer-modal');
     var panel=document.getElementById('certificate-viewer-content');
     if(!modal||!panel||!svg)return;
-    panel.innerHTML=svg.outerHTML;
+    panel.replaceChildren(svg.cloneNode(true));
     modal.hidden=false;
     document.body.style.overflow='hidden';
   }
@@ -2127,7 +2127,7 @@
     var openThis=function(){
       var modal=document.getElementById('certificate-viewer-modal'),panel=document.getElementById('certificate-viewer-content');
       if(!modal||!panel)return;
-      panel.innerHTML='<img src="'+(img.currentSrc||img.src)+'" alt="'+(img.alt||'Certificate')+'" style="max-width:100%;max-height:84vh;width:auto;height:auto;display:block;" loading="lazy" decoding="async"/>';
+      var previewImage=document.createElement('img');previewImage.src=img.currentSrc||img.src;previewImage.alt=img.alt||'Certificate';previewImage.style.cssText='max-width:100%;max-height:84vh;width:auto;height:auto;display:block;';previewImage.decoding='async';panel.replaceChildren(previewImage);
       modal.hidden=false;
       document.body.style.overflow='hidden';
     };
@@ -2140,8 +2140,8 @@
     }
     if(action){action.addEventListener('click',openThis);}
   });
-  document.querySelectorAll('#certifications .cert-card').forEach(function(card){if(card.querySelector('.credential-view-btn'))return;var img=card.querySelector('img'),body=card.querySelector('.cert-card-body');if(!img||!body)return;var b=document.createElement('button');b.type='button';b.className='credential-view-btn';b.textContent='View Certificate';b.addEventListener('click',function(){var modal=document.getElementById('certificate-viewer-modal'),panel=document.getElementById('certificate-viewer-content');panel.innerHTML='<img src="'+(img.currentSrc||img.src)+'" alt="'+(img.alt||'Certificate')+'" style="max-width:100%;max-height:84vh;width:auto;height:auto;display:block;" loading="lazy" decoding="async"/>';modal.hidden=false;document.body.style.overflow='hidden';});body.appendChild(b);});
-  document.querySelectorAll('#research .entry').forEach(function(entry){if(entry.querySelector('.credential-view-btn'))return;var img=entry.querySelector('img');if(!img)return;var b=document.createElement('button');b.type='button';b.className='credential-view-btn';b.textContent='View Certificate';b.addEventListener('click',function(){var modal=document.getElementById('certificate-viewer-modal'),panel=document.getElementById('certificate-viewer-content');panel.innerHTML='<img src="'+(img.currentSrc||img.src)+'" alt="'+(img.alt||'Certificate')+'" style="max-width:100%;max-height:84vh;width:auto;height:auto;display:block;" loading="lazy" decoding="async"/>';modal.hidden=false;document.body.style.overflow='hidden';});var d=entry.querySelector('.entry-desc');if(d)d.insertAdjacentElement('afterend',b);});
+  document.querySelectorAll('#certifications .cert-card').forEach(function(card){if(card.querySelector('.credential-view-btn'))return;var img=card.querySelector('img'),body=card.querySelector('.cert-card-body');if(!img||!body)return;var b=document.createElement('button');b.type='button';b.className='credential-view-btn';b.textContent='View Certificate';b.addEventListener('click',function(){var modal=document.getElementById('certificate-viewer-modal'),panel=document.getElementById('certificate-viewer-content');var previewImage=document.createElement('img');previewImage.src=img.currentSrc||img.src;previewImage.alt=img.alt||'Certificate';previewImage.style.cssText='max-width:100%;max-height:84vh;width:auto;height:auto;display:block;';previewImage.decoding='async';panel.replaceChildren(previewImage);modal.hidden=false;document.body.style.overflow='hidden';});body.appendChild(b);});
+  document.querySelectorAll('#research .entry').forEach(function(entry){if(entry.querySelector('.credential-view-btn'))return;var img=entry.querySelector('img');if(!img)return;var b=document.createElement('button');b.type='button';b.className='credential-view-btn';b.textContent='View Certificate';b.addEventListener('click',function(){var modal=document.getElementById('certificate-viewer-modal'),panel=document.getElementById('certificate-viewer-content');var previewImage=document.createElement('img');previewImage.src=img.currentSrc||img.src;previewImage.alt=img.alt||'Certificate';previewImage.style.cssText='max-width:100%;max-height:84vh;width:auto;height:auto;display:block;';previewImage.decoding='async';panel.replaceChildren(previewImage);modal.hidden=false;document.body.style.overflow='hidden';});var d=entry.querySelector('.entry-desc');if(d)d.insertAdjacentElement('afterend',b);});
 })();
 </script>
 
