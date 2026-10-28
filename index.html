@@ -53,7 +53,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Roboto:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>
   :root{
     --bg:#FBFBF9;
@@ -72,16 +72,16 @@
   body{
     background:var(--bg);
     color:var(--ink);
-    font-family:'Roboto',sans-serif;
-    font-size:16px;
-    line-height:1.6;
+    font-family:'Inter',sans-serif;
+    font-size:17px;
+    line-height:1.7;
     -webkit-font-smoothing:antialiased;
   }
   img{max-width:100%;display:block;}
   a{color:var(--blue);text-decoration:none;}
   a:hover{text-decoration:underline;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
-  h1,h2,h3{font-family:'Space Grotesk',sans-serif;color:var(--ink);}
+  h1,h2,h3{font-family:'Manrope',sans-serif;color:var(--ink);}
   section{padding:64px 0;}
   section:not(:last-child){border-bottom:1px solid var(--line);}
 
@@ -101,7 +101,7 @@
     display:flex;align-items:center;
   }
   .nav-logo{
-    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--ink);
+    font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;color:var(--ink);
   }
   .nav-links{display:flex;align-items:center;list-style:none;}
   .nav-links li + li{margin-left:16px;}
@@ -155,7 +155,7 @@
     flex-shrink:0;
   }
   .eyebrow{
-    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.1em;
     text-transform:uppercase;color:var(--lime);margin-bottom:12px;font-weight:500;
   }
   .hero h1{font-size:50px;font-weight:700;line-height:1.06;}
@@ -166,7 +166,7 @@
   .btn{
     display:inline-flex;align-items:center;justify-content:center;text-align:center;
     min-width:132px;min-height:40px;padding:11px 20px;border-radius:9px;font-size:14px;font-weight:500;
-    font-family:'Roboto',sans-serif;
+    font-family:'Inter',sans-serif;
     border:1px solid transparent;cursor:pointer;margin:0 12px 10px 0;
   }
   .btn-primary{background:var(--blue);color:#fff;}
@@ -188,7 +188,7 @@
     padding:20px 18px;position:relative;overflow:hidden;
     flex:1 1 calc(25% - 11px);min-width:150px;
   }
-  .stat-card .num{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;}
+  .stat-card .num{font-family:'Manrope',sans-serif;font-size:32px;font-weight:700;}
   .stat-card .label{font-size:12.5px;color:var(--ink-soft);margin-top:4px;}
   .stat-card svg{position:absolute;bottom:0;right:0;opacity:.9;}
   @media (max-width:700px){.stat-card{flex-basis:calc(50% - 7px);}}
@@ -214,24 +214,24 @@
   .entry-top{
     display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;
   }
-  .entry-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;}
+  .entry-title{font-family:'Manrope',sans-serif;font-weight:700;font-size:20px;}
   .entry-org{color:var(--ink-soft);font-size:14.5px;}
   .entry-date{
     font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-soft);
     white-space:nowrap;
   }
-  .entry-desc{color:var(--ink-soft);font-size:14.5px;margin-top:8px;max-width:720px;}
-  .entry ul{margin:8px 0 0 18px;color:var(--ink-soft);font-size:14.5px;}
+  .entry-desc{color:var(--ink-soft);font-size:15px;margin-top:8px;max-width:720px;}
+  .entry ul{margin:8px 0 0 18px;color:var(--ink-soft);font-size:15px;}
   .entry ul li{margin-bottom:4px;}
   .tag{
-    display:inline-block;font-size:11px;font-weight:500;padding:3px 9px;border-radius:999px;
+    display:inline-block;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;
     background:#EEF3EE;color:var(--lime);margin-top:8px;font-family:'IBM Plex Mono',monospace;
   }
 
   /* ---------- COURSEWORK ---------- */
   .course-grid{display:flex;flex-wrap:wrap;gap:24px;}
   .course-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;flex:1 1 calc(50% - 12px);min-width:260px;}
-  .course-card h4{font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:12px;color:var(--blue);}
+  .course-card h4{font-family:'Manrope',sans-serif;font-size:18px;margin-bottom:12px;color:var(--blue);}
   .course-card ul{list-style:none;font-size:14px;color:var(--ink-soft);}
   .course-card ul li{padding:3px 0;}
   .badge-status{
@@ -247,7 +247,7 @@
   .chip-row{display:flex;flex-wrap:wrap;}
   .chip{
     background:var(--card);border:1px solid var(--line);border-radius:999px;
-    padding:7px 14px;font-size:13px;font-weight:500;display:flex;align-items:center;
+    padding:7px 14px;font-size:14px;font-weight:600;display:flex;align-items:center;
     margin:0 8px 8px 0;
   }
   .chip .dot{width:6px;height:6px;border-radius:50%;background:var(--lime);margin-right:7px;}
@@ -260,13 +260,13 @@
   .cert-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;flex:1 1 calc(33.333% - 12px);min-width:220px;}
   .cert-card img{width:100%;height:150px;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);}
   .cert-card-body{padding:14px 16px;}
-  .cert-card-body .name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;}
+  .cert-card-body .name{font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;}
   .cert-card-body .issuer{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
   @media (max-width:700px){.cert-card{flex-basis:100%;}}
 
   details{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;}
   summary{
-    cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;
+    cursor:pointer;font-family:'Manrope',sans-serif;font-weight:700;font-size:17px;
     list-style:none;display:flex;align-items:center;
   }
   summary::-webkit-details-marker{display:none;}
@@ -274,10 +274,10 @@
   details[open] summary::before{content:"–";}
   .cert-table-wrap{margin-top:16px;overflow-x:auto;}
   table{width:100%;border-collapse:collapse;font-size:13.5px;}
-  th{text-align:left;font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--ink-soft);
+  th{text-align:left;font-family:'Manrope',sans-serif;font-size:12px;color:var(--ink-soft);
      text-transform:uppercase;letter-spacing:.03em;padding:8px 10px;border-bottom:1px solid var(--line);}
   td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink-soft);}
-  .cert-subhead{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;margin:20px 0 6px;color:var(--blue);}
+  .cert-subhead{font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin:20px 0 6px;color:var(--blue);}
 
   /* ---------- CONTACT / FOOTER ---------- */
   footer{padding:56px 0 64px;text-align:center;}
@@ -436,7 +436,7 @@
     box-shadow:0 5px 16px rgba(0,0,0,.2);
   }
 
-.cv-modal-print{position:absolute;top:12px;right:62px;z-index:5;min-height:38px;padding:8px 13px;border:1px solid rgba(255,255,255,.45);border-radius:999px;background:rgba(18,24,26,.82);color:#fff;font:500 12px 'Roboto',sans-serif;cursor:pointer;box-shadow:0 5px 16px rgba(0,0,0,.2);}
+.cv-modal-print{position:absolute;top:12px;right:62px;z-index:5;min-height:38px;padding:8px 13px;border:1px solid rgba(255,255,255,.45);border-radius:999px;background:rgba(18,24,26,.82);color:#fff;font:500 12px 'Inter',sans-serif;cursor:pointer;box-shadow:0 5px 16px rgba(0,0,0,.2);}
   .cv-modal-print:hover{background:#12181A;}
   .cv-modal-close:hover{background:#12181A;}
 
@@ -714,7 +714,7 @@
   .affiliation-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
   .affiliation-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:0 6px 18px -16px rgba(18,24,26,.25);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;}
   .affiliation-card:hover{transform:translateY(-2px);border-color:rgba(32,78,107,.24);box-shadow:0 10px 24px -18px rgba(18,24,26,.25);}
-  .affiliation-name{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:var(--ink);line-height:1.35;}
+  .affiliation-name{font-family:'Manrope',sans-serif;font-size:15px;font-weight:700;color:var(--ink);line-height:1.35;}
   .affiliation-meta{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--blue);margin-top:6px;letter-spacing:.01em;}
   @media(max-width:700px){.affiliation-grid{grid-template-columns:1fr;}.affiliation-card{padding:13px 14px;}}
   html.dark .affiliation-card{box-shadow:0 7px 20px -16px rgba(0,0,0,.4);}
@@ -741,7 +741,7 @@
   .academic-icon-institutional{color:#6246B5;background:#F3F0FB;}
   .academic-achievement-content{min-width:0;}
   .academic-achievement-category{display:inline-flex;align-items:center;width:max-content;margin-bottom:6px;padding:3px 8px;border:1px solid rgba(32,78,107,.16);border-radius:999px;background:#F5F7FC;color:var(--blue);font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
-  .academic-achievement-title{font-family:'Space Grotesk',sans-serif;font-size:20px;line-height:1.25;font-weight:700;color:var(--ink);}
+  .academic-achievement-title{font-family:'Manrope',sans-serif;font-size:20px;line-height:1.25;font-weight:700;color:var(--ink);}
   .academic-achievement-org{font-size:14.5px;color:var(--blue);margin-top:6px;}
   .academic-achievement-content p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);margin-top:12px;max-width:700px;}
   .academic-achievement-highlight{
@@ -751,7 +751,7 @@
   .academic-achievement-card:nth-child(2) .academic-achievement-highlight{background:#F1F8F5;color:#247A66;}
   .academic-achievement-card:nth-child(3) .academic-achievement-highlight{background:#F5F2FC;color:#6246B5;}
   .academic-highlight-icon{font-size:16px;line-height:1;margin-bottom:7px;opacity:.9;}
-  .academic-achievement-highlight strong{font-family:'Space Grotesk',sans-serif;font-size:42px;line-height:1;font-weight:700;letter-spacing:-.02em;}
+  .academic-achievement-highlight strong{font-family:'Manrope',sans-serif;font-size:42px;line-height:1;font-weight:700;letter-spacing:-.02em;}
   .academic-achievement-highlight>span:not(.academic-highlight-icon){font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.08em;margin-top:7px;}
   .academic-achievement-highlight small{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;margin-top:15px;padding-top:9px;border-top:1px solid currentColor;opacity:.72;}
   html.dark .academic-achievement-icon{background:#202B2F;border-color:#2A3134;}
@@ -775,7 +775,7 @@
 </style>
 
 <style id="languages-proficiency-styles">
-.languages-intro{color:var(--ink-soft);font-size:14.5px;margin-top:8px;max-width:760px}.language-card-list{display:flex;flex-direction:column;gap:14px}.language-card{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:196px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 24px -22px rgba(18,24,26,.28);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}.language-card:hover{transform:translateY(-2px);border-color:rgba(32,78,107,.24);box-shadow:0 12px 28px -20px rgba(18,24,26,.25)}.language-card-media{margin:12px;width:256px;height:170px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#f5f7f9;display:flex;align-items:center;justify-content:center}.language-card-media img{width:100%;height:100%;object-fit:contain;display:block;background:#fff}.language-card-body{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:22px;min-width:0}.language-main{min-width:0}.language-title{font-family:'Space Grotesk',sans-serif;font-size:20px;line-height:1.15;font-weight:700}.language-issuer{color:var(--blue);font-size:13px;margin-top:4px;line-height:1.35}.language-levels{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.language-level{display:inline-flex;border:1px solid rgba(32,78,107,.18);background:#F2F6FA;color:var(--blue);border-radius:999px;padding:4px 9px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;white-space:nowrap}.language-credential{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;margin-top:9px}.language-meta{display:flex;flex-wrap:wrap;gap:5px 14px;color:var(--ink-soft);font-size:11.5px;margin-top:7px}.language-main p{color:var(--ink-soft);font-size:12.5px;line-height:1.45;margin:7px 0 0;max-width:760px}.language-action{appearance:none;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:150px;border:1px solid var(--blue);border-radius:8px;padding:10px 14px;background:transparent;color:var(--blue);font:600 12.5px 'Roboto',sans-serif;white-space:nowrap;cursor:pointer}.language-action:hover{background:var(--blue);color:#fff}.language-action:focus-visible{outline:3px solid rgba(32,78,107,.25);outline-offset:2px}@media(max-width:850px){.language-card{grid-template-columns:210px minmax(0,1fr)}.language-card-media{width:186px;height:145px}.language-card-body{padding:15px;gap:12px}.language-action{min-width:125px}}@media(max-width:650px){.language-card{grid-template-columns:1fr}.language-card-media{width:auto;height:200px;margin:10px}.language-card-body{align-items:flex-start;flex-direction:column;padding:12px 14px 15px}.language-action{width:100%}}
+.languages-intro{color:var(--ink-soft);font-size:14.5px;margin-top:8px;max-width:760px}.language-card-list{display:flex;flex-direction:column;gap:14px}.language-card{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:196px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 24px -22px rgba(18,24,26,.28);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}.language-card:hover{transform:translateY(-2px);border-color:rgba(32,78,107,.24);box-shadow:0 12px 28px -20px rgba(18,24,26,.25)}.language-card-media{margin:12px;width:256px;height:170px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#f5f7f9;display:flex;align-items:center;justify-content:center}.language-card-media img{width:100%;height:100%;object-fit:contain;display:block;background:#fff}.language-card-body{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:22px;min-width:0}.language-main{min-width:0}.language-title{font-family:'Manrope',sans-serif;font-size:20px;line-height:1.15;font-weight:700}.language-issuer{color:var(--blue);font-size:13px;margin-top:4px;line-height:1.35}.language-levels{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.language-level{display:inline-flex;border:1px solid rgba(32,78,107,.18);background:#F2F6FA;color:var(--blue);border-radius:999px;padding:4px 9px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;white-space:nowrap}.language-credential{font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;margin-top:9px}.language-meta{display:flex;flex-wrap:wrap;gap:5px 14px;color:var(--ink-soft);font-size:11.5px;margin-top:7px}.language-main p{color:var(--ink-soft);font-size:12.5px;line-height:1.45;margin:7px 0 0;max-width:760px}.language-action{appearance:none;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:150px;border:1px solid var(--blue);border-radius:8px;padding:10px 14px;background:transparent;color:var(--blue);font:600 12.5px 'Inter',sans-serif;white-space:nowrap;cursor:pointer}.language-action:hover{background:var(--blue);color:#fff}.language-action:focus-visible{outline:3px solid rgba(32,78,107,.25);outline-offset:2px}@media(max-width:850px){.language-card{grid-template-columns:210px minmax(0,1fr)}.language-card-media{width:186px;height:145px}.language-card-body{padding:15px;gap:12px}.language-action{min-width:125px}}@media(max-width:650px){.language-card{grid-template-columns:1fr}.language-card-media{width:auto;height:200px;margin:10px}.language-card-body{align-items:flex-start;flex-direction:column;padding:12px 14px 15px}.language-action{width:100%}}
 </style>
 
 <style id="certificate-viewer-styles">
@@ -784,7 +784,7 @@
 
 <style id="final-small-updates">
 .academic-achievement-grid{position:relative;}
-.academic-achievement-subsection-label{grid-column:1 / -1;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin:4px 0 -2px;}
+.academic-achievement-subsection-label{grid-column:1 / -1;font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin:4px 0 -2px;}
 .scholarships-subsection-label{margin-top:8px;}
 .contact-icon svg{width:24px;height:24px;display:block;}
 @media(max-width:700px){.contact-icon svg{width:22px;height:22px;}}
@@ -848,7 +848,7 @@
   .nav-submenu{display:none;position:absolute;top:100%;left:0;min-width:260px;max-width:340px;padding:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 32px rgba(18,24,26,.14);z-index:60}
   .nav-group details[open] .nav-submenu{display:block}.nav-submenu a{display:block;white-space:normal;padding:10px 12px;border-radius:7px;font-size:13px;line-height:1.35}
   .nav-submenu a:hover,.nav-submenu a:focus-visible{background:rgba(32,78,107,.08);text-decoration:none}
-  .nav-cv-btn{border:0;border-radius:8px;background:var(--blue);color:#fff;padding:9px 12px;font:600 12px 'Roboto',sans-serif;white-space:nowrap;cursor:pointer}.nav-cv-btn:hover{opacity:.88}
+  .nav-cv-btn{border:0;border-radius:8px;background:var(--blue);color:#fff;padding:9px 12px;font:600 12px 'Inter',sans-serif;white-space:nowrap;cursor:pointer}.nav-cv-btn:hover{opacity:.88}
   @media(max-width:1040px){
     .nav-inner{gap:8px}.nav-links{align-items:stretch;gap:0}.nav-links>li{width:100%}
     .nav-links .nav-home,.nav-group summary,.nav-cv-btn{display:block;width:100%;text-align:left;padding:14px 24px;border-radius:0;border-top:1px solid var(--line);font-size:14px}
@@ -1000,7 +1000,7 @@
       <div class="course-card" style="flex-basis:100%;">
         <h4>Botany — Gurudayal Government College (By Year)</h4>
         <p style="font-size:14px;color:var(--ink-soft);margin-bottom:10px;">30+ courses across four years, spanning microbiology, taxonomy, plant physiology, genetics, and biotechnology.</p>
-        <button type="button" class="course-toggle-btn" id="botanyToggleBtn" aria-expanded="false" aria-controls="botanyCourseList" style="appearance:none;border:1px solid var(--blue);background:transparent;color:var(--blue);border-radius:8px;padding:8px 14px;font:600 13px 'Roboto',sans-serif;cursor:pointer;margin-bottom:4px;">View Full Coursework by Year ▾</button>
+        <button type="button" class="course-toggle-btn" id="botanyToggleBtn" aria-expanded="false" aria-controls="botanyCourseList" style="appearance:none;border:1px solid var(--blue);background:transparent;color:var(--blue);border-radius:8px;padding:8px 14px;font:600 13px 'Inter',sans-serif;cursor:pointer;margin-bottom:4px;">View Full Coursework by Year ▾</button>
         <ul id="botanyCourseList" hidden>
           <li><strong>Year 1:</strong> Microbiology, Mycology, Phycology, Chemistry I, Zoology I, History of Bangladesh: Language, Culture and Identity</li>
           <li><strong>Year 2:</strong> Higher Cryptogams, Taxonomy of Angiosperms, Plant Anatomy and Embryology, General Chemistry II, Environmental Chemistry, Zoology II</li>
@@ -1159,7 +1159,7 @@
   #certifications .cert-card>img{width:100%;height:190px;object-fit:contain;object-position:center;background:#fff;border-right:1px solid var(--line);border-bottom:none;}
   #certifications .cert-card-body{padding:20px;display:flex;flex-direction:column;justify-content:center;min-width:0;}
   #certifications .cert-card-body .name{font-size:19px;line-height:1.25;}#certifications .cert-card-body .issuer{font-size:14px;margin-top:7px;color:var(--blue);}
-  .credential-view-btn{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;margin-top:16px;min-height:40px;padding:9px 16px;border:1px solid var(--blue);border-radius:9px;background:var(--card);color:var(--blue);font-family:'Roboto',sans-serif;font-size:14px;font-weight:500;cursor:pointer;}
+  .credential-view-btn{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;margin-top:16px;min-height:40px;padding:9px 16px;border:1px solid var(--blue);border-radius:9px;background:var(--card);color:var(--blue);font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer;}
   .credential-view-btn:hover{background:#F5F8FA;}
   .international-program-card{display:grid;grid-template-columns:minmax(260px,360px) minmax(0,1fr);gap:28px;padding:20px;}
   .international-program-card .certificate-preview{width:100%;height:230px;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center;}
