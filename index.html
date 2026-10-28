@@ -2333,13 +2333,16 @@
     nav .nav-actions{display:flex;align-items:center;flex:1;min-width:0;margin-left:0;gap:14px;}
     nav #navLinks{display:none!important;}
     nav .nav-links-desktop{
-      display:flex!important;position:static;align-items:center;justify-content:space-between;
+      display:flex!important;position:static;align-items:center;justify-content:flex-start;
       flex:1;min-width:0;width:auto;max-height:none;overflow:visible;
-      flex-direction:row;gap:clamp(18px,1.8vw,28px);padding:0;
+      flex-direction:row;gap:22px;padding:0;margin:0;
       background:transparent;border:0;border-radius:0;box-shadow:none;
     }
-    nav .nav-links-desktop>li{margin:0;}
-    nav .nav-actions{gap:16px;}
+    nav .nav-links-desktop>li{margin:0;flex:0 0 auto;}
+    nav .nav-links-desktop a,nav .nav-links-desktop .nav-group summary{
+      padding:8px 0;font-size:13px;white-space:nowrap;
+    }
+    nav .nav-actions{gap:18px;}
     nav .theme-toggle{margin-left:0;}
 
     nav .nav-links-desktop>li{width:auto;flex:0 0 auto;list-style:none;}
