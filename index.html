@@ -1568,41 +1568,27 @@
 <div id="skills-languages-anchor"></div>
 <!-- LANGUAGES-PROFICIENCY-START -->
 <section id="certifications">
-    <div class="section-head">
-      <div class="section-kicker">Credentials</div>
-      <h2>Certifications &amp; Training</h2>
-    </div>
-    <p style="color:var(--ink-soft);font-size:15px;max-width:760px;margin:-12px 0 24px;">A selection of certificates and training records. Explore the full collection in the Certificate &amp; Course Library.</p>
-    <div class="cert-featured" aria-label="Selected certificates and training records">
-      <article class="cert-card">
-        <div class="cert-card-body">
-          <div class="name">Gemini Certified Educator</div>
-          <div class="issuer">Google for Education</div>
-          <p class="cert-date">October 2025</p>
-          <span class="tag">AI &amp; Digital Technology</span>
-        </div>
-      </article>
-      <article class="cert-card">
-        <div class="cert-card-body">
-          <div class="name">Customer Understanding &amp; Digital Marketing Channels</div>
-          <div class="issuer">Unilever</div>
-          <p class="cert-date">August 2025</p>
-          <span class="tag">Digital Marketing &amp; Business</span>
-        </div>
-      </article>
-      <article class="cert-card">
-        <div class="cert-card-body">
-          <div class="name">Introduction to AI</div>
-          <div class="issuer">Google</div>
-          <p class="cert-date">July 2025</p>
-          <span class="tag">AI &amp; Digital Technology</span>
-        </div>
-      </article>
-    </div>
-    <div style="display:flex;justify-content:center;margin-top:24px;">
-      <a class="btn btn-primary" id="certificate-library-link" href="/certificates.html#library">View All Certificates &amp; Courses →</a>
-    </div>
-  </section>
+  <div class="section-head">
+    <div class="section-kicker">Credentials</div>
+    <h2>Certifications &amp; Training</h2>
+  </div>
+  <p style="color:var(--ink-soft);font-size:15px;max-width:700px;margin:-12px 0 24px;">A selection of certificates and completed courses. Browse the full library for additional training records and available certificate evidence.</p>
+  <div class="credential-summary-list" aria-label="Selected certifications and training">
+    <article class="credential-summary-item">
+      <h3>Gemini Certified Educator</h3>
+      <p>Google for Education <span aria-hidden="true">·</span> October 2025</p>
+    </article>
+    <article class="credential-summary-item">
+      <h3>Customer Understanding &amp; Digital Marketing Channels</h3>
+      <p>Unilever <span aria-hidden="true">·</span> August 2025</p>
+    </article>
+    <article class="credential-summary-item">
+      <h3>Introduction to AI</h3>
+      <p>Google <span aria-hidden="true">·</span> July 2025</p>
+    </article>
+  </div>
+  <a class="btn btn-primary" id="certificate-library-link" href="/certificates.html">View All Certificates &amp; Courses →</a>
+</section>
 <!-- LANGUAGES-PROFICIENCY-END -->
 
           <!-- CERTIFICATIONS -->
@@ -2422,6 +2408,29 @@
   @media(max-width:700px){
     #certifications .cert-card-body{padding:18px;}
     #research .entry{padding:18px;}
+  }
+</style>
+
+
+<style id="credential-summary-clean-layout">
+  #certifications .credential-summary-list{
+    display:grid;grid-template-columns:1fr;gap:0;
+    max-width:820px;margin:0 0 24px;
+    border-top:1px solid var(--line);
+  }
+  #certifications .credential-summary-item{
+    padding:17px 0;border-bottom:1px solid var(--line);
+  }
+  #certifications .credential-summary-item h3{
+    font-size:17px;line-height:1.4;font-weight:700;margin:0 0 5px;
+  }
+  #certifications .credential-summary-item p{
+    color:var(--ink-soft);font-size:14px;margin:0;
+  }
+  #certifications #certificate-library-link{margin-top:2px;}
+  @media(min-width:700px){
+    #certifications .credential-summary-list{grid-template-columns:1fr 1fr;column-gap:32px;}
+    #certifications .credential-summary-item{padding:20px 0;}
   }
 </style>
 
