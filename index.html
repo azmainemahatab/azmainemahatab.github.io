@@ -2438,5 +2438,29 @@
 
 
 </style>
+
+<style id="certificate-card-no-preview-v1">
+  /* Keep certificate artwork out of the listing cards; show it only in the viewer. */
+  #certifications .cert-card{display:block;min-width:0;}
+  #certifications .cert-card>img{display:none!important;}
+  #certifications .cert-card-body{padding:22px 24px;min-height:140px;align-items:flex-start;}
+  #certifications .cert-card-body .name{max-width:760px;}
+  #certifications .cert-card .credential-view-btn{margin-top:18px;}
+  #research .entry>img{display:none!important;}
+  #research .entry{display:block;padding:22px 24px;}
+  #research .entry>.entry-top,#research .entry>.entry-desc,#research .entry>.tag{display:block;max-width:none;margin-top:10px;}
+  .international-program-card .certificate-preview{display:none!important;}
+  .international-program-card{display:block;}
+  .international-program-card .program-content{display:flex;gap:0;}
+  .language-card-media{display:none!important;}
+  .language-card{display:block;}
+  .language-card-body{width:100%;max-width:none;}
+  .language-card .language-action{margin-top:16px;}
+  @media(max-width:700px){
+    #certifications .cert-card-body{padding:18px;}
+    #research .entry{padding:18px;}
+  }
+</style>
+
 </body>
 </html>
