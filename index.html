@@ -2330,16 +2330,17 @@
 
   /* Desktop header matches the reference: MR, six clear links, theme and menu controls. */
   @media (min-width:1041px){
-    nav .nav-actions{display:flex;align-items:center;flex:1;min-width:0;margin-left:auto;gap:18px;}
+    nav .nav-inner{position:relative;}
+    nav .nav-actions{display:flex;align-items:center;flex:1;min-width:0;margin-left:auto;gap:18px;position:static;}
     nav #navLinks{display:none!important;}
     nav .nav-links-desktop{
-      display:flex!important;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-      align-items:center;justify-content:center;
+      display:flex!important;position:absolute;left:28px;top:50%;transform:translateY(-50%);
+      align-items:center;justify-content:flex-start;
       flex:0 0 auto;min-width:0;width:auto;max-height:none;overflow:visible;
-      flex-direction:row;gap:28px;padding:0;margin:0;
+      flex-direction:row;gap:30px;padding:0;margin:0;
       background:transparent;border:0;border-radius:0;box-shadow:none;
     }
-    nav .nav-actions{position:relative;}
+    nav .nav-logo{position:absolute;left:calc(28px + 470px);top:50%;transform:translateY(-50%);}
     nav .theme-toggle{margin-left:auto!important;}
     nav .nav-links-desktop>li{margin:0;flex:0 0 auto;}
     nav .nav-links-desktop a,nav .nav-links-desktop .nav-group summary{
