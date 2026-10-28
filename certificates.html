@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A categorized library of certificates, online courses, and professional training completed by Mahatab Azmaine Refat.">
+<meta name="theme-color" content="#204E6B">
+<title>Certificate Library | Mahatab Azmaine Refat</title>
+<style>
+:root{--bg:#fbfbf9;--card:#fff;--ink:#12181a;--muted:#5b6568;--blue:#204e6b;--line:#e4e7e5;--lime:#405f25}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,Arial,sans-serif}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+header{border-bottom:1px solid var(--line);background:var(--card)}.top{max-width:1100px;margin:auto;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.brand{font-weight:800;color:var(--ink)}.back{font-size:14px;font-weight:650}
+main{max-width:1100px;margin:auto;padding:44px 24px 70px}.eyebrow{font:12px/1.5 monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--lime)}h1{font-size:clamp(30px,5vw,46px);line-height:1.15;margin:10px 0 14px}h2{font-size:22px;margin:0 0 12px}.intro{max-width:760px;color:var(--muted);margin-bottom:24px}
+.notice{background:#f0f5f7;border:1px solid #dce8ee;border-radius:12px;padding:14px 16px;color:#24495c;font-size:14px;margin:20px 0 28px}
+.controls{display:grid;grid-template-columns:minmax(220px,1fr) minmax(180px,260px);gap:12px;margin-bottom:22px}
+input,select{width:100%;min-height:46px;border:1px solid var(--line);border-radius:10px;background:var(--card);padding:10px 13px;color:var(--ink);font:inherit}
+.count{color:var(--muted);font-size:13px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:19px;min-width:0;box-shadow:0 5px 18px rgba(18,24,26,.045)}
+.card h3{font-size:17px;line-height:1.35;margin:0 0 7px}.meta{color:var(--muted);font-size:13px}.pill{display:inline-block;margin:12px 6px 0 0;padding:3px 9px;border-radius:999px;background:#eef3ee;color:var(--lime);font:11px/1.6 monospace}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.button{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:13px;font-weight:700;min-height:38px;background:var(--card);color:var(--blue);cursor:pointer}.button.primary{background:var(--blue);color:#fff;border-color:var(--blue)}.button[aria-disabled=true]{color:#777;background:#f4f4f4;cursor:default}
+.empty{display:none;padding:28px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);text-align:center}
+footer{border-top:1px solid var(--line);padding:24px;text-align:center;color:var(--muted);font-size:13px}
+dialog{width:min(900px,94vw);max-height:90vh;border:0;border-radius:14px;padding:0;box-shadow:0 25px 80px rgba(0,0,0,.35)}dialog::backdrop{background:rgba(8,15,20,.75)}.viewer-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;gap:12px;border-bottom:1px solid var(--line)}.viewer-head strong{font-size:14px}.viewer-head button{border:0;border-radius:8px;padding:8px 12px;background:#eef3f5;cursor:pointer}.viewer-image{display:block;max-width:100%;max-height:75vh;object-fit:contain;margin:auto;padding:12px}
+@media(max-width:650px){main{padding:32px 16px 50px}.top{padding:15px 16px}.controls,.grid{grid-template-columns:1fr}.card{padding:16px}}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1113;--card:#171c1f;--ink:#f1f4f3;--muted:#aab4b6;--blue:#75b8df;--line:#2a3134;--lime:#a0d476}.notice{background:#1a2a32;border-color:#2c4856;color:#d4e8f2}.pill{background:#202a23}.button[aria-disabled=true]{background:#202426;color:#9ba3a5}}
+</style>
+</head>
+<body>
+<header><div class="top"><a class="brand" href="/">MR · Academic Portfolio</a><a class="back" href="/">← Back to Main Portfolio</a></div></header>
+<main>
+<div class="eyebrow">Academic &amp; Professional Development</div>
+<h1>Certificate Library</h1>
+<p class="intro">A searchable directory of professional certifications, online courses, language learning, and training activities. Use the filters to find learning records by subject or provider.</p>
+<div class="notice"><strong>Evidence status:</strong> A course or credential can be listed here even when its certificate file is not yet attached. “View Certificate” is enabled only for certificate images currently available on this website. Add the original certificate PDF/image or an official verification URL to complete other records. Course participation is not automatically described as a professional certification.</div>
+<div class="controls">
+<label><span style="display:block;font-size:13px;font-weight:700;margin-bottom:5px">Search records</span><input id="search" type="search" placeholder="Search title, provider, or topic…" autocomplete="off"></label>
+<label><span style="display:block;font-size:13px;font-weight:700;margin-bottom:5px">Filter by category</span><select id="category"><option value="all">All categories</option><option value="ai">AI &amp; Digital Technology</option><option value="marketing">Digital Marketing &amp; Business</option><option value="design">UI/UX &amp; Productivity</option><option value="environment">Environment &amp; Open Education</option><option value="language">Language Learning</option><option value="leadership">Leadership &amp; Collaboration</option><option value="digital-skills">Digital Skills &amp; ICT Training</option></select></label>
+</div>
+<div class="count" id="count" aria-live="polite"></div>
+<div class="grid" id="library">
+<article class="card" data-category="ai" data-search="Gemini Certified Educator Google for Education AI digital technology">
+<h3>Gemini Certified Educator</h3><div class="meta">Google for Education · October 2025</div><span class="pill">AI &amp; Digital Technology</span><div class="actions"><button class="button primary view-cert" data-src="/assets/portfolio-image-07.jpg" data-title="Gemini Certified Educator">View Certificate</button><a class="button" href="/assets/portfolio-image-07.jpg" target="_blank" rel="noopener">Open image</a></div>
+</article>
+<article class="card" data-category="marketing" data-search="Customer Understanding Digital Marketing Channels Unilever business marketing">
+<h3>Customer Understanding &amp; Digital Marketing Channels</h3><div class="meta">Unilever · August 2025</div><span class="pill">Digital Marketing &amp; Business</span><div class="actions"><button class="button primary view-cert" data-src="/assets/portfolio-image-08.jpg" data-title="Customer Understanding &amp; Digital Marketing Channels">View Certificate</button><a class="button" href="/assets/portfolio-image-08.jpg" target="_blank" rel="noopener">Open image</a></div>
+</article>
+<article class="card" data-category="ai" data-search="Introduction to AI Google artificial intelligence">
+<h3>Introduction to AI</h3><div class="meta">Google · July 2025</div><span class="pill">AI &amp; Digital Technology</span><div class="actions"><button class="button primary view-cert" data-src="/assets/portfolio-image-09.jpg" data-title="Introduction to AI">View Certificate</button><a class="button" href="/assets/portfolio-image-09.jpg" target="_blank" rel="noopener">Open image</a></div>
+</article>
+<article class="card" data-category="design" data-search="Microsoft Excel Professional Certificate Microsoft spreadsheet productivity">
+<h3>Microsoft Excel Professional Certificate</h3><div class="meta">Microsoft · July 2025</div><span class="pill">UI/UX &amp; Productivity</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="marketing" data-search="Certificate of Competence Digital Marketing LEDP">
+<h3>Certificate of Competence — Digital Marketing</h3><div class="meta">LEDP · March 2020</div><span class="pill">Digital Marketing &amp; Business</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="digital-skills" data-search="Skill Development Mobile Game App Project ICT Division Bangladesh">
+<h3>Skill Development for Mobile Game &amp; App Project</h3><div class="meta">ICT Division · January 2022</div><span class="pill">Digital Skills &amp; ICT Training</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="design" data-search="Introduction to UX UI Design IBM design user experience interface">
+<h3>Introduction to UX/UI Design</h3><div class="meta">IBM · February 2026</div><span class="pill">UI/UX &amp; Productivity</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="environment" data-search="Introduction to Climate Risk Informed Decision Analysis UNESCO environment climate">
+<h3>Introduction to Climate Risk Informed Decision Analysis</h3><div class="meta">UNESCO · November 2025</div><span class="pill">Environment &amp; Open Education</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="environment" data-search="Open Educational Resources OER Development UNESCO">
+<h3>Open Educational Resources (OER) Development</h3><div class="meta">UNESCO · October 2025</div><span class="pill">Environment &amp; Open Education</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="leadership" data-search="High Performance Collaboration Leadership Teamwork Negotiation Northwestern University">
+<h3>High Performance Collaboration: Leadership, Teamwork &amp; Negotiation</h3><div class="meta">Northwestern University · Date not recorded</div><span class="pill">Leadership &amp; Collaboration</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="marketing" data-search="SEO HubSpot Academy search engine optimization">
+<h3>SEO</h3><div class="meta">HubSpot Academy · July 2025</div><span class="pill">Digital Marketing &amp; Business</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="marketing" data-search="Digital Marketing HubSpot Academy">
+<h3>Digital Marketing</h3><div class="meta">HubSpot Academy · July 2025</div><span class="pill">Digital Marketing &amp; Business</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="marketing" data-search="On-Page SEO Essentials Semrush">
+<h3>On-Page SEO Essentials with Semrush</h3><div class="meta">Semrush · August 2025</div><span class="pill">Digital Marketing &amp; Business</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="marketing" data-search="Semrush SEO Crash Course Brian Dean">
+<h3>Semrush SEO Crash Course with Brian Dean</h3><div class="meta">Semrush · July 2025</div><span class="pill">Digital Marketing &amp; Business</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="marketing" data-search="Keyword Research Essentials Semrush">
+<h3>Keyword Research Essentials with Semrush</h3><div class="meta">Semrush · July 2025</div><span class="pill">Digital Marketing &amp; Business</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="design" data-search="Work Smarter with Microsoft Word Microsoft productivity">
+<h3>Work Smarter with Microsoft Word</h3><div class="meta">Microsoft · July 2025</div><span class="pill">UI/UX &amp; Productivity</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="marketing" data-search="Introduction to Social Media Marketing Meta">
+<h3>Introduction to Social Media Marketing</h3><div class="meta">Meta · Date not recorded</div><span class="pill">Digital Marketing &amp; Business</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="marketing" data-search="Foundations of Digital Marketing and E-commerce Google">
+<h3>Foundations of Digital Marketing and E-commerce</h3><div class="meta">Google · June 2025</div><span class="pill">Digital Marketing &amp; Business</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="marketing" data-search="Digital Marketing Foundations LinkedIn">
+<h3>Digital Marketing Foundations</h3><div class="meta">LinkedIn · June 2025</div><span class="pill">Digital Marketing &amp; Business</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="digital-skills" data-search="Batch 1 Digital Skills MuktoPaath">
+<h3>Batch-1 (Digital Skills)</h3><div class="meta">MuktoPaath · May 2026</div><span class="pill">Digital Skills &amp; ICT Training</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="language" data-search="Changes of Plan English Level B2 24h British Council language">
+<h3>Changes of Plan — English, Level B2 (24h)</h3><div class="meta">British Council · June 2024</div><span class="pill">Language Learning</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="leadership" data-search="Aspire Leaders Program 2026 Cohort Aspire Institute leadership">
+<h3>Aspire Leaders Program (2026 Cohort)</h3><div class="meta">Aspire Institute · April 2026</div><span class="pill">Leadership &amp; Collaboration</span><div class="actions"><span class="button" aria-disabled="true">Certificate file/link to add</span></div></article>
+<article class="card" data-category="leadership" data-search="Webinar Building Strong Virtual Teams United Latino Students Association">
+<h3>Webinar: Building Strong Virtual Teams</h3><div class="meta">United Latino Students Association · October 2025</div><span class="pill">Leadership &amp; Collaboration</span><div class="actions"><span class="button" aria-disabled="true">Participation record/link to add</span></div></article>
+<article class="card" data-category="leadership" data-search="Webinar Financial Planning Navigating Personal Finance Global Economy United Latino Students Association">
+<h3>Webinar: Financial Planning — Navigating Personal Finance in a Global Economy</h3><div class="meta">United Latino Students Association · October 2025</div><span class="pill">Leadership &amp; Collaboration</span><div class="actions"><span class="button" aria-disabled="true">Participation record/link to add</span></div></article>
+</div>
+<div class="empty" id="empty">No matching records. Try another keyword or category.</div>
+</main>
+<dialog id="viewer" aria-label="Certificate viewer"><div class="viewer-head"><strong id="viewerTitle">Certificate</strong><button type="button" id="closeViewer">Close ✕</button></div><img class="viewer-image" id="viewerImage" src="" alt="Certificate preview"></dialog>
+<footer><a href="/">Main Portfolio</a> · Certificate Library · Updated as evidence files and verification links are added</footer>
+<script>
+const search = document.getElementById('search');
+const category = document.getElementById('category');
+const cards = Array.from(document.querySelectorAll('.card'));
+const count = document.getElementById('count');
+const empty = document.getElementById('empty');
+function filterCards(){
+  const q = search.value.trim().toLowerCase();
+  const c = category.value;
+  let visible = 0;
+  cards.forEach(card=>{
+    const matchesText = (card.dataset.search + ' ' + card.innerText).toLowerCase().includes(q);
+    const matchesCategory = c === 'all' || card.dataset.category === c;
+    const show = matchesText && matchesCategory;
+    card.hidden = !show;
+    if(show) visible++;
+  });
+  count.textContent = visible + ' learning records shown';
+  empty.style.display = visible ? 'none' : 'block';
+}
+search.addEventListener('input',filterCards);
+category.addEventListener('change',filterCards);
+document.querySelectorAll('.view-cert').forEach(button=>button.addEventListener('click',()=>{
+  document.getElementById('viewerTitle').textContent=button.dataset.title;
+  document.getElementById('viewerImage').src=button.dataset.src;
+  const viewer=document.getElementById('viewer');
+  if(typeof viewer.showModal==='function') viewer.showModal();
+  else window.open(button.dataset.src,'_blank','noopener');
+}));
+function closeViewer(){const viewer=document.getElementById('viewer');if(viewer.open)viewer.close();document.getElementById('viewerImage').src='';}
+document.getElementById('closeViewer').addEventListener('click',closeViewer);
+document.getElementById('viewer').addEventListener('click',event=>{if(event.target.id==='viewer')closeViewer();});
+filterCards();
+</script>
+</body>
+</html>
