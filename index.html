@@ -213,6 +213,7 @@
 
   /* ---------- SECTION HEAD ---------- */
   .section-head{margin-bottom:30px;}
+  .subsection-title{font-family:'Manrope',sans-serif;font-size:25px;line-height:1.25;font-weight:600;margin:40px 0 14px;color:var(--ink);}
   .section-kicker{
     font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;
     text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:8px;
@@ -249,7 +250,7 @@
   /* ---------- COURSEWORK ---------- */
   .course-grid{display:flex;flex-wrap:wrap;gap:24px;}
   .course-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;flex:1 1 calc(50% - 12px);min-width:260px;}
-  .course-card h4{font-family:'Manrope',sans-serif;font-size:18px;margin-bottom:12px;color:var(--blue);}
+  .course-card h3{font-family:'Manrope',sans-serif;font-size:18px;margin-bottom:12px;color:var(--blue);}
   .course-card ul{list-style:none;font-size:14px;color:var(--ink-soft);}
   .course-card ul li{padding:3px 0;}
   .badge-status{
@@ -261,7 +262,7 @@
 
   /* ---------- SKILLS CHIPS ---------- */
   .skill-group{margin-bottom:22px;}
-  .skill-group h4{font-size:16px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);margin-bottom:12px;font-weight:700;}
+  .skill-group h3{font-size:16px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);margin-bottom:12px;font-weight:700;}
   .chip-row{display:flex;flex-wrap:wrap;}
   .chip{
     background:var(--card);border:1px solid var(--line);border-radius:999px;
@@ -635,7 +636,7 @@
   }
 
   /* Keep chips and metadata readable */
-  .skill-group h4{
+  .skill-group h3{
     color:var(--ink-soft);
   }
 
@@ -900,7 +901,7 @@
         <li class="nav-group"><details><summary>Experience</summary><div class="nav-submenu"><a href="#experience">Professional Experience</a><a href="#leadership">Leadership &amp; Volunteering</a></div></details></li>
         <li class="nav-group"><details><summary>Credentials</summary><div class="nav-submenu"><a href="#scholarships">Scholarships &amp; Funding</a><a href="#memberships">Professional &amp; Scientific Memberships</a><a href="#certifications">Certifications &amp; Training</a></div></details></li>
         <li class="nav-group"><details><summary>More</summary><div class="nav-submenu"><a href="#languages-proficiency">Languages &amp; Proficiency</a><a href="#media-features">Media Features &amp; Publications</a><a href="#contact">Contact &amp; Collaboration</a></div></details></li>
-        <li><button type="button" class="nav-cv-btn" id="viewCvNavBtn">View CV</button></li>
+        <li><button type="button" class="nav-cv-btn" id="viewCvNavBtn" aria-haspopup="dialog" aria-controls="cvModal">View CV</button></li>
       </ul>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.6 8.6 0 1 0 20.2 15.2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false" onclick="togglePortfolioMenu(event)"><span></span><span></span><span></span></button>
@@ -945,7 +946,7 @@
       <div class="tagline">Health Science and Botany student focused on environmental health, public health research, and evidence-based practice.</div>
       <p class="hero-summary">Research interests: environmental determinants of health, plant–human health connections, and practical public health methods.</p>
       <div class="hero-cta">
-        <button type="button" class="btn btn-primary" id="viewCvBtn">View CV</button>
+        <button type="button" class="btn btn-primary" id="viewCvBtn" aria-haspopup="dialog" aria-controls="cvModal">View CV</button>
         <a href="#contact" class="btn btn-ghost">Get in Touch</a>
       </div>
       <div class="hero-focus" aria-label="Academic focus">
@@ -1039,7 +1040,7 @@
     </div>
     <div class="course-grid">
       <div class="course-card">
-        <h4>Health Science — Completed</h4>
+        <h3>Health Science — Completed</h3>
         <ul>
           <li>Introduction to Health Science</li>
           <li>Biology 1 &amp; 2 for Health Studies Majors</li>
@@ -1048,7 +1049,7 @@
         </ul>
       </div>
       <div class="course-card">
-        <h4>Health Science — In Progress</h4>
+        <h3>Health Science — In Progress</h3>
         <ul>
           <li>Medical Terminology <span class="badge-status badge-enrolled">Enrolled</span></li>
           <li>Human Anatomy &amp; Physiology <span class="badge-status badge-enrolled">Enrolled</span></li>
@@ -1057,7 +1058,7 @@
         </ul>
       </div>
       <div class="course-card">
-        <h4>Statistics &amp; Social Science</h4>
+        <h3>Statistics &amp; Social Science</h3>
         <ul>
           <li>Introduction to Statistics</li>
           <li>College Algebra</li>
@@ -1066,7 +1067,7 @@
         </ul>
       </div>
       <div class="course-card" style="flex-basis:100%;">
-        <h4>Botany — Gurudayal Government College (By Year)</h4>
+        <h3>Botany — Gurudayal Government College (By Year)</h3>
         <p style="font-size:14px;color:var(--ink-soft);margin-bottom:10px;">30+ courses across four years, spanning microbiology, taxonomy, plant physiology, genetics, and biotechnology.</p>
         <button type="button" class="course-toggle-btn" id="botanyToggleBtn" aria-expanded="false" aria-controls="botanyCourseList" style="appearance:none;border:1px solid var(--blue);background:transparent;color:var(--blue);border-radius:8px;padding:8px 14px;font:600 13px 'Inter',sans-serif;cursor:pointer;margin-bottom:4px;">View Full Coursework by Year ▾</button>
         <ul id="botanyCourseList" hidden>
@@ -1186,7 +1187,7 @@
       <h2>Academic Projects &amp; Research Portfolio</h2>
     </div>
     <div class="section-head" style="margin-top:44px;">
-      <h2 style="font-size:25px;">Academic Projects</h2>
+      <h3 class="subsection-title">Selected Projects</h3>
     </div>
     <div class="entry">
       <div class="entry-top">
@@ -1296,7 +1297,7 @@
     </div>
 
     <div class="skill-group">
-      <h4>Research &amp; Data Analysis</h4>
+      <h3>Research &amp; Data Analysis</h3>
       <div class="chip-row">
         <div class="chip"><span class="dot"></span>Foundational Data Analysis</div>
         <div class="chip"><span class="dot"></span>Foundational Statistics &amp; Biostatistics</div>
@@ -1307,7 +1308,7 @@
     </div>
 
     <div class="skill-group">
-      <h4>Programming &amp; Data Tools</h4>
+      <h3>Programming &amp; Data Tools</h3>
       <div class="chip-row">
         <div class="chip"><span class="dot"></span><span>Python</span><span class="skill-proficiency">Beginner</span></div>
         <div class="chip"><span class="dot"></span><span>HTML</span><span class="skill-proficiency">Intermediate</span></div>
@@ -1318,7 +1319,7 @@
     </div>
 
     <div class="skill-group">
-      <h4>Digital Marketing &amp; Web Platforms</h4>
+      <h3>Digital Marketing &amp; Web Platforms</h3>
       <div class="chip-row">
         <div class="chip"><span class="dot"></span>WordPress Development</div>
         <div class="chip"><span class="dot"></span>On-Page SEO</div>
@@ -1330,7 +1331,7 @@
     </div>
 
     <div class="skill-group">
-      <h4>Design &amp; Content</h4>
+      <h3>Design &amp; Content</h3>
       <div class="chip-row">
         <div class="chip"><span class="dot"></span>UI/UX Design</div>
         <div class="chip"><span class="dot"></span>Canva</div>
@@ -1340,7 +1341,7 @@
     </div>
 
     <div class="skill-group">
-      <h4>Professional Skills</h4>
+      <h3>Professional Skills</h3>
       <div class="chip-row">
         <div class="chip"><span class="dot"></span>Leadership &amp; Mentoring</div>
         <div class="chip"><span class="dot"></span>Cross-Cultural Communication</div>
@@ -1359,7 +1360,7 @@
     </div>
 
     <div class="section-head" style="margin-bottom:14px;">
-      <h2 style="font-size:25px;">Work Experience</h2>
+      <h3 class="subsection-title">Employment &amp; Client Work</h3>
     </div>
     <div class="entry">
       <div class="entry-top">
@@ -1374,7 +1375,7 @@
     </div>
 
     <div class="section-head" style="margin-top:40px;margin-bottom:14px;">
-      <h2 style="font-size:25px;">Internships</h2>
+      <h3 class="subsection-title">Internships</h3>
     </div>
     <div class="entry">
       <div class="entry-top">
@@ -1392,7 +1393,7 @@
     </div>
 
     <div class="section-head" style="margin-top:40px;margin-bottom:14px;">
-      <h2 style="font-size:25px;">Professional Projects</h2>
+      <h3 class="subsection-title">Professional Projects</h3>
     </div>
     <div class="entry">
       <div class="entry-top">
@@ -1415,7 +1416,7 @@
     </div>
 
     <div class="section-head" style="margin-bottom:14px;">
-      <h2 style="font-size:25px;">Leadership</h2>
+      <h3 class="subsection-title">Leadership</h3>
     </div>
     <div class="entry">
       <div class="entry-top">
@@ -1463,7 +1464,7 @@
     </div>
 
     <div class="section-head" style="margin-top:40px;margin-bottom:14px;">
-      <h2 style="font-size:25px;">Volunteering</h2>
+      <h3 class="subsection-title">Volunteering</h3>
     </div>
     <div class="entry">
       <div class="entry-top">
@@ -1692,10 +1693,10 @@
 </div>
 
 <!-- ---------- EMBEDDED CV PREVIEW ---------- -->
-<div class="cv-modal" id="cvModal" aria-hidden="true">
+<div class="cv-modal" id="cvModal" aria-hidden="true" role="presentation">
   <div class="cv-modal-panel" role="dialog" aria-modal="true" aria-label="CV Preview" tabindex="-1">
-    <button type="button" class="cv-modal-print" id="cvPrintBtn">Print / Save as PDF</button>
-    <button type="button" class="cv-modal-close" id="cvModalClose" aria-label="Close CV preview">×</button>
+    <button type="button" class="cv-modal-print" id="cvPrintBtn" aria-controls="cvModal">Print / Save as PDF</button>
+    <button type="button" class="cv-modal-close" id="cvModalClose" aria-label="Close CV preview" aria-controls="cvModal">×</button>
     <iframe
       class="cv-frame"
       id="cvFrame"
@@ -1788,8 +1789,8 @@
 &lt;body&gt;
 
 &lt;div class=&quot;toolbar&quot;&gt;
-  &lt;a href=&quot;#&quot; class=&quot;back&quot; onclick=&quot;parent.closeCvModal(); return false;&quot;&gt;← Back to Portfolio&lt;/a&gt;
-  &lt;button class=&quot;print-btn&quot; onclick=&quot;window.print()&quot;&gt;🖨️ Print / Save as PDF&lt;/button&gt;
+  &lt;a href=&quot;#&quot; class=&quot;back&quot;&gt;← Back to Portfolio&lt;/a&gt;
+  &lt;button class=&quot;print-btn&quot;&gt;🖨️ Print / Save as PDF&lt;/button&gt;
 &lt;/div&gt;
 
 &lt;div class=&quot;page&quot;&gt;
@@ -1802,7 +1803,7 @@
 
   &lt;h2&gt;Profile&lt;/h2&gt;
   &lt;p style=&quot;font-size:13.5px;color:var(--ink-soft);&quot;&gt;
-    Health Science undergraduate (University of the People) and final-year Botany student (Gurudayal Government College, National University) with a growing academic and applied interest in environmental and public health. Recognized for consistent academic excellence (4-term President&#x27;s List) and active participation in international research and leadership communities, including the International Astronomical Search Collaboration (NASA-affiliated) and six global scientific societies. Combines this academic foundation with four years of hands-on experience in digital marketing and SEO, including founding and growing an education-focused YouTube channel to 1,300+ subscribers.
+    Health Science undergraduate (University of the People) and final-year Botany student (Gurudayal Government College, National University) with a growing academic and applied interest in environmental and public health. Recognized for consistent academic excellence (4-term President&#x27;s List) and active participation in international research and leadership communities, including the International Astronomical Search Collaboration (NASA-affiliated) and six global scientific societies. Combines this academic foundation with four years of hands-on experience in digital marketing and SEO, including founding and growing an education-focused YouTube channel to 1,360+ subscribers.
   &lt;/p&gt;
 
   &lt;h2&gt;Education&lt;/h2&gt;
@@ -1842,7 +1843,7 @@
     &lt;div class=&quot;entry-top&quot;&gt;&lt;span class=&quot;entry-title&quot;&gt;Founder &amp;amp; Host — &quot;Study Abroad with Mahatab Azmaine Refat&quot;&lt;/span&gt;&lt;span class=&quot;entry-date&quot;&gt;2024 – Present&lt;/span&gt;&lt;/div&gt;
     &lt;div class=&quot;entry-org&quot;&gt;YouTube (@mahatabazmaine)&lt;/div&gt;
     &lt;ul&gt;
-      &lt;li&gt;Built a 1,300+ subscriber education channel (48+ videos) from zero, guiding Bangladeshi students through scholarship and study-abroad pathways.&lt;/li&gt;
+      &lt;li&gt;Built a 1,360+ subscriber education channel (48+ videos) from zero, guiding Bangladeshi students through scholarship and study-abroad pathways.&lt;/li&gt;
       &lt;li&gt;Applied SEO strategies to grow reach; top-performing content exceeds 18,000 views.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/div&gt;
@@ -1946,16 +1947,79 @@
   const viewCvNavBtn = document.getElementById('viewCvNavBtn');
   const cvModalClose = document.getElementById('cvModalClose');
   const cvPrintBtn = document.getElementById('cvPrintBtn');
+  const cvFrame = document.getElementById('cvFrame');
+  const pageContent = document.querySelector('.wrap');
+  const modalPanel = cvModal ? cvModal.querySelector('.cv-modal-panel') : null;
 
   let lastFocusedElement = null;
+  let cvFrameControlsBound = false;
+
+  function getFrameFocusable(){
+    if(!cvFrame || !cvFrame.contentDocument) return [];
+    return Array.from(cvFrame.contentDocument.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter(el => !el.hidden && el.getAttribute('aria-hidden') !== 'true');
+  }
+
+  function bindCvFrameControls(){
+    if(!cvFrame || !cvFrame.contentDocument) return;
+    const frameDoc = cvFrame.contentDocument;
+    if(cvFrameControlsBound) return;
+    cvFrameControlsBound = true;
+
+    const backLink = frameDoc.querySelector('.toolbar .back');
+    const framePrint = frameDoc.querySelector('.print-btn');
+    if(backLink){
+      backLink.addEventListener('click', event => {
+        event.preventDefault();
+        closeCvModal();
+      });
+    }
+    if(framePrint){
+      framePrint.addEventListener('click', () => {
+        try { cvFrame.contentWindow.print(); } catch (error) { /* The browser may block printing. */ }
+      });
+    }
+    frameDoc.addEventListener('keydown', event => {
+      if(!cvModal || !cvModal.classList.contains('open')) return;
+      if(event.key === 'Escape'){
+        event.preventDefault();
+        closeCvModal();
+        return;
+      }
+      if(event.key !== 'Tab') return;
+      const items = getFrameFocusable();
+      if(!items.length) return;
+      const first = items[0], last = items[items.length - 1];
+      if(event.shiftKey && frameDoc.activeElement === first){
+        event.preventDefault();
+        if(cvModalClose) cvModalClose.focus();
+      } else if(!event.shiftKey && frameDoc.activeElement === last){
+        event.preventDefault();
+        if(cvPrintBtn) cvPrintBtn.focus();
+      }
+    });
+  }
+
+  function focusFrameEdge(last){
+    bindCvFrameControls();
+    const items = getFrameFocusable();
+    if(!items.length){
+      if(cvModalClose) cvModalClose.focus();
+      return;
+    }
+    (last ? items[items.length - 1] : items[0]).focus();
+  }
 
   function openCvModal(){
-    lastFocusedElement = document.activeElement;
     if(!cvModal) return;
+    lastFocusedElement = document.activeElement;
     cvModal.classList.add('open');
     cvModal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('cv-open');
+    if(pageContent) pageContent.inert = true;
     if(cvModalClose) requestAnimationFrame(() => cvModalClose.focus());
+    bindCvFrameControls();
   }
 
   function closeCvModal(){
@@ -1963,26 +2027,43 @@
     cvModal.classList.remove('open');
     cvModal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('cv-open');
+    if(pageContent) pageContent.inert = false;
     if(lastFocusedElement && typeof lastFocusedElement.focus === 'function'){
       lastFocusedElement.focus();
     }
   }
 
+  if(cvFrame) cvFrame.addEventListener('load', bindCvFrameControls);
   if(viewCvBtn) viewCvBtn.addEventListener('click', openCvModal);
   if(viewCvNavBtn) viewCvNavBtn.addEventListener('click', openCvModal);
   if(cvPrintBtn) cvPrintBtn.addEventListener('click', () => {
-    const frame = document.getElementById('cvFrame');
-    if(frame && frame.contentWindow) frame.contentWindow.print();
+    bindCvFrameControls();
+    try {
+      if(cvFrame && cvFrame.contentWindow) cvFrame.contentWindow.print();
+    } catch (error) { /* The browser may block printing. */ }
   });
   if(cvModalClose) cvModalClose.addEventListener('click', closeCvModal);
 
-  if(cvModal) cvModal.addEventListener('click', (event) => {
+  if(cvModal) cvModal.addEventListener('click', event => {
     if(event.target === cvModal) closeCvModal();
   });
 
-  document.addEventListener('keydown', (event) => {
-    if(event.key === 'Escape' && cvModal && cvModal.classList.contains('open')){
+  document.addEventListener('keydown', event => {
+    if(!cvModal || !cvModal.classList.contains('open')) return;
+    if(event.key === 'Escape'){
       closeCvModal();
+      return;
+    }
+    if(event.key !== 'Tab') return;
+    if(event.target === cvFrame){
+      event.preventDefault();
+      focusFrameEdge(event.shiftKey);
+    } else if(event.shiftKey && event.target === cvPrintBtn){
+      event.preventDefault();
+      focusFrameEdge(true);
+    } else if(event.shiftKey && event.target === cvModalClose){
+      event.preventDefault();
+      if(cvPrintBtn) cvPrintBtn.focus();
     }
   });
 
