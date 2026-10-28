@@ -436,6 +436,8 @@
     box-shadow:0 5px 16px rgba(0,0,0,.2);
   }
 
+.cv-modal-print{position:absolute;top:12px;right:62px;z-index:5;min-height:38px;padding:8px 13px;border:1px solid rgba(255,255,255,.45);border-radius:999px;background:rgba(18,24,26,.82);color:#fff;font:500 12px 'Roboto',sans-serif;cursor:pointer;box-shadow:0 5px 16px rgba(0,0,0,.2);}
+  .cv-modal-print:hover{background:#12181A;}
   .cv-modal-close:hover{background:#12181A;}
 
   .cv-frame{
@@ -1078,6 +1080,8 @@
 
     
 
+  </section>
+
   <!-- ACADEMIC PROJECTS -->
   <section id="academic-projects">
     <div class="section-head">
@@ -1673,6 +1677,7 @@
 <!-- ---------- EMBEDDED CV PREVIEW ---------- -->
 <div class="cv-modal" id="cvModal" aria-hidden="true">
   <div class="cv-modal-panel" role="dialog" aria-modal="true" aria-label="CV Preview" tabindex="-1">
+    <button type="button" class="cv-modal-print" id="cvPrintBtn">Print / Save as PDF</button>
     <button type="button" class="cv-modal-close" id="cvModalClose" aria-label="Close CV preview">×</button>
     <iframe
       class="cv-frame"
@@ -1922,6 +1927,7 @@
   const viewCvBtn = document.getElementById('viewCvBtn');
   const viewCvNavBtn = document.getElementById('viewCvNavBtn');
   const cvModalClose = document.getElementById('cvModalClose');
+  const cvPrintBtn = document.getElementById('cvPrintBtn');
 
   let lastFocusedElement = null;
 
@@ -1944,6 +1950,10 @@
 
   if(viewCvBtn) viewCvBtn.addEventListener('click', openCvModal);
   if(viewCvNavBtn) viewCvNavBtn.addEventListener('click', openCvModal);
+  if(cvPrintBtn) cvPrintBtn.addEventListener('click', () => {
+    const frame = document.getElementById('cvFrame');
+    if(frame && frame.contentWindow) frame.contentWindow.print();
+  });
   cvModalClose.addEventListener('click', closeCvModal);
 
   cvModal.addEventListener('click', (event) => {
