@@ -2265,122 +2265,128 @@
 </style>
 
 
-<style id="mobile-header-gap-fix">
-  /* Final responsive layout: keep existing content and behavior, adjust layout only. */
-
-  /* Desktop and laptop: logo left, links in the same row, theme and menu controls right. */
-  @media (min-width:1041px){
-    nav .nav-inner{
-      display:flex;align-items:center;justify-content:flex-start;
-      gap:20px;padding:12px 28px;max-width:1320px;margin:0 auto;
-    }
-    nav .nav-logo{flex:0 0 auto;font-size:18px;font-weight:700;}
-    nav .nav-actions{
-      display:flex;align-items:center;flex:1;min-width:0;
-      margin-left:0;gap:12px;position:relative;
-    }
-    nav .nav-links{
-      display:flex;position:static;align-items:center;flex:1;min-width:0;
-      flex-direction:row;justify-content:space-between;gap:12px;
-      width:auto;max-height:none;overflow:visible;padding:0;
-      background:transparent;border:0;border-radius:0;box-shadow:none;
-    }
-    nav .nav-links>li{width:auto;flex:0 0 auto;}
-    nav .nav-links li+li{margin-left:0;}
-    nav .nav-links a,nav .nav-group summary{font-size:13px;padding:8px 0;white-space:nowrap;}
-    nav .nav-submenu{top:calc(100% + 8px);}
-    nav .theme-toggle,nav .nav-toggle{display:flex;align-items:center;justify-content:center;flex:0 0 auto;margin:0;}
-    nav .nav-toggle{width:42px;height:42px;}
+<style>
+  /* Final polish layer: one authoritative responsive layout for navigation and hero. */
+  :root{
+    --content-max:1080px;
+    --focus-ring:rgba(32,78,107,.55);
+  }
+  html{scroll-padding-top:88px;}
+  body{overflow-wrap:break-word;}
+  .wrap{width:100%;max-width:var(--content-max);margin-inline:auto;padding-inline:28px;}
+  section[id]{scroll-margin-top:88px;}
+  :where(a,button,summary,[tabindex]):focus-visible{
+    outline:3px solid var(--focus-ring);
+    outline-offset:3px;
   }
 
-  /* Mobile and small tablets: compact header, with navigation links in the menu. */
-  @media (max-width:1040px){
-    nav .nav-inner{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:12px;padding:10px 16px;
-    }
-    nav .nav-logo{flex:0 0 auto;margin-right:auto;}
-    nav .nav-actions{
-      display:flex;align-items:center;justify-content:flex-end;
-      flex:0 0 auto;min-width:0;margin-left:0;gap:8px;position:static;
-    }
-    nav .nav-links{
-      display:none;position:fixed;top:64px;right:14px;left:14px;
-      width:auto;max-height:calc(100vh - 82px);overflow:auto;
-      padding:8px;flex-direction:column;align-items:stretch;gap:0;
-      background:var(--card);border:1px solid var(--line);
-      border-radius:14px;box-shadow:0 18px 45px rgba(18,24,26,.16);z-index:100;
-    }
-    nav .nav-links.open{display:flex;}
-    nav .nav-links>li{width:100%;}
-    nav .nav-links li+li{margin-left:0;}
-    nav .theme-toggle,nav .nav-toggle{
-      display:flex;align-items:center;justify-content:center;
-      flex:0 0 auto;width:38px;height:38px;margin:0;
-    }
-
-    /* Mobile hero: portrait first, compact spacing, readable text below. */
-    section.hero{
-      display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
-      gap:18px;padding:28px 0 32px;
-    }
-    section.hero>div:first-child{order:2;width:100%;margin:0;}
-    section.hero .hero-photo{
-      order:1;align-self:flex-start;width:112px;height:112px;
-      margin:0;border-radius:16px;
-    }
-    section.hero .eyebrow{font-size:11px;line-height:1.7;letter-spacing:.08em;margin-bottom:10px;}
-    section.hero h1{font-size:clamp(27px,7vw,34px);line-height:1.12;overflow-wrap:anywhere;}
-    section.hero .tagline{max-width:none;margin-top:12px;font-size:16px;line-height:1.65;}
-    section.hero .hero-summary{max-width:none;margin-top:12px;font-size:14px;line-height:1.7;}
-    section.hero .hero-cta{gap:8px;margin-top:18px;}
-    section.hero .hero-cta .btn{margin:0;min-height:42px;padding:10px 16px;}
-    section.hero .hero-focus{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
-  }
-
-  /* Desktop header matches the reference: MR, six clear links, theme and menu controls. */
+  /* Desktop: logo left, evenly spaced navigation centered, controls right. */
   @media (min-width:1041px){
-    nav .nav-inner{position:relative;}
-    nav .nav-actions{display:flex;align-items:center;flex:1;min-width:0;margin-left:auto;gap:18px;position:static;}
-    nav #navLinks{display:none!important;}
+    nav .nav-inner{
+      display:flex!important;align-items:center!important;justify-content:space-between!important;
+      gap:28px!important;max-width:1320px!important;margin-inline:auto!important;
+      padding:12px 28px!important;position:relative!important;
+    }
+    nav .nav-logo{
+      display:block!important;position:static!important;left:auto!important;top:auto!important;
+      transform:none!important;order:0!important;flex:0 0 auto!important;margin:0!important;
+      font-size:18px!important;font-weight:700!important;white-space:nowrap!important;
+    }
+    nav .nav-actions{
+      display:grid!important;grid-template-columns:minmax(0,1fr) 42px 42px!important;
+      align-items:center!important;column-gap:18px!important;row-gap:0!important;
+      flex:1 1 auto!important;min-width:0!important;margin:0!important;position:static!important;
+    }
     nav .nav-links-desktop{
-      display:flex!important;position:absolute;left:28px;top:50%;transform:translateY(-50%);
-      align-items:center;justify-content:flex-start;
-      flex:0 0 auto;min-width:0;width:auto;max-height:none;overflow:visible;
-      flex-direction:row;gap:38px;padding:0;margin:0;
-      background:transparent;border:0;border-radius:0;box-shadow:none;
+      display:flex!important;position:static!important;left:auto!important;top:auto!important;
+      transform:none!important;grid-column:1!important;grid-row:1!important;
+      justify-self:center!important;align-items:center!important;justify-content:center!important;
+      flex:0 0 auto!important;width:auto!important;min-width:0!important;max-width:100%!important;
+      flex-direction:row!important;gap:60px!important;padding:0!important;margin:0!important;
+      max-height:none!important;overflow:visible!important;background:transparent!important;
+      border:0!important;border-radius:0!important;box-shadow:none!important;
     }
-    nav .nav-logo{position:absolute;left:calc(28px + 470px);top:50%;transform:translateY(-50%);}
-    nav .theme-toggle{margin-left:auto!important;}
-    nav .nav-links-desktop>li{margin:0;flex:0 0 auto;}
-    nav .nav-links-desktop a,nav .nav-links-desktop .nav-group summary{
-      padding:8px 0;font-size:13px;white-space:nowrap;
+    nav #navLinks{display:none!important;}
+    nav .nav-links-desktop>li{
+      display:block!important;width:auto!important;flex:0 0 auto!important;margin:0!important;
+      padding:0!important;list-style:none!important;
     }
-    nav .nav-actions{gap:18px;}
-    nav .theme-toggle{margin-left:auto;}
-
-    nav .nav-links-desktop>li{width:auto;flex:0 0 auto;list-style:none;}
-    nav .nav-links-desktop a,nav .nav-links-desktop .nav-group summary{
-      display:block;padding:8px 0;font-size:13px;font-weight:500;color:var(--ink-soft);white-space:nowrap;
+    nav .nav-links-desktop a,
+    nav .nav-links-desktop .nav-group summary{
+      display:block!important;padding:8px 0!important;margin:0!important;
+      font-size:13px!important;font-weight:500!important;line-height:1.4!important;
+      white-space:nowrap!important;color:var(--ink-soft)!important;text-decoration:none!important;
     }
-    /* Reference-style active indicator for the Home link on the landing page. */
-    nav .nav-links-desktop>li:first-child>a{
-      position:relative;color:var(--ink);
-    }
+    nav .nav-links-desktop a:hover,
+    nav .nav-links-desktop .nav-group summary:hover{color:var(--ink)!important;}
+    nav .nav-links-desktop>li:first-child>a{position:relative!important;color:var(--ink)!important;}
     nav .nav-links-desktop>li:first-child>a::after{
       content:"";position:absolute;left:0;right:0;bottom:-7px;height:2px;
-      background:var(--lime,#6b9f43);border-radius:2px;
+      background:var(--lime);border-radius:2px;
     }
-    nav .nav-links-desktop .nav-group details{background:transparent;border:0;border-radius:0;padding:0;box-shadow:none;}
-    nav .nav-links-desktop .nav-submenu{top:calc(100% + 8px);}
-    nav .theme-toggle{margin:0!important;width:42px;height:42px;}
-    nav .nav-toggle{display:flex;align-items:center;justify-content:center;width:42px;height:42px;margin:0;padding:4px;flex:0 0 auto;}
-  }
-  @media (max-width:1040px){
-    nav .nav-links-desktop{display:none!important;}
+    nav .nav-links-desktop .nav-group,
+    nav .nav-links-desktop .nav-group details{position:relative!important;}
+    nav .nav-links-desktop .nav-group details{
+      background:transparent!important;border:0!important;border-radius:0!important;
+      padding:0!important;box-shadow:none!important;
+    }
+    nav .nav-links-desktop .nav-submenu{top:calc(100% + 8px)!important;}
+    nav .nav-actions>.theme-toggle{
+      grid-column:2!important;grid-row:1!important;justify-self:end!important;
+      display:flex!important;align-items:center!important;justify-content:center!important;
+      width:42px!important;height:42px!important;margin:0!important;flex:0 0 42px!important;
+    }
+    nav .nav-actions>.nav-toggle{
+      grid-column:3!important;grid-row:1!important;justify-self:end!important;
+      display:flex!important;align-items:center!important;justify-content:center!important;
+      width:42px!important;height:42px!important;margin:0!important;padding:4px!important;
+      flex:0 0 42px!important;
+    }
   }
 
-  /* Desktop hero: portrait on the left and profile content on the right, like the reference. */
+  /* Mobile/tablet: keep the compact header and dropdown menu usable. */
+  @media (max-width:1040px){
+    nav .nav-inner{
+      display:flex!important;align-items:center!important;justify-content:space-between!important;
+      gap:12px!important;padding:10px 18px!important;
+    }
+    nav .nav-logo{
+      display:block!important;position:static!important;transform:none!important;
+      flex:0 0 auto!important;margin:0 auto 0 0!important;font-size:17px!important;
+    }
+    nav .nav-actions{
+      display:flex!important;align-items:center!important;justify-content:flex-end!important;
+      flex:0 0 auto!important;min-width:0!important;margin:0!important;gap:8px!important;position:static!important;
+    }
+    nav .nav-links-desktop{display:none!important;}
+    nav .nav-links{
+      display:none;position:fixed;top:64px;right:14px;left:14px;width:auto;
+      max-height:calc(100dvh - 82px);overflow:auto;padding:8px;
+      flex-direction:column;align-items:stretch;gap:0;
+      background:var(--card);border:1px solid var(--line);border-radius:14px;
+      box-shadow:0 18px 45px rgba(18,24,26,.16);z-index:100;
+    }
+    nav .nav-links.open{display:flex!important;}
+    nav .nav-links>li{display:block;width:100%;margin:0;}
+    nav .nav-links li+li{margin-left:0;}
+    nav .theme-toggle,nav .nav-toggle{
+      display:flex!important;align-items:center;justify-content:center;
+      flex:0 0 40px!important;width:40px!important;height:40px!important;margin:0!important;
+    }
+    nav .nav-links .nav-home,nav .nav-group summary,nav .nav-cv-btn{
+      display:block;width:100%;text-align:left;padding:13px 16px;
+      border-radius:0;border-top:1px solid var(--line);font-size:14px;
+    }
+    nav .nav-group details{border:0;}
+    nav .nav-submenu{
+      position:static;min-width:0;max-width:none;border:0;border-radius:0;
+      box-shadow:none;padding:0 0 8px;background:var(--bg);
+    }
+    nav .nav-submenu a{padding:11px 28px;border-top:1px solid var(--line);font-size:13px;}
+    nav .nav-group summary::after{float:right;}
+  }
+
+  /* Hero: keep the desktop two-column composition and stack it cleanly on small screens. */
   @media (min-width:701px){
     section.hero{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:30px;}
     section.hero .hero-photo{order:1;flex:0 0 210px;width:210px;height:210px;margin:0;}
@@ -2388,47 +2394,40 @@
     section.hero h1{font-size:clamp(32px,3.3vw,46px);line-height:1.1;}
     section.hero .tagline{max-width:620px;}
   }
-
-  /* Final desktop header layout: prevent legacy rules from overlapping the tabs. */
-  @media (min-width:1041px){
-    nav .nav-inner{
-      display:flex!important;align-items:center!important;justify-content:space-between!important;
-      gap:28px!important;position:static!important;
+  @media (max-width:700px){
+    .wrap{padding-inline:18px;}
+    section{padding-block:42px;}
+    section.hero{
+      display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+      gap:18px;padding:28px 0 32px;
     }
-    nav .nav-logo{
-      position:static!important;left:auto!important;top:auto!important;transform:none!important;
-      order:0!important;flex:0 0 auto!important;margin:0!important;
-    }
-    nav .nav-actions{
-      display:grid!important;grid-template-columns:minmax(0,1fr) 42px 42px!important;
-      align-items:center!important;column-gap:18px!important;
-      flex:1 1 auto!important;min-width:0!important;margin:0!important;position:static!important;
-    }
-    nav .nav-links-desktop{
-      display:flex!important;position:static!important;left:auto!important;top:auto!important;transform:none!important;
-      grid-column:1!important;grid-row:1!important;justify-self:center!important;
-      align-items:center!important;justify-content:center!important;
-      flex:0 0 auto!important;width:auto!important;min-width:0!important;
-      flex-direction:row!important;gap:60px!important;padding:0!important;margin:0!important;
-      max-height:none!important;overflow:visible!important;background:transparent!important;
-      border:0!important;border-radius:0!important;box-shadow:none!important;
-    }
-    nav #navLinks{display:none!important;}
-    nav .nav-actions>.theme-toggle{
-      grid-column:2!important;grid-row:1!important;justify-self:end!important;
-      display:flex!important;width:42px!important;height:42px!important;margin:0!important;
-    }
-    nav .nav-actions>.nav-toggle{
-      grid-column:3!important;grid-row:1!important;justify-self:end!important;
-      display:flex!important;width:42px!important;height:42px!important;margin:0!important;
-    }
-    nav .nav-links-desktop>li{width:auto!important;flex:0 0 auto!important;margin:0!important;list-style:none!important;}
-    nav .nav-links-desktop a,nav .nav-links-desktop .nav-group summary{
-      display:block!important;padding:8px 0!important;font-size:13px!important;font-weight:500!important;
-      white-space:nowrap!important;
-    }
-    nav .nav-links-desktop>li:first-child>a{position:relative!important;}
+    section.hero>div:first-child{order:2;width:100%;margin:0;}
+    section.hero .hero-photo{order:1;align-self:flex-start;width:112px;height:112px;margin:0;border-radius:16px;}
+    section.hero .eyebrow{font-size:11px;line-height:1.7;letter-spacing:.08em;margin-bottom:10px;}
+    section.hero h1{font-size:clamp(27px,7vw,34px);line-height:1.12;overflow-wrap:anywhere;}
+    section.hero .tagline{max-width:none;margin-top:12px;font-size:16px;line-height:1.65;}
+    section.hero .hero-summary{max-width:none;margin-top:12px;font-size:14px;line-height:1.7;}
+    section.hero .hero-cta{gap:8px;margin-top:18px;}
+    section.hero .hero-cta .btn{margin:0;min-height:42px;padding:10px 16px;}
+    section.hero .hero-focus{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+    .section-head{margin-bottom:24px;}
+    .section-head h2{font-size:1.75rem;}
+    .about-grid{gap:24px;}
+    .course-grid{gap:16px;}
+    .course-card{padding:18px;}
+    .cert-featured{gap:16px;}
+    .entry{padding-block:18px;}
   }
+  @media (max-width:380px){
+    .wrap{padding-inline:16px;}
+    .hero-cta .btn{width:100%;margin-right:0;}
+    .stat-card{min-width:0;padding:16px 14px;}
+    .stat-card .num{font-size:28px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important;}
+  }
+
 </style>
 </body>
 </html>
