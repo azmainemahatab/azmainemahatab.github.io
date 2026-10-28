@@ -878,6 +878,7 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#home">Skip to main content</a>
 <!-- data-official-contact-icons="v1" -->
 
 <nav aria-label="Main navigation">
@@ -2000,13 +2001,15 @@
 
   function openCvModal(){
     lastFocusedElement = document.activeElement;
+    if(!cvModal) return;
     cvModal.classList.add('open');
     cvModal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('cv-open');
-    requestAnimationFrame(() => cvModalClose.focus());
+    if(cvModalClose) requestAnimationFrame(() => cvModalClose.focus());
   }
 
   function closeCvModal(){
+    if(!cvModal) return;
     cvModal.classList.remove('open');
     cvModal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('cv-open');
@@ -2021,14 +2024,14 @@
     const frame = document.getElementById('cvFrame');
     if(frame && frame.contentWindow) frame.contentWindow.print();
   });
-  cvModalClose.addEventListener('click', closeCvModal);
+  if(cvModalClose) cvModalClose.addEventListener('click', closeCvModal);
 
-  cvModal.addEventListener('click', (event) => {
+  if(cvModal) cvModal.addEventListener('click', (event) => {
     if(event.target === cvModal) closeCvModal();
   });
 
   document.addEventListener('keydown', (event) => {
-    if(event.key === 'Escape' && cvModal.classList.contains('open')){
+    if(event.key === 'Escape' && cvModal && cvModal.classList.contains('open')){
       closeCvModal();
     }
   });
@@ -2036,7 +2039,8 @@
   const themeToggle = document.getElementById('themeToggle');
   const sunIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2.2M12 19.8V22M4.93 4.93l1.55 1.55m11.04 11.04 1.55 1.55M2 12h2.2m15.6 0H22M4.93 19.07l1.55-1.55M17.52 6.48l1.55-1.55" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
   const moonIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.6 8.6 0 1 0 20.2 15.2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  const savedTheme = localStorage.getItem('portfolio-theme');
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem('portfolio-theme'); } catch (error) { /* Storage may be blocked; use the default theme. */ }
   const setThemeButton = (isDark) => {
     themeToggle.innerHTML = isDark ? sunIcon : moonIcon;
     themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
@@ -2052,7 +2056,7 @@
   themeToggle.addEventListener('click', () => {
     const isDark = document.documentElement.classList.toggle('dark');
     setThemeButton(isDark);
-    localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
+    try { localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light'); } catch (error) { /* Theme still works for this page view if storage is blocked. */ }
   });
   function togglePortfolioMenu(event){
     if(event) event.stopPropagation();
@@ -2175,6 +2179,8 @@
   }
   .hero .tagline{max-width:720px;line-height:1.35;}
   .hero-focus{margin-top:18px;}
+  .skip-link{position:fixed;left:16px;top:12px;z-index:1000;padding:10px 14px;background:var(--card);color:var(--ink);border:2px solid var(--blue);border-radius:8px;transform:translateY(-160%);}
+  .skip-link:focus{transform:translateY(0);}
   :where(a,button,summary,[tabindex]):focus-visible{
     outline:3px solid rgba(32,78,107,.38);outline-offset:3px;
   }
