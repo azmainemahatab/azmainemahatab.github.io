@@ -1295,6 +1295,15 @@
   <!-- Mobile Hero responsive refinement: desktop styles remain unchanged -->
   <style id="mobile-hero-refinement">
   /* Mobile-first refinement: keep the full page compact and readable. */
+  /* Render below-the-fold sections only as they approach the viewport. */
+  @supports (content-visibility: auto) {
+    main > section:not(#home),
+    body > section:not(#home) {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 680px;
+    }
+  }
+
   @media (max-width: 700px) {
     html { -webkit-text-size-adjust: 100%; }
     body { font-size: 15px; line-height: 1.65; overflow-wrap: break-word; }
