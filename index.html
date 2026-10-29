@@ -117,26 +117,32 @@
   #academic-projects,#media-features,#skills-languages-anchor,#contact,#research-interests,#coursework,#achievements,#scholarships,#memberships{scroll-margin-top:90px;}
 
   .theme-toggle{
-    background:var(--card);
-    color:var(--ink);
-    border:1px solid var(--line);
-    border-radius:50%;
-    width:42px;height:42px;
-    cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    margin-left:22px;flex-shrink:0;
-    box-shadow:0 2px 8px rgba(0,0,0,.07);
-    transition:background-color .25s ease,color .25s ease,border-color .25s ease,box-shadow .25s ease,transform .2s ease;
+    position:relative;isolation:isolate;
+    display:inline-flex;align-items:center;justify-content:space-between;gap:4px;
+    width:86px;height:40px;padding:4px;
+    margin-left:22px;flex:0 0 auto;cursor:pointer;
+    border:1px solid var(--line);border-radius:999px;
+    background:#eef0f4;color:#1f2937;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    transition:background-color .25s ease,border-color .25s ease,box-shadow .25s ease,transform .2s ease;
   }
-  .theme-toggle:hover{
-    border-color:var(--lime);
-    box-shadow:0 0 0 3px color-mix(in srgb, var(--lime) 18%, transparent);
-    transform:translateY(-1px);
+  .theme-toggle::before{
+    content:"";position:absolute;z-index:-1;top:3px;left:3px;
+    width:32px;height:32px;border-radius:50%;background:#ffe45c;
+    box-shadow:0 1px 4px rgba(0,0,0,.12);
+    transition:transform .25s ease,background-color .25s ease;
   }
-  .theme-toggle:active{transform:scale(.96)}
-  .theme-toggle:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
-  .theme-toggle svg{width:20px;height:20px;display:block;transition:transform .25s ease}
-  .theme-toggle:hover svg{transform:rotate(-12deg)}
+  .theme-toggle:hover{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 14%,transparent)}
+  .theme-toggle:active{transform:scale(.97)}
+  .theme-toggle:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+  .theme-toggle .theme-icon{width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex:0 0 32px}
+  .theme-toggle svg{width:18px;height:18px;display:block}
+  .theme-toggle .theme-sun{color:#202938}
+  .theme-toggle .theme-moon{color:#4b5563}
+  html.dark .theme-toggle::before{transform:translateX(44px);background:#263246}
+  html.dark .theme-toggle .theme-sun{color:#6b7280}
+  html.dark .theme-toggle .theme-moon{color:#f8fafc}
+  @media (prefers-reduced-motion:reduce){.theme-toggle,.theme-toggle::before{transition:none}}
   @media (prefers-reduced-motion:reduce){
     .theme-toggle,.theme-toggle svg{transition:none}
   }
@@ -1295,7 +1301,7 @@
         <li class="nav-group"><details><summary>More</summary><div class="nav-submenu"><a href="#languages-proficiency">Languages &amp; Proficiency</a><a href="#media-features">Media Features &amp; Publications</a><a href="#contact">Contact &amp; Collaboration</a></div></details></li>
         <li><button type="button" class="nav-cv-btn" id="viewCvNavBtn" aria-haspopup="dialog" aria-controls="cvModal">View CV</button></li>
       </ul>
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.6 8.6 0 1 0 20.2 15.2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode"><span class="theme-icon theme-sun" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2.2M12 19.8V22M4.93 4.93l1.55 1.55m11.04 11.04 1.55 1.55M2 12h2.2m15.6 0H22M4.93 19.07l1.55-1.55M17.52 6.48l1.55-1.55" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="theme-icon theme-moon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.6 8.6 0 1 0 20.2 15.2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
       <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false" onclick="togglePortfolioMenu(event)"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -2367,12 +2373,9 @@
   });
 
   const themeToggle = document.getElementById('themeToggle');
-  const sunIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2.2M12 19.8V22M4.93 4.93l1.55 1.55m11.04 11.04 1.55 1.55M2 12h2.2m15.6 0H22M4.93 19.07l1.55-1.55M17.52 6.48l1.55-1.55" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
-  const moonIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.6 8.6 0 1 0 20.2 15.2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   let savedTheme = null;
   try { savedTheme = localStorage.getItem('portfolio-theme'); } catch (error) { /* Storage may be blocked; use the default theme. */ }
   const setThemeButton = (isDark) => {
-    themeToggle.innerHTML = isDark ? sunIcon : moonIcon;
     themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
     themeToggle.setAttribute('aria-pressed', String(isDark));
     themeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
