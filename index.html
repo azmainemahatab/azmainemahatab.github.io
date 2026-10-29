@@ -1353,13 +1353,19 @@
     section.hero#home .hero-photo {
       order: 1;
       display: block;
-      width: 148px;
-      height: 148px;
-      max-width: 45vw;
+      align-self: flex-start;
+      flex: 0 0 132px;
+      width: 132px;
+      height: 132px;
+      min-width: 132px;
+      min-height: 132px;
+      max-width: 132px;
+      max-height: 132px;
       aspect-ratio: 1 / 1;
       object-fit: cover;
-      margin: 0 auto 2px;
-      border-radius: 20px;
+      object-position: center 20%;
+      margin: 0 0 2px;
+      border-radius: 18px;
     }
     section.hero#home .eyebrow {
       font-size: 10px;
@@ -1440,7 +1446,7 @@
     section { padding-block: 30px; }
     .nav-inner { padding-inline: 12px; }
     section.hero#home { padding-top: 20px; gap: 14px; }
-    section.hero#home .hero-photo { width: 132px; height: 132px; }
+    section.hero#home .hero-photo { flex-basis: 120px; width: 120px; height: 120px; min-width: 120px; min-height: 120px; max-width: 120px; max-height: 120px; }
     section.hero#home .hero-cta { grid-template-columns: minmax(0, 1fr); }
     .stat-card { padding: 13px 11px; }
     .stat-card .num { font-size: 25px; }
