@@ -36,7 +36,6 @@ My academic interests include public and environmental health, plant–health re
 - [Selected Academic Work](#selected-academic-work)
 - [Research and Academic Skills](#research-and-academic-skills)
 - [Training and Recognition](#training-and-recognition)
-- [Technology and Community Engagement Interests](#technology-and-community-engagement-interests)
 - [Professional and Volunteer Experience](#professional-and-volunteer-experience)
 - [Repository Structure](#repository-structure)
 - [Technology Stack](#technology-stack)
@@ -127,13 +126,9 @@ These skills reflect my current academic and practical experience. I continue to
 - **University of the People Institutional Scholarship**.
 - **Associate of Science in Health Science, High Honors** — GPA: 3.85/4.00.
 
-## Technology and Community Engagement Interests
-
-**Aspiring Microsoft Student Ambassador**  
-Interested in student community engagement, technology awareness, peer learning, knowledge sharing, and helping students explore digital skills and Microsoft technologies. This reflects a professional interest, not an appointed ambassador role.
-
 ## Professional and Volunteer Experience
 
+- **Student Ambassador, Microsoft**
 - **Freelance Digital Marketer / SEO Specialist** — 2022–present
 - **HR Operations Manager Intern, BYOSD** — July–December 2022
 - **Aspire Leaders Campus Leader** — 2026–present
