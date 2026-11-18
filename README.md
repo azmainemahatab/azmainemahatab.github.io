@@ -118,6 +118,7 @@ These skills reflect my current academic and practical experience. I continue to
 ### Training and Professional Development
 
 - **GCI World 2026 September Academic Training** — Matsuo-Iwasawa Laboratory, Graduate School of Engineering, The University of Tokyo. Online training in data science, AI/ML, Python, statistics, and data analysis (17 September–23 December 2026; scheduled period).
+- **Data Science Lab** — WorldQuant University. Certificate of Completion, completed 18 November 2026.
 
 ### Scholarships and Academic Recognition
 
